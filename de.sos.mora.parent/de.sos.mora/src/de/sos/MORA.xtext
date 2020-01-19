@@ -1,0 +1,168 @@
+grammar de.sos.MORA   hidden(WS, SL_COMMENT)//with org.eclipse.xtext.common.Terminals
+
+generate mORA "http://www.sos.de/MORA"
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+Model:
+	(includes += Include)*
+	(options = Options)?
+	'package' name = ID '{'
+		((
+			(interfaces += Interface)
+		|	(types += TypeDecl)
+		)';'?)*
+	'}'
+;
+	
+Include:
+	'import' importUri = STRING';'?
+;
+
+Options:
+	'options' '{'
+		(	(javaOptions = JavaOptions)
+		|	(csOptions = CSharpOptions)
+		|	(cppOptions = CppOptions)
+		)+
+	'}'
+;
+
+
+JavaOptions :
+	'java' '{'
+		'base-package' '=' basePackage=QualifiedName
+	'}'
+;
+
+CSharpOptions:
+	'csharp' '{'
+		'base-namespace' '=' baseNamespace=QualifiedName
+	'}'
+;
+
+CppOptions:
+	'cpp' '{'
+		'base-namespace' '=' baseNamespace=QualifiedName
+	'}'
+;
+
+TypeDecl : 
+	SingleTypeDecl | ListTypeDecl
+;
+
+SingleTypeDecl :
+	PrimTypeDecl | StructDecl | EnumDecl
+;
+
+PrimTypeDecl :
+	name = PrimTypeLiteral
+;
+
+Annotation:
+	'@'name=ID ('=' value = STRING)?
+;
+StructDecl :
+	(doc = ML_COMMENT)?
+	(anno += Annotation)*
+	'struct' name = ID '{'
+		(member += Member ';'?)*
+	'}'
+;
+Member:
+	(doc = ML_COMMENT)?
+	(anno += Annotation)*
+	(
+		(complexType = [TypeDecl|QualifiedName]) |
+		(primType = PrimTypeLiteral )
+	) name = ID 
+;
+EnumDecl :
+	(doc = ML_COMMENT)?
+	'enum' name = ID '{'
+		(literals += Literal ';'?)+
+	'}'
+;
+Literal :
+	(doc = ML_COMMENT)?
+	name = ID ('=' value=INT)?
+;
+
+//CollectionTypeDecl:
+//	ListTypeDecl | SetTypeDecl | MapTypeDecl
+//;
+//
+//SetTypeDecl :
+//	'Set''<' valueType=[SingleTypeDecl|QualifiedName] '>' name = ID
+//;
+//MapTypeDecl:
+//	'Map''<'keyType=[SingleTypeDecl|QualifiedName] ',' valueType=[SingleTypeDecl|QualifiedName] '>' name = ID
+//;
+ListTypeDecl : 
+	(doc = ML_COMMENT)?
+	'List''<' (valueType=[SingleTypeDecl|QualifiedName] | primType = PrimTypeLiteral) '>' name = ID
+;
+
+
+
+
+
+
+Interface : 
+	(doc = ML_COMMENT)?
+	(anno += Annotation)*
+	'interface' name = ID ('extends' parents += [Interface|QualifiedName] (',' parents += [Interface|QualifiedName])*)? 
+	'{'
+		(methods += Method ';'?)*
+	'}'
+;
+
+Method:
+	(doc = ML_COMMENT)?
+	((returnProxyType = [Interface|ID]'*') | (((complexType = [TypeDecl|QualifiedName]) | (primType = PrimTypeLiteral )))) name = ID '(' (parameters+=Parameter (',' parameters += Parameter)*)? ')'
+	('throws' exceptions+=Exception (',' exceptions += Exception)*)? 
+;
+
+Exception : 
+	'exception' name=ID '{'
+		(member += Member ';'?)*
+	'}'
+;
+
+Parameter :
+	(
+		(complexType = [TypeDecl|QualifiedName]) 	|
+		(primType = PrimTypeLiteral )				|
+		(proxyType = [Interface|ID]'*')
+	)
+	name = ID
+;
+
+
+enum PrimTypeLiteral :
+	BOOL = 'bool' |
+	BYTE = 'byte' |
+	SHORT = 'short' |
+	INTEGER = 'int' |
+	LONG = 'long' |
+	FLOAT = 'float' |
+	DOUBLE = 'double' |
+	STRING = 'string' |
+	VOID = 'void'  
+;
+
+QualifiedName : ID (('.'|'::') ID)*;
+
+
+
+terminal ID: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
+terminal INT returns ecore::EInt: ('0'..'9')+;
+terminal STRING:
+			'"' ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|'"') )* '"' |
+			"'" ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|"'") )* "'"
+		;
+terminal ML_COMMENT : '/*' -> '*/';
+terminal SL_COMMENT : '//' !('\n'|'\r')* ('\r'? '\n')?;
+
+terminal WS         : (' '|'\t'|'\r'|'\n')+;
+
+terminal ANY_OTHER: .;

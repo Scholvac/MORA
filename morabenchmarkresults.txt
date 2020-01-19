@@ -1,0 +1,2632 @@
+PS C:\Users\sschweigert\Downloads\eclipse-dsl-2019-09-R-win32-x86_64\eclipse\workspace_mora\MoraBenchmark\target> java -jar .\benchmarks.jar -wi 5 -i 5 -f 1
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testIceIntStruct
+
+# Run progress: 0,00% complete, ETA 00:01:00
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:50700
+Start Server at: tcp//127.0.0.1:9242
+16,819 ops/ms
+# Warmup Iteration   2: 22,318 ops/ms
+# Warmup Iteration   3: 23,091 ops/ms
+# Warmup Iteration   4: 23,376 ops/ms
+# Warmup Iteration   5: 23,353 ops/ms
+Iteration   1: 23,397 ops/ms
+Iteration   2: 23,392 ops/ms
+Iteration   3: 23,383 ops/ms
+Iteration   4: 23,343 ops/ms
+Iteration   5: 23,528 ops/ms
+
+
+Result: 23,409 ▒(99.9%) 0,270 ops/ms [Average]
+  Statistics: (min, avg, max) = (23,343, 23,409, 23,528), stdev = 0,070
+  Confidence interval (99.9%): [23,139, 23,678]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testIceListStruct
+
+# Run progress: 16,67% complete, ETA 00:01:04
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:50716
+Start Server at: tcp//127.0.0.1:9242
+5,289 ops/ms
+# Warmup Iteration   2: 6,894 ops/ms
+# Warmup Iteration   3: 7,562 ops/ms
+# Warmup Iteration   4: 7,699 ops/ms
+# Warmup Iteration   5: 7,748 ops/ms
+Iteration   1: 7,718 ops/ms
+Iteration   2: 7,698 ops/ms
+Iteration   3: 7,549 ops/ms
+Iteration   4: 7,607 ops/ms
+Iteration   5: 7,750 ops/ms
+
+
+Result: 7,664 ▒(99.9%) 0,321 ops/ms [Average]
+  Statistics: (min, avg, max) = (7,549, 7,664, 7,750), stdev = 0,083
+  Confidence interval (99.9%): [7,344, 7,985]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraIntStruct
+
+# Run progress: 33,33% complete, ETA 00:00:51
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:50731
+Start Server at: tcp//127.0.0.1:9242
+2,161 ops/ms
+# Warmup Iteration   2: 6,293 ops/ms
+# Warmup Iteration   3: 6,989 ops/ms
+# Warmup Iteration   4: 4,973 ops/ms
+# Warmup Iteration   5: 7,128 ops/ms
+Iteration   1: 7,093 ops/ms
+Iteration   2: 7,127 ops/ms
+Iteration   3: 5,235 ops/ms
+Iteration   4: 4,384 ops/ms
+Iteration   5: 3,115 ops/ms
+
+
+Result: 5,391 ▒(99.9%) 6,705 ops/ms [Average]
+  Statistics: (min, avg, max) = (3,115, 5,391, 7,127), stdev = 1,741
+  Confidence interval (99.9%): [-1,314, 12,096]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStruct
+
+# Run progress: 50,00% complete, ETA 00:00:38
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:50771
+0,148 ops/ms
+# Warmup Iteration   2: 0,245 ops/ms
+# Warmup Iteration   3: 0,366 ops/ms
+# Warmup Iteration   4: 0,368 ops/ms
+# Warmup Iteration   5: 0,315 ops/ms
+Iteration   1: 0,407 ops/ms
+Iteration   2: 0,415 ops/ms
+Iteration   3: 0,400 ops/ms
+Iteration   4: 0,422 ops/ms
+Iteration   5: 0,415 ops/ms
+
+
+Result: 0,412 ▒(99.9%) 0,032 ops/ms [Average]
+  Statistics: (min, avg, max) = (0,400, 0,412, 0,422), stdev = 0,008
+  Confidence interval (99.9%): [0,379, 0,444]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStructDecoding
+
+# Run progress: 66,67% complete, ETA 00:00:26
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:50790
+Start Server at: tcp//127.0.0.1:9242
+0,484 ops/ms
+# Warmup Iteration   2: 0,603 ops/ms
+# Warmup Iteration   3: 0,701 ops/ms
+# Warmup Iteration   4: 1,307 ops/ms
+# Warmup Iteration   5: 1,320 ops/ms
+Iteration   1: 1,370 ops/ms
+Iteration   2: 1,368 ops/ms
+Iteration   3: 1,364 ops/ms
+Iteration   4: 1,372 ops/ms
+Iteration   5: 1,372 ops/ms
+
+
+Result: 1,369 ▒(99.9%) 0,013 ops/ms [Average]
+  Statistics: (min, avg, max) = (1,364, 1,369, 1,372), stdev = 0,003
+  Confidence interval (99.9%): [1,356, 1,382]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStructEncoding
+
+# Run progress: 83,33% complete, ETA 00:00:12
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:50804
+0,856 ops/ms
+# Warmup Iteration   2: 0,947 ops/ms
+# Warmup Iteration   3: 0,955 ops/ms
+# Warmup Iteration   4: 3,730 ops/ms
+# Warmup Iteration   5: 3,982 ops/ms
+Iteration   1: 3,923 ops/ms
+Iteration   2: 3,952 ops/ms
+Iteration   3: 3,844 ops/ms
+Iteration   4: 3,844 ops/ms
+Iteration   5: 3,911 ops/ms
+
+
+Result: 3,895 ▒(99.9%) 0,187 ops/ms [Average]
+  Statistics: (min, avg, max) = (3,844, 3,895, 3,952), stdev = 0,049
+  Confidence interval (99.9%): [3,708, 4,082]
+
+
+# Run complete. Total time: 00:01:17
+
+Benchmark                                          Mode  Samples   Score  Score error   Units
+d.s.b.MoraBenchmark.testIceIntStruct              thrpt        5  23,409        0,270  ops/ms
+d.s.b.MoraBenchmark.testIceListStruct             thrpt        5   7,664        0,321  ops/ms
+d.s.b.MoraBenchmark.testMoraIntStruct             thrpt        5   5,391        6,705  ops/ms
+d.s.b.MoraBenchmark.testMoraListStruct            thrpt        5   0,412        0,032  ops/ms
+d.s.b.MoraBenchmark.testMoraListStructDecoding    thrpt        5   1,369        0,013  ops/ms
+d.s.b.MoraBenchmark.testMoraListStructEncoding    thrpt        5   3,895        0,187  ops/ms
+PS C:\Users\sschweigert\Downloads\eclipse-dsl-2019-09-R-win32-x86_64\eclipse\workspace_mora\MoraBenchmark\target> java -jar .\benchmarks.jar -wi 5 -i 9 -f 1
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 9 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: de.sos.benchmark.MoraBenchmark.testIceIntStruct
+
+# Run progress: 0,00% complete, ETA 00:01:24
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:50864
+Start Server at: tcp//127.0.0.1:9242
+0,000 s/op
+# Warmup Iteration   2: 0,000 s/op
+# Warmup Iteration   3: 0,000 s/op
+# Warmup Iteration   4: 0,000 s/op
+# Warmup Iteration   5: 0,000 s/op
+Iteration   1: 0,000 s/op
+Iteration   2: 0,000 s/op
+Iteration   3: 0,000 s/op
+Iteration   4: 0,000 s/op
+Iteration   5: 0,000 s/op
+Iteration   6: 0,000 s/op
+Iteration   7: 0,000 s/op
+Iteration   8: 0,000 s/op
+Iteration   9: 0,000 s/op
+
+
+Result: 0,000 ▒(99.9%) 0,000 s/op [Average]
+  Statistics: (min, avg, max) = (0,000, 0,000, 0,000), stdev = 0,000
+  Confidence interval (99.9%): [0,000, 0,000]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 9 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: de.sos.benchmark.MoraBenchmark.testIceListStruct
+
+# Run progress: 16,67% complete, ETA 00:01:28
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:50879
+Start Server at: tcp//127.0.0.1:9242
+0,000 s/op
+# Warmup Iteration   2: 0,000 s/op
+# Warmup Iteration   3: 0,000 s/op
+# Warmup Iteration   4: 0,000 s/op
+# Warmup Iteration   5: 0,000 s/op
+Iteration   1: 0,000 s/op
+Iteration   2: 0,000 s/op
+Iteration   3: 0,000 s/op
+Iteration   4: 0,000 s/op
+Iteration   5: 0,000 s/op
+Iteration   6: 0,000 s/op
+Iteration   7: 0,000 s/op
+Iteration   8: 0,000 s/op
+Iteration   9: 0,000 s/op
+
+
+Result: 0,000 ▒(99.9%) 0,000 s/op [Average]
+  Statistics: (min, avg, max) = (0,000, 0,000, 0,000), stdev = 0,000
+  Confidence interval (99.9%): [0,000, 0,000]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 9 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraIntStruct
+
+# Run progress: 33,33% complete, ETA 00:01:10
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:50894
+0,000 s/op
+# Warmup Iteration   2: 0,000 s/op
+# Warmup Iteration   3: 0,000 s/op
+# Warmup Iteration   4: 0,000 s/op
+# Warmup Iteration   5: 0,000 s/op
+Iteration   1: 0,000 s/op
+Iteration   2: 0,000 s/op
+Iteration   3: 0,000 s/op
+Iteration   4: 0,000 s/op
+Iteration   5: 0,000 s/op
+Iteration   6: 0,000 s/op
+Iteration   7: 0,000 s/op
+Iteration   8: 0,000 s/op
+Iteration   9: 0,000 s/op
+
+
+Result: 0,000 ▒(99.9%) 0,000 s/op [Average]
+  Statistics: (min, avg, max) = (0,000, 0,000, 0,000), stdev = 0,000
+  Confidence interval (99.9%): [0,000, 0,000]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 9 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStruct
+
+# Run progress: 50,00% complete, ETA 00:00:53
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:50910
+0,004 s/op
+# Warmup Iteration   2: 0,003 s/op
+# Warmup Iteration   3: 0,002 s/op
+# Warmup Iteration   4: 0,002 s/op
+# Warmup Iteration   5: 0,002 s/op
+Iteration   1: 0,002 s/op
+Iteration   2: 0,002 s/op
+Iteration   3: 0,002 s/op
+Iteration   4: 0,002 s/op
+Iteration   5: 0,002 s/op
+Iteration   6: 0,002 s/op
+Iteration   7: 0,002 s/op
+Iteration   8: 0,002 s/op
+Iteration   9: 0,002 s/op
+
+
+Result: 0,002 ▒(99.9%) 0,000 s/op [Average]
+  Statistics: (min, avg, max) = (0,002, 0,002, 0,002), stdev = 0,000
+  Confidence interval (99.9%): [0,002, 0,002]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 9 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStructDecoding
+
+# Run progress: 66,67% complete, ETA 00:00:35
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:50924
+Start Server at: tcp//127.0.0.1:9242
+0,002 s/op
+# Warmup Iteration   2: 0,002 s/op
+# Warmup Iteration   3: 0,001 s/op
+# Warmup Iteration   4: 0,001 s/op
+# Warmup Iteration   5: 0,001 s/op
+Iteration   1: 0,001 s/op
+Iteration   2: 0,001 s/op
+Iteration   3: 0,001 s/op
+Iteration   4: 0,001 s/op
+Iteration   5: 0,001 s/op
+Iteration   6: 0,001 s/op
+Iteration   7: 0,001 s/op
+Iteration   8: 0,001 s/op
+Iteration   9: 0,001 s/op
+
+
+Result: 0,001 ▒(99.9%) 0,000 s/op [Average]
+  Statistics: (min, avg, max) = (0,001, 0,001, 0,001), stdev = 0,000
+  Confidence interval (99.9%): [0,001, 0,001]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 9 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStructEncoding
+
+# Run progress: 83,33% complete, ETA 00:00:17
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:50938
+0,001 s/op
+# Warmup Iteration   2: 0,001 s/op
+# Warmup Iteration   3: 0,001 s/op
+# Warmup Iteration   4: 0,000 s/op
+# Warmup Iteration   5: 0,000 s/op
+Iteration   1: 0,000 s/op
+Iteration   2: 0,000 s/op
+Iteration   3: 0,000 s/op
+Iteration   4: 0,000 s/op
+Iteration   5: 0,000 s/op
+Iteration   6: 0,000 s/op
+Iteration   7: 0,000 s/op
+Iteration   8: 0,000 s/op
+Iteration   9: 0,000 s/op
+
+
+Result: 0,000 ▒(99.9%) 0,000 s/op [Average]
+  Statistics: (min, avg, max) = (0,000, 0,000, 0,000), stdev = 0,000
+  Confidence interval (99.9%): [0,000, 0,000]
+
+
+# Run complete. Total time: 00:01:46
+
+Benchmark                                         Mode  Samples  Score  Score error  Units
+d.s.b.MoraBenchmark.testIceIntStruct              avgt        9  0,000        0,000   s/op
+d.s.b.MoraBenchmark.testIceListStruct             avgt        9  0,000        0,000   s/op
+d.s.b.MoraBenchmark.testMoraIntStruct             avgt        9  0,000        0,000   s/op
+d.s.b.MoraBenchmark.testMoraListStruct            avgt        9  0,002        0,000   s/op
+d.s.b.MoraBenchmark.testMoraListStructDecoding    avgt        9  0,001        0,000   s/op
+d.s.b.MoraBenchmark.testMoraListStructEncoding    avgt        9  0,000        0,000   s/op
+PS C:\Users\sschweigert\Downloads\eclipse-dsl-2019-09-R-win32-x86_64\eclipse\workspace_mora\MoraBenchmark\target> java -jar .\benchmarks.jar -wi 5 -i 5 -f 1
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testIceIntStruct
+
+# Run progress: 0,00% complete, ETA 00:01:00
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:50952
+16703,157 ops/s
+# Warmup Iteration   2: 21973,981 ops/s
+# Warmup Iteration   3: 22641,036 ops/s
+# Warmup Iteration   4: 23043,049 ops/s
+# Warmup Iteration   5: 23042,038 ops/s
+Iteration   1: 23065,735 ops/s
+Iteration   2: 23185,309 ops/s
+Iteration   3: 23083,465 ops/s
+Iteration   4: 23158,435 ops/s
+Iteration   5: 23090,926 ops/s
+
+
+Result: 23116,774 ▒(99.9%) 200,227 ops/s [Average]
+  Statistics: (min, avg, max) = (23065,735, 23116,774, 23185,309), stdev = 51,998
+  Confidence interval (99.9%): [22916,547, 23317,001]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testIceListStruct
+
+# Run progress: 16,67% complete, ETA 00:01:04
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:50967
+5161,548 ops/s
+# Warmup Iteration   2: 6542,119 ops/s
+# Warmup Iteration   3: 7506,781 ops/s
+# Warmup Iteration   4: 7558,788 ops/s
+# Warmup Iteration   5: 7577,134 ops/s
+Iteration   1: 7428,451 ops/s
+Iteration   2: 7560,039 ops/s
+Iteration   3: 7322,789 ops/s
+Iteration   4: 6850,959 ops/s
+Iteration   5: 6989,352 ops/s
+
+
+Result: 7230,318 ▒(99.9%) 1152,786 ops/s [Average]
+  Statistics: (min, avg, max) = (6850,959, 7230,318, 7560,039), stdev = 299,375
+  Confidence interval (99.9%): [6077,532, 8383,104]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraIntStruct
+
+# Run progress: 33,33% complete, ETA 00:00:51
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:50983
+Start Server at: tcp//127.0.0.1:9242
+5429,970 ops/s
+# Warmup Iteration   2: 4931,959 ops/s
+# Warmup Iteration   3: 7203,358 ops/s
+# Warmup Iteration   4: 5151,160 ops/s
+# Warmup Iteration   5: 7323,838 ops/s
+Iteration   1: 7365,684 ops/s
+Iteration   2: 5709,070 ops/s
+Iteration   3: 7353,323 ops/s
+Iteration   4: 7397,809 ops/s
+Iteration   5: 5078,063 ops/s
+
+
+Result: 6580,790 ▒(99.9%) 4261,216 ops/s [Average]
+  Statistics: (min, avg, max) = (5078,063, 6580,790, 7397,809), stdev = 1106,624
+  Confidence interval (99.9%): [2319,574, 10842,006]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStruct
+
+# Run progress: 50,00% complete, ETA 00:00:38
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:50998
+257,496 ops/s
+# Warmup Iteration   2: 366,558 ops/s
+# Warmup Iteration   3: 416,354 ops/s
+# Warmup Iteration   4: 424,846 ops/s
+# Warmup Iteration   5: 416,835 ops/s
+Iteration   1: 427,484 ops/s
+Iteration   2: 422,327 ops/s
+Iteration   3: 426,392 ops/s
+Iteration   4: 424,299 ops/s
+Iteration   5: 431,352 ops/s
+
+
+Result: 426,371 ▒(99.9%) 13,158 ops/s [Average]
+  Statistics: (min, avg, max) = (422,327, 426,371, 431,352), stdev = 3,417
+  Confidence interval (99.9%): [413,213, 439,528]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStructDecoding
+
+# Run progress: 66,67% complete, ETA 00:00:25
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:51012
+Start Server at: tcp//127.0.0.1:9242
+503,582 ops/s
+# Warmup Iteration   2: 592,865 ops/s
+# Warmup Iteration   3: 706,013 ops/s
+# Warmup Iteration   4: 1312,838 ops/s
+# Warmup Iteration   5: 1294,223 ops/s
+Iteration   1: 1331,828 ops/s
+Iteration   2: 1287,954 ops/s
+Iteration   3: 1324,921 ops/s
+Iteration   4: 1342,275 ops/s
+Iteration   5: 1358,572 ops/s
+
+
+Result: 1329,110 ▒(99.9%) 101,150 ops/s [Average]
+  Statistics: (min, avg, max) = (1287,954, 1329,110, 1358,572), stdev = 26,268
+  Confidence interval (99.9%): [1227,960, 1430,260]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStructEncoding
+
+# Run progress: 83,33% complete, ETA 00:00:12
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:51027
+Start Server at: tcp//127.0.0.1:9242
+852,555 ops/s
+# Warmup Iteration   2: 947,162 ops/s
+# Warmup Iteration   3: 961,170 ops/s
+# Warmup Iteration   4: 3921,337 ops/s
+# Warmup Iteration   5: 3967,946 ops/s
+Iteration   1: 3951,330 ops/s
+Iteration   2: 3934,357 ops/s
+Iteration   3: 3891,774 ops/s
+Iteration   4: 3896,701 ops/s
+Iteration   5: 3942,230 ops/s
+
+
+Result: 3923,279 ▒(99.9%) 104,884 ops/s [Average]
+  Statistics: (min, avg, max) = (3891,774, 3923,279, 3951,330), stdev = 27,238
+  Confidence interval (99.9%): [3818,395, 4028,162]
+
+
+# Run complete. Total time: 00:01:17
+
+Benchmark                                          Mode  Samples      Score  Score error  Units
+d.s.b.MoraBenchmark.testIceIntStruct              thrpt        5  23116,774      200,227  ops/s
+d.s.b.MoraBenchmark.testIceListStruct             thrpt        5   7230,318     1152,786  ops/s
+d.s.b.MoraBenchmark.testMoraIntStruct             thrpt        5   6580,790     4261,216  ops/s
+d.s.b.MoraBenchmark.testMoraListStruct            thrpt        5    426,371       13,158  ops/s
+d.s.b.MoraBenchmark.testMoraListStructDecoding    thrpt        5   1329,110      101,150  ops/s
+d.s.b.MoraBenchmark.testMoraListStructEncoding    thrpt        5   3923,279      104,884  ops/s
+PS C:\Users\sschweigert\Downloads\eclipse-dsl-2019-09-R-win32-x86_64\eclipse\workspace_mora\MoraBenchmark\target> java -jar .\benchmarks.jar -wi 5 -i 5 -f 1
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testIceIntStruct
+
+# Run progress: 0,00% complete, ETA 00:00:20
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:51123java.net.BindException: Address already in use: JVM_Bind
+
+        at java.net.DualStackPlainSocketImpl.bind0(Native Method)
+        at java.net.DualStackPlainSocketImpl.socketBind(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.bind(Unknown Source)
+        at java.net.PlainSocketImpl.bind(Unknown Source)
+        at java.net.ServerSocket.bind(Unknown Source)
+        at java.net.ServerSocket.<init>(Unknown Source)
+        at de.sos.mora2.com.TCPServer$ServerRunnable.run(TCPServer.java:50)
+        at java.lang.Thread.run(Unknown Source)
+17054,274 ops/s
+# Warmup Iteration   2: 22541,061 ops/s
+# Warmup Iteration   3: 23167,582 ops/s
+# Warmup Iteration   4: 23557,650 ops/s
+# Warmup Iteration   5:
+PS C:\Users\sschweigert\Downloads\eclipse-dsl-2019-09-R-win32-x86_64\eclipse\workspace_mora\MoraBenchmark\target> java -jar .\benchmarks.jar -wi 5 -i 5 -f 1
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testIceIntStruct
+
+# Run progress: 0,00% complete, ETA 00:00:20
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:51141
+17129,947 ops/s
+# Warmup Iteration   2: 22563,821 ops/s
+# Warmup Iteration   3: 23523,058 ops/s
+# Warmup Iteration   4: 23835,543 ops/s
+# Warmup Iteration   5: 23814,774 ops/s
+Iteration   1: 23764,357 ops/s
+Iteration   2: 23784,828 ops/s
+Iteration   3: 23933,699 ops/s
+Iteration   4: 23692,754 ops/s
+Iteration   5: 23461,473 ops/s
+
+
+Result: 23727,422 ▒(99.9%) 664,558 ops/s [Average]
+  Statistics: (min, avg, max) = (23461,473, 23727,422, 23933,699), stdev = 172,584
+  Confidence interval (99.9%): [23062,864, 24391,980]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraIntStruct
+
+# Run progress: 50,00% complete, ETA 00:00:12
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:51156
+5336,290 ops/s
+# Warmup Iteration   2: 6514,932 ops/s
+# Warmup Iteration   3: 5328,433 ops/s
+# Warmup Iteration   4: 3265,606 ops/s
+# Warmup Iteration   5: 5200,425 ops/s
+Iteration   1: 6737,716 ops/s
+Iteration   2: 6896,304 ops/s
+Iteration   3: 5080,356 ops/s
+Iteration   4: 5017,228 ops/s
+Iteration   5: 5114,735 ops/s
+
+
+Result: 5769,268 ▒(99.9%) 3691,742 ops/s [Average]
+  Statistics: (min, avg, max) = (5017,228, 5769,268, 6896,304), stdev = 958,734
+  Confidence interval (99.9%): [2077,526, 9461,010]
+
+
+# Run complete. Total time: 00:00:26
+
+Benchmark                                 Mode  Samples      Score  Score error  Units
+d.s.b.MoraBenchmark.testIceIntStruct     thrpt        5  23727,422      664,558  ops/s
+d.s.b.MoraBenchmark.testMoraIntStruct    thrpt        5   5769,268     3691,742  ops/s
+PS C:\Users\sschweigert\Downloads\eclipse-dsl-2019-09-R-win32-x86_64\eclipse\workspace_mora\MoraBenchmark\target> java -jar .\benchmarks.jar -wi 5 -i 5 -f 1
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testIceIntStruct
+
+# Run progress: 0,00% complete, ETA 00:00:20
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:52572
+Start Server at: tcp//127.0.0.1:9242
+16885,192 ops/s
+# Warmup Iteration   2: 22318,932 ops/s
+# Warmup Iteration   3: 23270,532 ops/s
+# Warmup Iteration   4: 23595,939 ops/s
+# Warmup Iteration   5: 23597,348 ops/s
+Iteration   1: 23632,570 ops/s
+Iteration   2: 23663,260 ops/s
+Iteration   3: 23618,512 ops/s
+Iteration   4: 23661,408 ops/s
+Iteration   5: 23566,758 ops/s
+
+
+Result: 23628,502 ▒(99.9%) 151,839 ops/s [Average]
+  Statistics: (min, avg, max) = (23566,758, 23628,502, 23663,260), stdev = 39,432
+  Confidence interval (99.9%): [23476,663, 23780,341]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraIntStruct
+
+# Run progress: 50,00% complete, ETA 00:00:12
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:52587
+Start Server at: tcp//127.0.0.1:9242
+4034,389 ops/s
+# Warmup Iteration   2: 4933,512 ops/s
+# Warmup Iteration   3: 7454,413 ops/s
+# Warmup Iteration   4: 7447,736 ops/s
+# Warmup Iteration   5: 7558,942 ops/s
+Iteration   1: 7676,911 ops/s
+Iteration   2: 5981,996 ops/s
+Iteration   3: 7633,436 ops/s
+Iteration   4: 7632,665 ops/s
+Iteration   5: 7691,294 ops/s
+
+
+Result: 7323,260 ▒(99.9%) 2888,913 ops/s [Average]
+  Statistics: (min, avg, max) = (5981,996, 7323,260, 7691,294), stdev = 750,241
+  Confidence interval (99.9%): [4434,348, 10212,173]
+
+
+# Run complete. Total time: 00:00:25
+
+Benchmark                                 Mode  Samples      Score  Score error  Units
+d.s.b.MoraBenchmark.testIceIntStruct     thrpt        5  23628,502      151,839  ops/s
+d.s.b.MoraBenchmark.testMoraIntStruct    thrpt        5   7323,260     2888,913  ops/s
+PS C:\Users\sschweigert\Downloads\eclipse-dsl-2019-09-R-win32-x86_64\eclipse\workspace_mora\MoraBenchmark\target> java -jar .\benchmarks.jar -wi 5 -i 5 -f 1
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testIceIntStruct
+
+# Run progress: 0,00% complete, ETA 00:00:20
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:52773
+17266,714 ops/s
+# Warmup Iteration   2: 22781,214 ops/s
+# Warmup Iteration   3: 23673,648 ops/s
+# Warmup Iteration   4: 24008,145 ops/s
+# Warmup Iteration   5: 23799,369 ops/s
+Iteration   1: 24165,234 ops/s
+Iteration   2: 24124,463 ops/s
+Iteration   3: 24185,308 ops/s
+Iteration   4: 24160,262 ops/s
+Iteration   5: 23971,745 ops/s
+
+
+Result: 24121,402 ▒(99.9%) 333,040 ops/s [Average]
+  Statistics: (min, avg, max) = (23971,745, 24121,402, 24185,308), stdev = 86,489
+  Confidence interval (99.9%): [23788,362, 24454,442]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraIntStruct
+
+# Run progress: 50,00% complete, ETA 00:00:12
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:52789
+10856,550 ops/s
+# Warmup Iteration   2: 12677,448 ops/s
+# Warmup Iteration   3: 13116,417 ops/s
+# Warmup Iteration   4: 13124,125 ops/s
+# Warmup Iteration   5: 13177,728 ops/s
+Iteration   1: 13644,506 ops/s
+Iteration   2: 13788,323 ops/s
+Iteration   3: 14322,750 ops/s
+Iteration   4: 14408,436 ops/s
+Iteration   5: 14406,761 ops/s
+
+
+Result: 14114,155 ▒(99.9%) 1418,047 ops/s [Average]
+  Statistics: (min, avg, max) = (13644,506, 14114,155, 14408,436), stdev = 368,262
+  Confidence interval (99.9%): [12696,108, 15532,202]
+
+
+# Run complete. Total time: 00:00:25
+
+Benchmark                                 Mode  Samples      Score  Score error  Units
+d.s.b.MoraBenchmark.testIceIntStruct     thrpt        5  24121,402      333,040  ops/s
+d.s.b.MoraBenchmark.testMoraIntStruct    thrpt        5  14114,155     1418,047  ops/s
+PS C:\Users\sschweigert\Downloads\eclipse-dsl-2019-09-R-win32-x86_64\eclipse\workspace_mora\MoraBenchmark\target> java -jar .\benchmarks.jar -wi 5 -i 5 -f 1
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testIceIntStruct
+
+# Run progress: 0,00% complete, ETA 00:00:20
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:53001
+16702,826 ops/s
+# Warmup Iteration   2: 21924,752 ops/s
+# Warmup Iteration   3: 23275,973 ops/s
+# Warmup Iteration   4: 23603,050 ops/s
+# Warmup Iteration   5: 22643,242 ops/s
+Iteration   1: 22964,829 ops/s
+Iteration   2: 22805,626 ops/s
+Iteration   3: 22856,939 ops/s
+Iteration   4: 22907,956 ops/s
+Iteration   5: 22797,316 ops/s
+
+
+Result: 22866,533 ▒(99.9%) 272,081 ops/s [Average]
+  Statistics: (min, avg, max) = (22797,316, 22866,533, 22964,829), stdev = 70,658
+  Confidence interval (99.9%): [22594,453, 23138,614]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraIntStruct
+
+# Run progress: 50,00% complete, ETA 00:00:12
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:53017
+Start Server at: tcp//127.0.0.1:9242
+10595,334 ops/s
+# Warmup Iteration   2: 12549,730 ops/s
+# Warmup Iteration   3: 13867,709 ops/s
+# Warmup Iteration   4: 14127,477 ops/s
+# Warmup Iteration   5: 14422,609 ops/s
+Iteration   1: 14559,685 ops/s
+Iteration   2: 14480,269 ops/s
+Iteration   3: 14095,054 ops/s
+Iteration   4: 14568,406 ops/s
+Iteration   5: 14739,453 ops/s
+
+
+Result: 14488,573 ▒(99.9%) 921,939 ops/s [Average]
+  Statistics: (min, avg, max) = (14095,054, 14488,573, 14739,453), stdev = 239,425
+  Confidence interval (99.9%): [13566,634, 15410,513]
+
+
+# Run complete. Total time: 00:00:25
+
+Benchmark                                 Mode  Samples      Score  Score error  Units
+d.s.b.MoraBenchmark.testIceIntStruct     thrpt        5  22866,533      272,081  ops/s
+d.s.b.MoraBenchmark.testMoraIntStruct    thrpt        5  14488,573      921,939  ops/s
+PS C:\Users\sschweigert\Downloads\eclipse-dsl-2019-09-R-win32-x86_64\eclipse\workspace_mora\MoraBenchmark\target> java -jar .\benchmarks.jar -wi 5 -i 5 -f 1
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testIceIntStruct
+
+# Run progress: 0,00% complete, ETA 00:00:20
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:53154
+Start Server at: tcp//127.0.0.1:9242
+16494,575 ops/s
+# Warmup Iteration   2: 22153,424 ops/s
+# Warmup Iteration   3: 23060,473 ops/s
+# Warmup Iteration   4: 23394,118 ops/s
+# Warmup Iteration   5: 23407,965 ops/s
+Iteration   1: 23409,628 ops/s
+Iteration   2: 23373,767 ops/s
+Iteration   3: 23615,751 ops/s
+Iteration   4: 23523,870 ops/s
+Iteration   5: 23484,811 ops/s
+
+
+Result: 23481,565 ▒(99.9%) 368,343 ops/s [Average]
+  Statistics: (min, avg, max) = (23373,767, 23481,565, 23615,751), stdev = 95,657
+  Confidence interval (99.9%): [23113,223, 23849,908]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraIntStruct
+
+# Run progress: 50,00% complete, ETA 00:00:12
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:53169
+10689,319 ops/s
+# Warmup Iteration   2: 12268,446 ops/s
+# Warmup Iteration   3: 13684,169 ops/s
+# Warmup Iteration   4: 13937,225 ops/s
+# Warmup Iteration   5: 13898,279 ops/s
+Iteration   1: 14117,553 ops/s
+Iteration   2: 14104,735 ops/s
+Iteration   3: 13995,533 ops/s
+Iteration   4: 14004,847 ops/s
+Iteration   5: 14077,342 ops/s
+
+
+Result: 14060,002 ▒(99.9%) 217,929 ops/s [Average]
+  Statistics: (min, avg, max) = (13995,533, 14060,002, 14117,553), stdev = 56,595
+  Confidence interval (99.9%): [13842,073, 14277,931]
+
+
+# Run complete. Total time: 00:00:25
+
+Benchmark                                 Mode  Samples      Score  Score error  Units
+d.s.b.MoraBenchmark.testIceIntStruct     thrpt        5  23481,565      368,343  ops/s
+d.s.b.MoraBenchmark.testMoraIntStruct    thrpt        5  14060,002      217,929  ops/s
+PS C:\Users\sschweigert\Downloads\eclipse-dsl-2019-09-R-win32-x86_64\eclipse\workspace_mora\MoraBenchmark\target> java -jar .\benchmarks.jar -wi 5 -i 5 -f 1
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testIceIntStruct
+
+# Run progress: 0,00% complete, ETA 00:00:20
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:54415
+Start Server at: tcp//127.0.0.1:9242
+16825,291 ops/s
+# Warmup Iteration   2: 21505,392 ops/s
+# Warmup Iteration   3: 25143,570 ops/s
+# Warmup Iteration   4: 25126,357 ops/s
+# Warmup Iteration   5: 25761,624 ops/s
+Iteration   1: 24800,159 ops/s
+Iteration   2: 25914,491 ops/s
+Iteration   3: 25595,284 ops/s
+Iteration   4: 25613,359 ops/s
+Iteration   5: 24656,773 ops/s
+
+
+Result: 25316,013 ▒(99.9%) 2131,189 ops/s [Average]
+  Statistics: (min, avg, max) = (24656,773, 25316,013, 25914,491), stdev = 553,463
+  Confidence interval (99.9%): [23184,824, 27447,202]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraIntStruct
+
+# Run progress: 50,00% complete, ETA 00:00:12
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:54431
+11818,630 ops/s
+# Warmup Iteration   2: 14070,403 ops/s
+# Warmup Iteration   3: 14434,008 ops/s
+# Warmup Iteration   4: 15034,833 ops/s
+# Warmup Iteration   5: 15314,646 ops/s
+Iteration   1: 14976,253 ops/s
+Iteration   2: 15346,838 ops/s
+Iteration   3: 14994,569 ops/s
+Iteration   4: 15437,789 ops/s
+Iteration   5: 15270,791 ops/s
+
+
+Result: 15205,248 ▒(99.9%) 805,979 ops/s [Average]
+  Statistics: (min, avg, max) = (14976,253, 15205,248, 15437,789), stdev = 209,310
+  Confidence interval (99.9%): [14399,268, 16011,227]
+
+
+# Run complete. Total time: 00:00:25
+
+Benchmark                                 Mode  Samples      Score  Score error  Units
+d.s.b.MoraBenchmark.testIceIntStruct     thrpt        5  25316,013     2131,189  ops/s
+d.s.b.MoraBenchmark.testMoraIntStruct    thrpt        5  15205,248      805,979  ops/s
+PS C:\Users\sschweigert\Downloads\eclipse-dsl-2019-09-R-win32-x86_64\eclipse\workspace_mora\MoraBenchmark\target> java -jar .\benchmarks.jar -wi 5 -i 5 -f 1
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testIceIntStruct
+
+# Run progress: 0,00% complete, ETA 00:00:20
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:54451
+17652,442 ops/s
+# Warmup Iteration   2: 23984,735 ops/s
+# Warmup Iteration   3: 25310,698 ops/s
+# Warmup Iteration   4: 25586,848 ops/s
+# Warmup Iteration   5: 25695,653 ops/s
+Iteration   1: 25605,021 ops/s
+Iteration   2: 25537,170 ops/s
+Iteration   3: 25269,737 ops/s
+Iteration   4: 25260,854 ops/s
+Iteration   5: 24848,135 ops/s
+
+
+Result: 25304,183 ▒(99.9%) 1148,484 ops/s [Average]
+  Statistics: (min, avg, max) = (24848,135, 25304,183, 25605,021), stdev = 298,258
+  Confidence interval (99.9%): [24155,700, 26452,667]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraIntStruct
+
+# Run progress: 50,00% complete, ETA 00:00:12
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:54466
+11312,251 ops/s
+# Warmup Iteration   2: 13932,359 ops/s
+# Warmup Iteration   3: 14266,731 ops/s
+# Warmup Iteration   4: 14635,828 ops/s
+# Warmup Iteration   5: 15079,516 ops/s
+Iteration   1: 15163,840 ops/s
+Iteration   2: 15079,163 ops/s
+Iteration   3: 15172,083 ops/s
+Iteration   4: 15015,894 ops/s
+Iteration   5: 15162,694 ops/s
+
+
+Result: 15118,735 ▒(99.9%) 265,072 ops/s [Average]
+  Statistics: (min, avg, max) = (15015,894, 15118,735, 15172,083), stdev = 68,838
+  Confidence interval (99.9%): [14853,662, 15383,807]
+
+
+# Run complete. Total time: 00:00:25
+
+Benchmark                                 Mode  Samples      Score  Score error  Units
+d.s.b.MoraBenchmark.testIceIntStruct     thrpt        5  25304,183     1148,484  ops/s
+d.s.b.MoraBenchmark.testMoraIntStruct    thrpt        5  15118,735      265,072  ops/s
+PS C:\Users\sschweigert\Downloads\eclipse-dsl-2019-09-R-win32-x86_64\eclipse\workspace_mora\MoraBenchmark\target> java -jar .\benchmarks.jar -wi 5 -i 5 -f 1
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testIceIntStruct
+
+# Run progress: 0,00% complete, ETA 00:01:00
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:54554
+17359,585 ops/s
+# Warmup Iteration   2: 24575,185 ops/s
+# Warmup Iteration   3: 25075,950 ops/s
+# Warmup Iteration   4: 25750,815 ops/s
+# Warmup Iteration   5: 25566,438 ops/s
+Iteration   1: 25758,002 ops/s
+Iteration   2: 25555,716 ops/s
+Iteration   3: 25359,804 ops/s
+Iteration   4: 25557,359 ops/s
+Iteration   5: 25264,341 ops/s
+
+
+Result: 25499,044 ▒(99.9%) 741,049 ops/s [Average]
+  Statistics: (min, avg, max) = (25264,341, 25499,044, 25758,002), stdev = 192,448
+  Confidence interval (99.9%): [24757,996, 26240,093]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testIceListStruct
+
+# Run progress: 16,67% complete, ETA 00:01:04
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:54570
+5483,224 ops/s
+# Warmup Iteration   2: 7469,944 ops/s
+# Warmup Iteration   3: 8060,129 ops/s
+# Warmup Iteration   4: 8074,163 ops/s
+# Warmup Iteration   5: 8147,458 ops/s
+Iteration   1: 8159,253 ops/s
+Iteration   2: 8084,996 ops/s
+Iteration   3: 7769,754 ops/s
+Iteration   4: 8072,238 ops/s
+Iteration   5: 7985,463 ops/s
+
+
+Result: 8014,341 ▒(99.9%) 577,598 ops/s [Average]
+  Statistics: (min, avg, max) = (7769,754, 8014,341, 8159,253), stdev = 150,000
+  Confidence interval (99.9%): [7436,743, 8591,939]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraIntStruct
+
+# Run progress: 33,33% complete, ETA 00:00:51
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:54585
+11989,085 ops/s
+# Warmup Iteration   2: 13876,279 ops/s
+# Warmup Iteration   3: 14664,416 ops/s
+# Warmup Iteration   4: 14741,987 ops/s
+# Warmup Iteration   5: 14708,345 ops/s
+Iteration   1: 14962,743 ops/s
+Iteration   2: 14959,720 ops/s
+Iteration   3: 14957,698 ops/s
+Iteration   4: 14916,171 ops/s
+Iteration   5: 14637,271 ops/s
+
+
+Result: 14886,720 ▒(99.9%) 541,965 ops/s [Average]
+  Statistics: (min, avg, max) = (14637,271, 14886,720, 14962,743), stdev = 140,747
+  Confidence interval (99.9%): [14344,755, 15428,686]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStruct
+
+# Run progress: 50,00% complete, ETA 00:00:38
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:54600
+Start Server at: tcp//127.0.0.1:9242
+1470,648 ops/s
+# Warmup Iteration   2: 1702,253 ops/s
+# Warmup Iteration   3: 1836,015 ops/s
+# Warmup Iteration   4: 1894,048 ops/s
+# Warmup Iteration   5: 1872,060 ops/s
+Iteration   1: 1877,235 ops/s
+Iteration   2: 1884,293 ops/s
+Iteration   3: 1876,540 ops/s
+Iteration   4: 1884,394 ops/s
+Iteration   5: 1882,564 ops/s
+
+
+Result: 1881,005 ▒(99.9%) 14,773 ops/s [Average]
+  Statistics: (min, avg, max) = (1876,540, 1881,005, 1884,394), stdev = 3,837
+  Confidence interval (99.9%): [1866,232, 1895,779]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStructDecoding
+
+# Run progress: 66,67% complete, ETA 00:00:25
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:54614
+11789,021 ops/s
+# Warmup Iteration   2: 16486,500 ops/s
+# Warmup Iteration   3: 16687,004 ops/s
+# Warmup Iteration   4: 18427,682 ops/s
+# Warmup Iteration   5: 17250,777 ops/s
+Iteration   1: 18547,040 ops/s
+Iteration   2: 17883,366 ops/s
+Iteration   3: 18048,644 ops/s
+Iteration   4: 17309,892 ops/s
+Iteration   5: 18011,560 ops/s
+
+
+Result: 17960,100 ▒(99.9%) 1704,367 ops/s [Average]
+  Statistics: (min, avg, max) = (17309,892, 17960,100, 18547,040), stdev = 442,619
+  Confidence interval (99.9%): [16255,734, 19664,467]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStructEncoding
+
+# Run progress: 83,33% complete, ETA 00:00:12
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:54628
+908,545 ops/s
+# Warmup Iteration   2: 993,771 ops/s
+# Warmup Iteration   3: 996,461 ops/s
+# Warmup Iteration   4: 4549,914 ops/s
+# Warmup Iteration   5: 5043,492 ops/s
+Iteration   1: 5046,920 ops/s
+Iteration   2: 4958,123 ops/s
+Iteration   3: 5087,396 ops/s
+Iteration   4: 5047,542 ops/s
+Iteration   5: 5055,907 ops/s
+
+
+Result: 5039,178 ▒(99.9%) 185,717 ops/s [Average]
+  Statistics: (min, avg, max) = (4958,123, 5039,178, 5087,396), stdev = 48,230
+  Confidence interval (99.9%): [4853,460, 5224,895]
+
+
+# Run complete. Total time: 00:01:16
+
+Benchmark                                          Mode  Samples      Score  Score error  Units
+d.s.b.MoraBenchmark.testIceIntStruct              thrpt        5  25499,044      741,049  ops/s
+d.s.b.MoraBenchmark.testIceListStruct             thrpt        5   8014,341      577,598  ops/s
+d.s.b.MoraBenchmark.testMoraIntStruct             thrpt        5  14886,720      541,965  ops/s
+d.s.b.MoraBenchmark.testMoraListStruct            thrpt        5   1881,005       14,773  ops/s
+d.s.b.MoraBenchmark.testMoraListStructDecoding    thrpt        5  17960,100     1704,367  ops/s
+d.s.b.MoraBenchmark.testMoraListStructEncoding    thrpt        5   5039,178      185,717  ops/s
+PS C:\Users\sschweigert\Downloads\eclipse-dsl-2019-09-R-win32-x86_64\eclipse\workspace_mora\MoraBenchmark\target> java -jar .\benchmarks.jar -wi 5 -i 5 -f 1
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testIceIntStruct
+
+# Run progress: 0,00% complete, ETA 00:01:00
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:54651
+18450,525 ops/s
+# Warmup Iteration   2: 24444,054 ops/s
+# Warmup Iteration   3: 25235,909 ops/s
+# Warmup Iteration   4: 25478,329 ops/s
+# Warmup Iteration   5: 25717,109 ops/s
+Iteration   1: 25619,872 ops/s
+Iteration   2: 25672,261 ops/s
+Iteration   3: 25619,857 ops/s
+Iteration   4: 25722,705 ops/s
+Iteration   5: 25443,697 ops/s
+
+
+Result: 25615,679 ▒(99.9%) 405,091 ops/s [Average]
+  Statistics: (min, avg, max) = (25443,697, 25615,679, 25722,705), stdev = 105,201
+  Confidence interval (99.9%): [25210,588, 26020,769]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testIceListStruct
+
+# Run progress: 16,67% complete, ETA 00:01:03
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:54666
+5447,062 ops/s
+# Warmup Iteration   2: 7334,340 ops/s
+# Warmup Iteration   3: 7901,918 ops/s
+# Warmup Iteration   4: 7769,741 ops/s
+# Warmup Iteration   5: 7936,699 ops/s
+Iteration   1: 8003,359 ops/s
+Iteration   2: 7952,610 ops/s
+Iteration   3: 7896,220 ops/s
+Iteration   4: 7822,131 ops/s
+Iteration   5: 7937,278 ops/s
+
+
+Result: 7922,320 ▒(99.9%) 261,358 ops/s [Average]
+  Statistics: (min, avg, max) = (7822,131, 7922,320, 8003,359), stdev = 67,874
+  Confidence interval (99.9%): [7660,961, 8183,678]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraIntStruct
+
+# Run progress: 33,33% complete, ETA 00:00:51
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:54681
+11889,911 ops/s
+# Warmup Iteration   2: 13777,788 ops/s
+# Warmup Iteration   3: 14054,115 ops/s
+# Warmup Iteration   4: 14650,677 ops/s
+# Warmup Iteration   5: 14744,672 ops/s
+Iteration   1: 14661,900 ops/s
+Iteration   2: 14740,916 ops/s
+Iteration   3: 14768,792 ops/s
+Iteration   4: 14849,594 ops/s
+Iteration   5: 14835,405 ops/s
+
+
+Result: 14771,321 ▒(99.9%) 292,860 ops/s [Average]
+  Statistics: (min, avg, max) = (14661,900, 14771,321, 14849,594), stdev = 76,055
+  Confidence interval (99.9%): [14478,461, 15064,181]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStruct
+
+# Run progress: 50,00% complete, ETA 00:00:38
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:54697
+Start Server at: tcp//127.0.0.1:9242
+1517,743 ops/s
+# Warmup Iteration   2: 1775,181 ops/s
+# Warmup Iteration   3: 1793,790 ops/s
+# Warmup Iteration   4: 1801,867 ops/s
+# Warmup Iteration   5: 1895,529 ops/s
+Iteration   1: 1944,520 ops/s
+Iteration   2: 1948,095 ops/s
+Iteration   3: 1858,923 ops/s
+Iteration   4: 1927,528 ops/s
+Iteration   5: 1914,834 ops/s
+
+
+Result: 1918,780 ▒(99.9%) 138,795 ops/s [Average]
+  Statistics: (min, avg, max) = (1858,923, 1918,780, 1948,095), stdev = 36,045
+  Confidence interval (99.9%): [1779,985, 2057,575]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStructDecoding
+
+# Run progress: 66,67% complete, ETA 00:00:25
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:54711
+Start Server at: tcp//127.0.0.1:9242
+12576,359 ops/s
+# Warmup Iteration   2: 17981,478 ops/s
+# Warmup Iteration   3: 18497,242 ops/s
+# Warmup Iteration   4: 18363,850 ops/s
+# Warmup Iteration   5: 18353,490 ops/s
+Iteration   1: 16560,147 ops/s
+Iteration   2: 14821,370 ops/s
+Iteration   3: 16505,039 ops/s
+Iteration   4: 18485,824 ops/s
+Iteration   5: 18444,655 ops/s
+
+
+Result: 16963,407 ▒(99.9%) 5925,769 ops/s [Average]
+  Statistics: (min, avg, max) = (14821,370, 16963,407, 18485,824), stdev = 1538,903
+  Confidence interval (99.9%): [11037,638, 22889,176]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStructEncoding
+
+# Run progress: 83,33% complete, ETA 00:00:12
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:54725
+10449,779 ops/s
+# Warmup Iteration   2: 12956,528 ops/s
+# Warmup Iteration   3: 14343,556 ops/s
+# Warmup Iteration   4: 15740,765 ops/s
+# Warmup Iteration   5: 15946,709 ops/s
+Iteration   1: 15920,944 ops/s
+Iteration   2: 15832,200 ops/s
+Iteration   3: 15910,705 ops/s
+Iteration   4: 15973,914 ops/s
+Iteration   5: 15802,327 ops/s
+
+
+Result: 15888,018 ▒(99.9%) 268,413 ops/s [Average]
+  Statistics: (min, avg, max) = (15802,327, 15888,018, 15973,914), stdev = 69,706
+  Confidence interval (99.9%): [15619,605, 16156,431]
+
+
+# Run complete. Total time: 00:01:16
+
+Benchmark                                          Mode  Samples      Score  Score error  Units
+d.s.b.MoraBenchmark.testIceIntStruct              thrpt        5  25615,679      405,091  ops/s
+d.s.b.MoraBenchmark.testIceListStruct             thrpt        5   7922,320      261,358  ops/s
+d.s.b.MoraBenchmark.testMoraIntStruct             thrpt        5  14771,321      292,860  ops/s
+d.s.b.MoraBenchmark.testMoraListStruct            thrpt        5   1918,780      138,795  ops/s
+d.s.b.MoraBenchmark.testMoraListStructDecoding    thrpt        5  16963,407     5925,769  ops/s
+d.s.b.MoraBenchmark.testMoraListStructEncoding    thrpt        5  15888,018      268,413  ops/s
+PS C:\Users\sschweigert\Downloads\eclipse-dsl-2019-09-R-win32-x86_64\eclipse\workspace_mora\MoraBenchmark\target> java -jar .\benchmarks.jar -wi 5 -i 5 -f 1
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStructWriteRead
+
+# Run progress: 0,00% complete, ETA 00:00:10
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:54749
+Start Server at: tcp//127.0.0.1:9242
+5335,017 ops/s
+# Warmup Iteration   2: 7272,809 ops/s
+# Warmup Iteration   3: 8039,339 ops/s
+# Warmup Iteration   4: 8465,259 ops/s
+# Warmup Iteration   5: 8569,628 ops/s
+Iteration   1: 8485,663 ops/s
+Iteration   2: 8480,276 ops/s
+Iteration   3: 8123,326 ops/s
+Iteration   4: 8551,330 ops/s
+Iteration   5: 8420,788 ops/s
+
+
+Result: 8412,276 ▒(99.9%) 646,949 ops/s [Average]
+  Statistics: (min, avg, max) = (8123,326, 8412,276, 8551,330), stdev = 168,011
+  Confidence interval (99.9%): [7765,327, 9059,226]
+
+
+# Run complete. Total time: 00:00:12
+
+Benchmark                                           Mode  Samples     Score  Score error  Units
+d.s.b.MoraBenchmark.testMoraListStructWriteRead    thrpt        5  8412,276      646,949  ops/s
+PS C:\Users\sschweigert\Downloads\eclipse-dsl-2019-09-R-win32-x86_64\eclipse\workspace_mora\MoraBenchmark\target> java -jar .\benchmarks.jar -wi 5 -i 5 -f 1
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testIceIntStruct
+
+# Run progress: 0,00% complete, ETA 00:01:10
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:55531
+17239,930 ops/s
+# Warmup Iteration   2: 22824,231 ops/s
+# Warmup Iteration   3: 23933,399 ops/s
+# Warmup Iteration   4: 24125,723 ops/s
+# Warmup Iteration   5: 24271,371 ops/s
+Iteration   1: 24342,546 ops/s
+Iteration   2: 24027,901 ops/s
+Iteration   3: 24194,808 ops/s
+Iteration   4: 24304,744 ops/s
+Iteration   5: 24152,159 ops/s
+
+
+Result: 24204,431 ▒(99.9%) 483,737 ops/s [Average]
+  Statistics: (min, avg, max) = (24027,901, 24204,431, 24342,546), stdev = 125,625
+  Confidence interval (99.9%): [23720,695, 24688,168]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testIceListStruct
+
+# Run progress: 14,29% complete, ETA 00:01:16
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:55547
+Start Server at: tcp//127.0.0.1:9242
+5163,792 ops/s
+# Warmup Iteration   2: 7045,479 ops/s
+# Warmup Iteration   3: 7523,324 ops/s
+# Warmup Iteration   4: 7688,205 ops/s
+# Warmup Iteration   5: 7833,812 ops/s
+Iteration   1: 7725,762 ops/s
+Iteration   2: 7823,558 ops/s
+Iteration   3: 7711,924 ops/s
+Iteration   4: 7612,303 ops/s
+Iteration   5: 7920,444 ops/s
+
+
+Result: 7758,798 ▒(99.9%) 451,827 ops/s [Average]
+  Statistics: (min, avg, max) = (7612,303, 7758,798, 7920,444), stdev = 117,338
+  Confidence interval (99.9%): [7306,972, 8210,625]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraIntStruct
+
+# Run progress: 28,57% complete, ETA 00:01:04
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:55563
+Start Server at: tcp//127.0.0.1:9242
+16837,905 ops/s
+# Warmup Iteration   2: 19839,775 ops/s
+# Warmup Iteration   3: 22014,045 ops/s
+# Warmup Iteration   4: 21962,432 ops/s
+# Warmup Iteration   5: 21885,849 ops/s
+Iteration   1: 22392,511 ops/s
+Iteration   2: 22449,814 ops/s
+Iteration   3: 22039,720 ops/s
+Iteration   4: 22169,910 ops/s
+Iteration   5: 22355,672 ops/s
+
+
+Result: 22281,525 ▒(99.9%) 658,743 ops/s [Average]
+  Statistics: (min, avg, max) = (22039,720, 22281,525, 22449,814), stdev = 171,073
+  Confidence interval (99.9%): [21622,782, 22940,268]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStruct
+
+# Run progress: 42,86% complete, ETA 00:00:51
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:55580
+Start Server at: tcp//127.0.0.1:9242
+1388,859 ops/s
+# Warmup Iteration   2: 1668,383 ops/s
+# Warmup Iteration   3: 1834,082 ops/s
+# Warmup Iteration   4: 1910,787 ops/s
+# Warmup Iteration   5: 1897,953 ops/s
+Iteration   1: 1908,778 ops/s
+Iteration   2: 1884,166 ops/s
+Iteration   3: 1880,148 ops/s
+Iteration   4: 1872,605 ops/s
+Iteration   5: 1891,287 ops/s
+
+
+Result: 1887,397 ▒(99.9%) 52,871 ops/s [Average]
+  Statistics: (min, avg, max) = (1872,605, 1887,397, 1908,778), stdev = 13,730
+  Confidence interval (99.9%): [1834,526, 1940,267]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStructDecoding
+
+# Run progress: 57,14% complete, ETA 00:00:38
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:55594
+11538,340 ops/s
+# Warmup Iteration   2: 14624,724 ops/s
+# Warmup Iteration   3: 17508,396 ops/s
+# Warmup Iteration   4: 17520,535 ops/s
+# Warmup Iteration   5: 17316,396 ops/s
+Iteration   1: 16983,915 ops/s
+Iteration   2: 16934,630 ops/s
+Iteration   3: 16545,064 ops/s
+Iteration   4: 17729,031 ops/s
+Iteration   5: 16350,849 ops/s
+
+
+Result: 16908,698 ▒(99.9%) 2040,025 ops/s [Average]
+  Statistics: (min, avg, max) = (16350,849, 16908,698, 17729,031), stdev = 529,788
+  Confidence interval (99.9%): [14868,673, 18948,723]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStructEncoding
+
+# Run progress: 71,43% complete, ETA 00:00:25
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:55608
+9874,605 ops/s
+# Warmup Iteration   2: 12420,911 ops/s
+# Warmup Iteration   3: 13801,245 ops/s
+# Warmup Iteration   4: 15231,546 ops/s
+# Warmup Iteration   5: 15483,819 ops/s
+Iteration   1: 15318,064 ops/s
+Iteration   2: 15084,806 ops/s
+Iteration   3: 15246,076 ops/s
+Iteration   4: 15358,174 ops/s
+Iteration   5: 15341,817 ops/s
+
+
+Result: 15269,787 ▒(99.9%) 430,995 ops/s [Average]
+  Statistics: (min, avg, max) = (15084,806, 15269,787, 15358,174), stdev = 111,928
+  Confidence interval (99.9%): [14838,792, 15700,782]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStructWriteRead
+
+# Run progress: 85,71% complete, ETA 00:00:12
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:55622
+5145,295 ops/s
+# Warmup Iteration   2: 6745,683 ops/s
+# Warmup Iteration   3: 7539,305 ops/s
+# Warmup Iteration   4: 8183,659 ops/s
+# Warmup Iteration   5: 8181,045 ops/s
+Iteration   1: 8159,607 ops/s
+Iteration   2: 8203,496 ops/s
+Iteration   3: 8201,601 ops/s
+Iteration   4: 8266,058 ops/s
+Iteration   5: 8173,536 ops/s
+
+
+Result: 8200,860 ▒(99.9%) 157,674 ops/s [Average]
+  Statistics: (min, avg, max) = (8159,607, 8200,860, 8266,058), stdev = 40,947
+  Confidence interval (99.9%): [8043,186, 8358,533]
+
+
+# Run complete. Total time: 00:01:29
+
+Benchmark                                           Mode  Samples      Score  Score error  Units
+d.s.b.MoraBenchmark.testIceIntStruct               thrpt        5  24204,431      483,737  ops/s
+d.s.b.MoraBenchmark.testIceListStruct              thrpt        5   7758,798      451,827  ops/s
+d.s.b.MoraBenchmark.testMoraIntStruct              thrpt        5  22281,525      658,743  ops/s
+d.s.b.MoraBenchmark.testMoraListStruct             thrpt        5   1887,397       52,871  ops/s
+d.s.b.MoraBenchmark.testMoraListStructDecoding     thrpt        5  16908,698     2040,025  ops/s
+d.s.b.MoraBenchmark.testMoraListStructEncoding     thrpt        5  15269,787      430,995  ops/s
+d.s.b.MoraBenchmark.testMoraListStructWriteRead    thrpt        5   8200,860      157,674  ops/s
+PS C:\Users\sschweigert\Downloads\eclipse-dsl-2019-09-R-win32-x86_64\eclipse\workspace_mora\MoraBenchmark\target> java -jar .\benchmarks.jar -wi 5 -i 5 -f 1
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testIceIntStruct
+
+# Run progress: 0,00% complete, ETA 00:01:10
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:55809
+<failure>
+
+com.zeroc.Ice.SocketException
+    error = 0
+        at com.zeroc.IceInternal.Network.doBind(Network.java:406)
+        at com.zeroc.IceInternal.TcpAcceptor.listen(TcpAcceptor.java:36)
+        at com.zeroc.IceInternal.IncomingConnectionFactory.createAcceptor(IncomingConnectionFactory.java:676)
+        at com.zeroc.IceInternal.IncomingConnectionFactory.<init>(IncomingConnectionFactory.java:493)
+        at com.zeroc.Ice.ObjectAdapterI.<init>(ObjectAdapterI.java:1027)
+        at com.zeroc.IceInternal.ObjectAdapterFactory.createObjectAdapter(ObjectAdapterFactory.java:180)
+        at com.zeroc.Ice.CommunicatorI.createObjectAdapterWithEndpoints(CommunicatorI.java:124)
+        at de.sos.benchmark.MoraBenchmark$ZeroCIce.setup(MoraBenchmark.java:109)
+        at de.sos.benchmark.MoraBenchmark$MyState.doSetup(MoraBenchmark.java:139)
+        at de.sos.benchmark.generated.MoraBenchmark_testIceIntStruct._jmh_tryInit_f_mystate2_2(MoraBenchmark_testIceIntStruct.java:351)
+        at de.sos.benchmark.generated.MoraBenchmark_testIceIntStruct.testIceIntStruct_Throughput(MoraBenchmark_testIceIntStruct.java:59)
+        at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+        at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+        at java.lang.reflect.Method.invoke(Unknown Source)
+        at org.openjdk.jmh.runner.LoopBenchmarkHandler$BenchmarkTask.call(LoopBenchmarkHandler.java:210)
+        at org.openjdk.jmh.runner.LoopBenchmarkHandler$BenchmarkTask.call(LoopBenchmarkHandler.java:192)
+        at java.util.concurrent.FutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.BindException: Address already in use: bind
+        at sun.nio.ch.Net.bind0(Native Method)
+        at sun.nio.ch.Net.bind(Unknown Source)
+        at sun.nio.ch.Net.bind(Unknown Source)
+        at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+        at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+        at com.zeroc.IceInternal.Network.doBind(Network.java:400)
+        ... 20 more
+
+
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testIceListStruct
+
+# Run progress: 14,29% complete, ETA 00:00:11
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:55817
+<failure>
+
+com.zeroc.Ice.SocketException
+    error = 0
+        at com.zeroc.IceInternal.Network.doBind(Network.java:406)
+        at com.zeroc.IceInternal.TcpAcceptor.listen(TcpAcceptor.java:36)
+        at com.zeroc.IceInternal.IncomingConnectionFactory.createAcceptor(IncomingConnectionFactory.java:676)
+        at com.zeroc.IceInternal.IncomingConnectionFactory.<init>(IncomingConnectionFactory.java:493)
+        at com.zeroc.Ice.ObjectAdapterI.<init>(ObjectAdapterI.java:1027)
+        at com.zeroc.IceInternal.ObjectAdapterFactory.createObjectAdapter(ObjectAdapterFactory.java:180)
+        at com.zeroc.Ice.CommunicatorI.createObjectAdapterWithEndpoints(CommunicatorI.java:124)
+        at de.sos.benchmark.MoraBenchmark$ZeroCIce.setup(MoraBenchmark.java:109)
+        at de.sos.benchmark.MoraBenchmark$MyState.doSetup(MoraBenchmark.java:139)
+        at de.sos.benchmark.generated.MoraBenchmark_testIceListStruct._jmh_tryInit_f_mystate2_2(MoraBenchmark_testIceListStruct.java:351)
+        at de.sos.benchmark.generated.MoraBenchmark_testIceListStruct.testIceListStruct_Throughput(MoraBenchmark_testIceListStruct.java:59)
+        at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+        at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+        at java.lang.reflect.Method.invoke(Unknown Source)
+        at org.openjdk.jmh.runner.LoopBenchmarkHandler$BenchmarkTask.call(LoopBenchmarkHandler.java:210)
+        at org.openjdk.jmh.runner.LoopBenchmarkHandler$BenchmarkTask.call(LoopBenchmarkHandler.java:192)
+        at java.util.concurrent.FutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.BindException: Address already in use: bind
+        at sun.nio.ch.Net.bind0(Native Method)
+        at sun.nio.ch.Net.bind(Unknown Source)
+        at sun.nio.ch.Net.bind(Unknown Source)
+        at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+        at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+        at com.zeroc.IceInternal.Network.doBind(Network.java:400)
+        ... 20 more
+
+
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraIntStruct
+
+# Run progress: 28,57% complete, ETA 00:00:09
+# Fork: 1 of 1
+PS C:\Users\sschweigert\Downloads\eclipse-dsl-2019-09-R-win32-x86_64\eclipse\workspace_mora\MoraBenchmark\target> java -jar .\benchmarks.jar -wi 5 -i 5 -f 1
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testIceIntStruct
+
+# Run progress: 0,00% complete, ETA 00:01:10
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:55830
+Start Server at: tcp//127.0.0.1:9242
+17598,650 ops/s
+# Warmup Iteration   2: 23131,601 ops/s
+# Warmup Iteration   3: 24218,227 ops/s
+# Warmup Iteration   4: 24751,189 ops/s
+# Warmup Iteration   5: 24603,536 ops/s
+Iteration   1: 24911,900 ops/s
+Iteration   2: 24594,402 ops/s
+Iteration   3: 24855,982 ops/s
+Iteration   4: 24733,245 ops/s
+Iteration   5: 24753,469 ops/s
+
+
+Result: 24769,800 ▒(99.9%) 471,555 ops/s [Average]
+  Statistics: (min, avg, max) = (24594,402, 24769,800, 24911,900), stdev = 122,461
+  Confidence interval (99.9%): [24298,245, 25241,355]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testIceListStruct
+
+# Run progress: 14,29% complete, ETA 00:01:16
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:55845
+5201,743 ops/s
+# Warmup Iteration   2: 7056,000 ops/s
+# Warmup Iteration   3: 7601,714 ops/s
+# Warmup Iteration   4: 7748,214 ops/s
+# Warmup Iteration   5: 7743,838 ops/s
+Iteration   1: 7600,525 ops/s
+Iteration   2: 7632,918 ops/s
+Iteration   3: 7698,190 ops/s
+Iteration   4: 7532,460 ops/s
+Iteration   5: 7710,919 ops/s
+
+
+Result: 7635,002 ▒(99.9%) 282,071 ops/s [Average]
+  Statistics: (min, avg, max) = (7532,460, 7635,002, 7710,919), stdev = 73,253
+  Confidence interval (99.9%): [7352,931, 7917,074]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraIntStruct
+
+# Run progress: 28,57% complete, ETA 00:01:04
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:55860
+Start Server at: tcp//127.0.0.1:9242
+19615,546 ops/s
+# Warmup Iteration   2: 23496,929 ops/s
+# Warmup Iteration   3: 24874,830 ops/s
+# Warmup Iteration   4: 25384,061 ops/s
+# Warmup Iteration   5: 25000,136 ops/s
+Iteration   1: 25703,552 ops/s
+Iteration   2: 25832,268 ops/s
+Iteration   3: 26020,140 ops/s
+Iteration   4: 25326,955 ops/s
+Iteration   5: 25836,082 ops/s
+
+
+Result: 25743,799 ▒(99.9%) 996,875 ops/s [Average]
+  Statistics: (min, avg, max) = (25326,955, 25743,799, 26020,140), stdev = 258,885
+  Confidence interval (99.9%): [24746,924, 26740,674]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStruct
+
+# Run progress: 42,86% complete, ETA 00:00:51
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:55875
+Start Server at: tcp//127.0.0.1:9242
+1425,651 ops/s
+# Warmup Iteration   2: 1702,716 ops/s
+# Warmup Iteration   3: 1876,020 ops/s
+# Warmup Iteration   4: 1900,691 ops/s
+# Warmup Iteration   5: 1952,158 ops/s
+Iteration   1: 1954,391 ops/s
+Iteration   2: 1919,438 ops/s
+Iteration   3: 1939,268 ops/s
+Iteration   4: 1923,465 ops/s
+Iteration   5: 1940,343 ops/s
+
+
+Result: 1935,381 ▒(99.9%) 54,363 ops/s [Average]
+  Statistics: (min, avg, max) = (1919,438, 1935,381, 1954,391), stdev = 14,118
+  Confidence interval (99.9%): [1881,018, 1989,744]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStructDecoding
+
+# Run progress: 57,14% complete, ETA 00:00:38
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:55889
+11744,858 ops/s
+# Warmup Iteration   2: 15195,722 ops/s
+# Warmup Iteration   3: 16673,904 ops/s
+# Warmup Iteration   4: 17920,442 ops/s
+# Warmup Iteration   5: 17287,716 ops/s
+Iteration   1: 17632,353 ops/s
+Iteration   2: 17159,880 ops/s
+Iteration   3: 16991,600 ops/s
+Iteration   4: 17070,663 ops/s
+Iteration   5: 16129,314 ops/s
+
+
+Result: 16996,762 ▒(99.9%) 2098,988 ops/s [Average]
+  Statistics: (min, avg, max) = (16129,314, 16996,762, 17632,353), stdev = 545,101
+  Confidence interval (99.9%): [14897,774, 19095,750]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStructEncoding
+
+# Run progress: 71,43% complete, ETA 00:00:25
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:55906
+9960,692 ops/s
+# Warmup Iteration   2: 12519,887 ops/s
+# Warmup Iteration   3: 13719,482 ops/s
+# Warmup Iteration   4: 15313,344 ops/s
+# Warmup Iteration   5: 15593,880 ops/s
+Iteration   1: 15422,821 ops/s
+Iteration   2: 15626,969 ops/s
+Iteration   3: 15632,038 ops/s
+Iteration   4: 15374,884 ops/s
+Iteration   5: 15640,118 ops/s
+
+
+Result: 15539,366 ▒(99.9%) 498,545 ops/s [Average]
+  Statistics: (min, avg, max) = (15374,884, 15539,366, 15640,118), stdev = 129,471
+  Confidence interval (99.9%): [15040,821, 16037,911]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStructWriteRead
+
+# Run progress: 85,71% complete, ETA 00:00:12
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:55925
+Start Server at: tcp//127.0.0.1:9242
+5171,432 ops/s
+# Warmup Iteration   2: 6742,896 ops/s
+# Warmup Iteration   3: 7644,211 ops/s
+# Warmup Iteration   4: 8052,452 ops/s
+# Warmup Iteration   5: 8322,360 ops/s
+Iteration   1: 8262,905 ops/s
+Iteration   2: 8097,114 ops/s
+Iteration   3: 8037,540 ops/s
+Iteration   4: 8250,632 ops/s
+Iteration   5: 8258,583 ops/s
+
+
+Result: 8181,355 ▒(99.9%) 409,298 ops/s [Average]
+  Statistics: (min, avg, max) = (8037,540, 8181,355, 8262,905), stdev = 106,293
+  Confidence interval (99.9%): [7772,057, 8590,652]
+
+
+# Run complete. Total time: 00:01:29
+
+Benchmark                                           Mode  Samples      Score  Score error  Units
+d.s.b.MoraBenchmark.testIceIntStruct               thrpt        5  24769,800      471,555  ops/s
+d.s.b.MoraBenchmark.testIceListStruct              thrpt        5   7635,002      282,071  ops/s
+d.s.b.MoraBenchmark.testMoraIntStruct              thrpt        5  25743,799      996,875  ops/s
+d.s.b.MoraBenchmark.testMoraListStruct             thrpt        5   1935,381       54,363  ops/s
+d.s.b.MoraBenchmark.testMoraListStructDecoding     thrpt        5  16996,762     2098,988  ops/s
+d.s.b.MoraBenchmark.testMoraListStructEncoding     thrpt        5  15539,366      498,545  ops/s
+d.s.b.MoraBenchmark.testMoraListStructWriteRead    thrpt        5   8181,355      409,298  ops/s
+PS C:\Users\sschweigert\Downloads\eclipse-dsl-2019-09-R-win32-x86_64\eclipse\workspace_mora\MoraBenchmark\target> java -jar .\benchmarks.jar -wi 5 -i 5 -f 1
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testIceIntStruct
+
+# Run progress: 0,00% complete, ETA 00:01:10
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:56208
+16355,485 ops/s
+# Warmup Iteration   2: 23040,415 ops/s
+# Warmup Iteration   3: 23857,628 ops/s
+# Warmup Iteration   4: 24021,142 ops/s
+# Warmup Iteration   5: 23986,494 ops/s
+Iteration   1: 24425,014 ops/s
+Iteration   2: 24397,132 ops/s
+Iteration   3: 24431,671 ops/s
+Iteration   4: 24162,695 ops/s
+Iteration   5: 24493,111 ops/s
+
+
+Result: 24381,925 ▒(99.9%) 490,812 ops/s [Average]
+  Statistics: (min, avg, max) = (24162,695, 24381,925, 24493,111), stdev = 127,462
+  Confidence interval (99.9%): [23891,112, 24872,737]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testIceListStruct
+
+# Run progress: 14,29% complete, ETA 00:01:17
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:56224
+Start Server at: tcp//127.0.0.1:9242
+5371,796 ops/s
+# Warmup Iteration   2: 7112,596 ops/s
+# Warmup Iteration   3: 7825,542 ops/s
+# Warmup Iteration   4: 7701,052 ops/s
+# Warmup Iteration   5: 7621,739 ops/s
+Iteration   1: 7895,231 ops/s
+Iteration   2: 7656,312 ops/s
+Iteration   3: 7915,160 ops/s
+Iteration   4: 7904,907 ops/s
+Iteration   5: 7920,772 ops/s
+
+
+Result: 7858,476 ▒(99.9%) 436,802 ops/s [Average]
+  Statistics: (min, avg, max) = (7656,312, 7858,476, 7920,772), stdev = 113,436
+  Confidence interval (99.9%): [7421,675, 8295,278]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraIntStruct
+
+# Run progress: 28,57% complete, ETA 00:01:04
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:56239
+Start Server at: tcp//127.0.0.1:9242
+19967,387 ops/s
+# Warmup Iteration   2: 24011,797 ops/s
+# Warmup Iteration   3: 24828,674 ops/s
+# Warmup Iteration   4: 25717,992 ops/s
+# Warmup Iteration   5: 25721,342 ops/s
+Iteration   1: 26062,193 ops/s
+Iteration   2: 25240,210 ops/s
+Iteration   3: 25520,697 ops/s
+Iteration   4: 25601,422 ops/s
+Iteration   5: 26255,663 ops/s
+
+
+Result: 25736,037 ▒(99.9%) 1595,494 ops/s [Average]
+  Statistics: (min, avg, max) = (25240,210, 25736,037, 26255,663), stdev = 414,345
+  Confidence interval (99.9%): [24140,543, 27331,531]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStruct
+
+# Run progress: 42,86% complete, ETA 00:00:51
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:56257
+2072,393 ops/s
+# Warmup Iteration   2: 2433,381 ops/s
+# Warmup Iteration   3: 2581,686 ops/s
+# Warmup Iteration   4: 2682,322 ops/s
+# Warmup Iteration   5: 2678,695 ops/s
+Iteration   1: 2686,882 ops/s
+Iteration   2: 2636,327 ops/s
+Iteration   3: 2675,522 ops/s
+Iteration   4: 2602,746 ops/s
+Iteration   5: 2641,923 ops/s
+
+
+Result: 2648,680 ▒(99.9%) 128,983 ops/s [Average]
+  Statistics: (min, avg, max) = (2602,746, 2648,680, 2686,882), stdev = 33,497
+  Confidence interval (99.9%): [2519,697, 2777,663]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStructDecoding
+
+# Run progress: 57,14% complete, ETA 00:00:38
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:56271
+16501,026 ops/s
+# Warmup Iteration   2: 20707,929 ops/s
+# Warmup Iteration   3: 23564,869 ops/s
+# Warmup Iteration   4: 24549,563 ops/s
+# Warmup Iteration   5: 23490,758 ops/s
+Iteration   1: 24729,429 ops/s
+Iteration   2: 24027,457 ops/s
+Iteration   3: 22801,309 ops/s
+Iteration   4: 22945,619 ops/s
+Iteration   5: 22591,504 ops/s
+
+
+Result: 23419,064 ▒(99.9%) 3538,523 ops/s [Average]
+  Statistics: (min, avg, max) = (22591,504, 23419,064, 24729,429), stdev = 918,943
+  Confidence interval (99.9%): [19880,541, 26957,587]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStructEncoding
+
+# Run progress: 71,43% complete, ETA 00:00:25
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:56285
+12717,154 ops/s
+# Warmup Iteration   2: 15784,143 ops/s
+# Warmup Iteration   3: 17568,737 ops/s
+# Warmup Iteration   4: 19972,818 ops/s
+# Warmup Iteration   5: 20263,136 ops/s
+Iteration   1: 19998,899 ops/s
+Iteration   2: 20265,584 ops/s
+Iteration   3: 20230,876 ops/s
+Iteration   4: 20182,573 ops/s
+Iteration   5: 19926,107 ops/s
+
+
+Result: 20120,808 ▒(99.9%) 576,506 ops/s [Average]
+  Statistics: (min, avg, max) = (19926,107, 20120,808, 20265,584), stdev = 149,717
+  Confidence interval (99.9%): [19544,302, 20697,314]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStructWriteRead
+
+# Run progress: 85,71% complete, ETA 00:00:12
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:56299
+7350,840 ops/s
+# Warmup Iteration   2: 9052,911 ops/s
+# Warmup Iteration   3: 10094,452 ops/s
+# Warmup Iteration   4: 10767,620 ops/s
+# Warmup Iteration   5: 10777,998 ops/s
+Iteration   1: 11064,277 ops/s
+Iteration   2: 11000,940 ops/s
+Iteration   3: 11035,654 ops/s
+Iteration   4: 11021,668 ops/s
+Iteration   5: 10887,549 ops/s
+
+
+Result: 11002,018 ▒(99.9%) 261,858 ops/s [Average]
+  Statistics: (min, avg, max) = (10887,549, 11002,018, 11064,277), stdev = 68,004
+  Confidence interval (99.9%): [10740,159, 11263,876]
+
+
+# Run complete. Total time: 00:01:29
+
+Benchmark                                           Mode  Samples      Score  Score error  Units
+d.s.b.MoraBenchmark.testIceIntStruct               thrpt        5  24381,925      490,812  ops/s
+d.s.b.MoraBenchmark.testIceListStruct              thrpt        5   7858,476      436,802  ops/s
+d.s.b.MoraBenchmark.testMoraIntStruct              thrpt        5  25736,037     1595,494  ops/s
+d.s.b.MoraBenchmark.testMoraListStruct             thrpt        5   2648,680      128,983  ops/s
+d.s.b.MoraBenchmark.testMoraListStructDecoding     thrpt        5  23419,064     3538,523  ops/s
+d.s.b.MoraBenchmark.testMoraListStructEncoding     thrpt        5  20120,808      576,506  ops/s
+d.s.b.MoraBenchmark.testMoraListStructWriteRead    thrpt        5  11002,018      261,858  ops/s
+PS C:\Users\sschweigert\Downloads\eclipse-dsl-2019-09-R-win32-x86_64\eclipse\workspace_mora\MoraBenchmark\target> java -jar .\benchmarks.jar -wi 5 -i 5 -f 1
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testIceIntStruct
+
+# Run progress: 0,00% complete, ETA 00:01:10
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:56688
+17981,180 ops/s
+# Warmup Iteration   2: 25637,114 ops/s
+# Warmup Iteration   3: 26692,655 ops/s
+# Warmup Iteration   4: 26007,063 ops/s
+# Warmup Iteration   5: 26686,449 ops/s
+Iteration   1: 26994,018 ops/s
+Iteration   2: 26092,432 ops/s
+Iteration   3: 27001,619 ops/s
+Iteration   4: 26983,719 ops/s
+Iteration   5: 26906,786 ops/s
+
+
+Result: 26795,715 ▒(99.9%) 1520,895 ops/s [Average]
+  Statistics: (min, avg, max) = (26092,432, 26795,715, 27001,619), stdev = 394,972
+  Confidence interval (99.9%): [25274,820, 28316,609]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testIceListStruct
+
+# Run progress: 14,29% complete, ETA 00:01:16
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:56703
+Start Server at: tcp//127.0.0.1:9242
+5537,974 ops/s
+# Warmup Iteration   2: 7676,710 ops/s
+# Warmup Iteration   3: 8219,794 ops/s
+# Warmup Iteration   4: 8069,986 ops/s
+# Warmup Iteration   5: 7896,154 ops/s
+Iteration   1: 7862,961 ops/s
+Iteration   2: 8171,442 ops/s
+Iteration   3: 8292,534 ops/s
+Iteration   4: 8317,792 ops/s
+Iteration   5: 8005,528 ops/s
+
+
+Result: 8130,051 ▒(99.9%) 746,180 ops/s [Average]
+  Statistics: (min, avg, max) = (7862,961, 8130,051, 8317,792), stdev = 193,781
+  Confidence interval (99.9%): [7383,871, 8876,231]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraIntStruct
+
+# Run progress: 28,57% complete, ETA 00:01:04
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:56718
+20082,241 ops/s
+# Warmup Iteration   2: 24870,246 ops/s
+# Warmup Iteration   3: 25995,335 ops/s
+# Warmup Iteration   4: 24207,819 ops/s
+# Warmup Iteration   5: 25837,600 ops/s
+Iteration   1: 26362,474 ops/s
+Iteration   2: 26734,604 ops/s
+Iteration   3: 26596,452 ops/s
+Iteration   4: 26665,623 ops/s
+Iteration   5: 26707,138 ops/s
+
+
+Result: 26613,258 ▒(99.9%) 575,847 ops/s [Average]
+  Statistics: (min, avg, max) = (26362,474, 26613,258, 26734,604), stdev = 149,546
+  Confidence interval (99.9%): [26037,411, 27189,105]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStruct
+
+# Run progress: 42,86% complete, ETA 00:00:51
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:56734
+2221,030 ops/s
+# Warmup Iteration   2: 2497,006 ops/s
+# Warmup Iteration   3: 2650,118 ops/s
+# Warmup Iteration   4: 2478,859 ops/s
+# Warmup Iteration   5: 2633,933 ops/s
+Iteration   1: 2552,315 ops/s
+Iteration   2: 2590,130 ops/s
+Iteration   3: 2564,443 ops/s
+Iteration   4: 2609,076 ops/s
+Iteration   5: 2192,937 ops/s
+
+
+Result: 2501,780 ▒(99.9%) 670,230 ops/s [Average]
+  Statistics: (min, avg, max) = (2192,937, 2501,780, 2609,076), stdev = 174,057
+  Confidence interval (99.9%): [1831,551, 3172,010]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStructDecoding
+
+# Run progress: 57,14% complete, ETA 00:00:38
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:56748
+16809,259 ops/s
+# Warmup Iteration   2: 22323,079 ops/s
+# Warmup Iteration   3: 24976,448 ops/s
+# Warmup Iteration   4: 25505,435 ops/s
+# Warmup Iteration   5: 25121,436 ops/s
+Iteration   1: 25434,450 ops/s
+Iteration   2: 25392,583 ops/s
+Iteration   3: 25226,623 ops/s
+Iteration   4: 25320,912 ops/s
+Iteration   5: 25411,482 ops/s
+
+
+Result: 25357,210 ▒(99.9%) 325,222 ops/s [Average]
+  Statistics: (min, avg, max) = (25226,623, 25357,210, 25434,450), stdev = 84,459
+  Confidence interval (99.9%): [25031,988, 25682,432]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStructEncoding
+
+# Run progress: 71,43% complete, ETA 00:00:25
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:56763
+Start Server at: tcp//127.0.0.1:9242
+13511,378 ops/s
+# Warmup Iteration   2: 16104,337 ops/s
+# Warmup Iteration   3: 17497,785 ops/s
+# Warmup Iteration   4: 20022,480 ops/s
+# Warmup Iteration   5: 20013,296 ops/s
+Iteration   1: 20203,638 ops/s
+Iteration   2: 20213,507 ops/s
+Iteration   3: 19879,921 ops/s
+Iteration   4: 20246,368 ops/s
+Iteration   5: 20079,094 ops/s
+
+
+Result: 20124,506 ▒(99.9%) 580,533 ops/s [Average]
+  Statistics: (min, avg, max) = (19879,921, 20124,506, 20246,368), stdev = 150,763
+  Confidence interval (99.9%): [19543,972, 20705,039]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStructWriteRead
+
+# Run progress: 85,71% complete, ETA 00:00:12
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:56777
+7575,906 ops/s
+# Warmup Iteration   2: 9379,260 ops/s
+# Warmup Iteration   3: 10126,912 ops/s
+# Warmup Iteration   4: 11277,943 ops/s
+# Warmup Iteration   5: 11214,447 ops/s
+Iteration   1: 11461,802 ops/s
+Iteration   2: 11393,201 ops/s
+Iteration   3: 11564,768 ops/s
+Iteration   4: 11497,719 ops/s
+Iteration   5: 11167,861 ops/s
+
+
+Result: 11417,070 ▒(99.9%) 587,127 ops/s [Average]
+  Statistics: (min, avg, max) = (11167,861, 11417,070, 11564,768), stdev = 152,475
+  Confidence interval (99.9%): [10829,943, 12004,197]
+
+
+# Run complete. Total time: 00:01:29
+
+Benchmark                                           Mode  Samples      Score  Score error  Units
+d.s.b.MoraBenchmark.testIceIntStruct               thrpt        5  26795,715     1520,895  ops/s
+d.s.b.MoraBenchmark.testIceListStruct              thrpt        5   8130,051      746,180  ops/s
+d.s.b.MoraBenchmark.testMoraIntStruct              thrpt        5  26613,258      575,847  ops/s
+d.s.b.MoraBenchmark.testMoraListStruct             thrpt        5   2501,780      670,230  ops/s
+d.s.b.MoraBenchmark.testMoraListStructDecoding     thrpt        5  25357,210      325,222  ops/s
+d.s.b.MoraBenchmark.testMoraListStructEncoding     thrpt        5  20124,506      580,533  ops/s
+d.s.b.MoraBenchmark.testMoraListStructWriteRead    thrpt        5  11417,070      587,127  ops/s
+PS C:\Users\sschweigert\Downloads\eclipse-dsl-2019-09-R-win32-x86_64\eclipse\workspace_mora\MoraBenchmark\target> java -jar .\benchmarks.jar -wi 5 -i 5 -f 1
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testIceIntStruct
+
+# Run progress: 0,00% complete, ETA 00:01:10
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:57151
+17789,605 ops/s
+# Warmup Iteration   2: 24659,970 ops/s
+# Warmup Iteration   3: 26164,414 ops/s
+# Warmup Iteration   4: 24515,614 ops/s
+# Warmup Iteration   5: 25979,437 ops/s
+Iteration   1: 27031,001 ops/s
+Iteration   2: 26846,587 ops/s
+Iteration   3: 26872,542 ops/s
+Iteration   4: 27065,845 ops/s
+Iteration   5: 26807,028 ops/s
+
+
+Result: 26924,601 ▒(99.9%) 446,951 ops/s [Average]
+  Statistics: (min, avg, max) = (26807,028, 26924,601, 27065,845), stdev = 116,072
+  Confidence interval (99.9%): [26477,650, 27371,552]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testIceListStruct
+
+# Run progress: 14,29% complete, ETA 00:01:16
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:57166
+Start Server at: tcp//127.0.0.1:9242
+5555,580 ops/s
+# Warmup Iteration   2: 7662,290 ops/s
+# Warmup Iteration   3: 8134,690 ops/s
+# Warmup Iteration   4: 8168,918 ops/s
+# Warmup Iteration   5: 8088,373 ops/s
+Iteration   1: 8239,515 ops/s
+Iteration   2: 8129,105 ops/s
+Iteration   3: 7782,347 ops/s
+Iteration   4: 8249,171 ops/s
+Iteration   5: 8116,067 ops/s
+
+
+Result: 8103,241 ▒(99.9%) 729,778 ops/s [Average]
+  Statistics: (min, avg, max) = (7782,347, 8103,241, 8249,171), stdev = 189,521
+  Confidence interval (99.9%): [7373,463, 8833,019]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraIntStruct
+
+# Run progress: 28,57% complete, ETA 00:01:04
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:57181
+20829,039 ops/s
+# Warmup Iteration   2: 24868,060 ops/s
+# Warmup Iteration   3: 25024,229 ops/s
+# Warmup Iteration   4: 25964,797 ops/s
+# Warmup Iteration   5: 26268,358 ops/s
+Iteration   1: 26490,334 ops/s
+Iteration   2: 25873,886 ops/s
+Iteration   3: 26774,201 ops/s
+Iteration   4: 26632,848 ops/s
+Iteration   5: 26747,538 ops/s
+
+
+Result: 26503,761 ▒(99.9%) 1422,853 ops/s [Average]
+  Statistics: (min, avg, max) = (25873,886, 26503,761, 26774,201), stdev = 369,510
+  Confidence interval (99.9%): [25080,909, 27926,614]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStruct
+
+# Run progress: 42,86% complete, ETA 00:00:51
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:57196
+Start Server at: tcp//127.0.0.1:9242
+2186,500 ops/s
+# Warmup Iteration   2: 2431,939 ops/s
+# Warmup Iteration   3: 2372,486 ops/s
+# Warmup Iteration   4: 1661,551 ops/s
+# Warmup Iteration   5: 2026,427 ops/s
+Iteration   1: 2554,939 ops/s
+Iteration   2: 2552,501 ops/s
+Iteration   3: 2635,383 ops/s
+Iteration   4: 2693,835 ops/s
+Iteration   5: 2182,944 ops/s
+
+
+Result: 2523,920 ▒(99.9%) 768,536 ops/s [Average]
+  Statistics: (min, avg, max) = (2182,944, 2523,920, 2693,835), stdev = 199,586
+  Confidence interval (99.9%): [1755,384, 3292,456]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStructDecoding
+
+# Run progress: 57,14% complete, ETA 00:00:38
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:57211
+16762,977 ops/s
+# Warmup Iteration   2: 22206,695 ops/s
+# Warmup Iteration   3: 25117,421 ops/s
+# Warmup Iteration   4: 25193,456 ops/s
+# Warmup Iteration   5: 25137,142 ops/s
+Iteration   1: 25302,118 ops/s
+Iteration   2: 24676,887 ops/s
+Iteration   3: 24932,539 ops/s
+Iteration   4: 25183,586 ops/s
+Iteration   5: 24773,748 ops/s
+
+
+Result: 24973,776 ▒(99.9%) 1021,843 ops/s [Average]
+  Statistics: (min, avg, max) = (24676,887, 24973,776, 25302,118), stdev = 265,369
+  Confidence interval (99.9%): [23951,932, 25995,619]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStructEncoding
+
+# Run progress: 71,43% complete, ETA 00:00:25
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:57225
+Start Server at: tcp//127.0.0.1:9242
+13789,317 ops/s
+# Warmup Iteration   2: 16119,340 ops/s
+# Warmup Iteration   3: 17406,995 ops/s
+# Warmup Iteration   4: 17623,127 ops/s
+# Warmup Iteration   5: 17886,385 ops/s
+Iteration   1: 17846,872 ops/s
+Iteration   2: 17668,825 ops/s
+Iteration   3: 17866,452 ops/s
+Iteration   4: 17819,130 ops/s
+Iteration   5: 17400,103 ops/s
+
+
+Result: 17720,276 ▒(99.9%) 751,429 ops/s [Average]
+  Statistics: (min, avg, max) = (17400,103, 17720,276, 17866,452), stdev = 195,144
+  Confidence interval (99.9%): [16968,847, 18471,706]
+
+
+# VM invoker: C:\Program Files\Java\jre1.8.0_202\bin\java.exe
+# VM options: <none>
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: de.sos.benchmark.MoraBenchmark.testMoraListStructWriteRead
+
+# Run progress: 85,71% complete, ETA 00:00:12
+# Fork: 1 of 1
+# Warmup Iteration   1: Start Server at: tcp//127.0.0.1:9242
+Start Server at: tcp//127.0.0.1:57244
+7529,804 ops/s
+# Warmup Iteration   2: 9439,764 ops/s
+# Warmup Iteration   3: 10417,633 ops/s
+# Warmup Iteration   4: 10423,798 ops/s
+# Warmup Iteration   5: 10261,156 ops/s
+Iteration   1: 10414,465 ops/s
+Iteration   2: 10327,810 ops/s
+Iteration   3: 10477,093 ops/s
+Iteration   4: 10414,974 ops/s
+Iteration   5: 10290,370 ops/s
+
+
+Result: 10384,942 ▒(99.9%) 288,627 ops/s [Average]
+  Statistics: (min, avg, max) = (10290,370, 10384,942, 10477,093), stdev = 74,955
+  Confidence interval (99.9%): [10096,315, 10673,569]
+
+
+# Run complete. Total time: 00:01:29
+
+Benchmark                                           Mode  Samples      Score  Score error  Units
+d.s.b.MoraBenchmark.testIceIntStruct               thrpt        5  26924,601      446,951  ops/s
+d.s.b.MoraBenchmark.testIceListStruct              thrpt        5   8103,241      729,778  ops/s
+d.s.b.MoraBenchmark.testMoraIntStruct              thrpt        5  26503,761     1422,853  ops/s
+d.s.b.MoraBenchmark.testMoraListStruct             thrpt        5   2523,920      768,536  ops/s
+d.s.b.MoraBenchmark.testMoraListStructDecoding     thrpt        5  24973,776     1021,843  ops/s
+d.s.b.MoraBenchmark.testMoraListStructEncoding     thrpt        5  17720,276      751,429  ops/s
+d.s.b.MoraBenchmark.testMoraListStructWriteRead    thrpt        5  10384,942      288,627  ops/s
+PS C:\Users\sschweigert\Downloads\eclipse-dsl-2019-09-R-win32-x86_64\eclipse\workspace_mora\MoraBenchmark\target>
