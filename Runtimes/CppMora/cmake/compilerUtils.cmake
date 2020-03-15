@@ -8,7 +8,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 target_architecture(_INT_ARCH)
 set(COMPILER_ARCHITECTURE ${_INT_ARCH} CACHE STRING "Architecture ")
 
-
+set(CMAKE_DEBUG_POSTFIX "d" CACHE INTERNAL "")
 
 macro(add_extra_compiler_option OPTION)
 	#TODO: check if the flag is supported
