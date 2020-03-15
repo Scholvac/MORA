@@ -347,6 +347,29 @@ public class MORAGrammarAccess extends AbstractGrammarElementFinder {
 		//EnumDecl
 		public RuleCall getEnumDeclParserRuleCall_2() { return cEnumDeclParserRuleCall_2; }
 	}
+	public class AbstractTypeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.sos.MORA.AbstractType");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cInterfaceParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cStructDeclParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cEnumDeclParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		
+		//AbstractType:
+		//	Interface | StructDecl | EnumDecl;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//Interface | StructDecl | EnumDecl
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//Interface
+		public RuleCall getInterfaceParserRuleCall_0() { return cInterfaceParserRuleCall_0; }
+		
+		//StructDecl
+		public RuleCall getStructDeclParserRuleCall_1() { return cStructDeclParserRuleCall_1; }
+		
+		//EnumDecl
+		public RuleCall getEnumDeclParserRuleCall_2() { return cEnumDeclParserRuleCall_2; }
+	}
 	public class PrimTypeDeclElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.sos.MORA.PrimTypeDecl");
 		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
@@ -1205,6 +1228,7 @@ public class MORAGrammarAccess extends AbstractGrammarElementFinder {
 	private final CppOptionsElements pCppOptions;
 	private final TypeDeclElements pTypeDecl;
 	private final SingleTypeDeclElements pSingleTypeDecl;
+	private final AbstractTypeElements pAbstractType;
 	private final PrimTypeDeclElements pPrimTypeDecl;
 	private final AnnotationElements pAnnotation;
 	private final StructDeclElements pStructDecl;
@@ -1239,6 +1263,7 @@ public class MORAGrammarAccess extends AbstractGrammarElementFinder {
 		this.pCppOptions = new CppOptionsElements();
 		this.pTypeDecl = new TypeDeclElements();
 		this.pSingleTypeDecl = new SingleTypeDeclElements();
+		this.pAbstractType = new AbstractTypeElements();
 		this.pPrimTypeDecl = new PrimTypeDeclElements();
 		this.pAnnotation = new AnnotationElements();
 		this.pStructDecl = new StructDeclElements();
@@ -1372,6 +1397,16 @@ public class MORAGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getSingleTypeDeclRule() {
 		return getSingleTypeDeclAccess().getRule();
+	}
+	
+	//AbstractType:
+	//	Interface | StructDecl | EnumDecl;
+	public AbstractTypeElements getAbstractTypeAccess() {
+		return pAbstractType;
+	}
+	
+	public ParserRule getAbstractTypeRule() {
+		return getAbstractTypeAccess().getRule();
 	}
 	
 	//PrimTypeDecl:

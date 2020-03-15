@@ -1,76 +1,144 @@
 /*
  * MessageHandler.cpp
  *
- *  Created on: 19.01.2020
+ *  Created on: 23.02.2020
  *      Author: sschweigert
  */
 
+#include "private/MessageHandler.h"
 
-#include "internal/precomp.h"
+#include "MoraRemoteMethodCall.h"
+#include "MoraCommunicator.h"
+#include "MoraAdapter.h"
+#include "MoraUtils.h"
 
-#include "MoraStreams.h"
-
-#include "internal/MessageHandler.h"
-#include "internal/MoraMessages.h"
-#include "internal/ConnectionManager.h"
-
-#include "ThreadPool.h"
+#include "Poco/Format.h"
 
 using namespace mora;
+using namespace mora::net;
 
-MessageHandler::MessageHandler(Communicator* com, ThreadPool* tp, ConnectionManager* cmgr)
-	: mCommunicator{ com }, mThreadPool{ tp }, mConnectionManager{ cmgr }
+MessageHandler::MessageHandler(Communicator& com, PendingCallMap& pcm)
+	: mCommunicator{ com }, mPendingCalls{ pcm }, mThreadPool{ "MessageHandlerPool", 1, com.options().workerThreads }
 {
-
 }
+
 MessageHandler::~MessageHandler() {
-
+	// TODO Auto-generated destructor stub
 }
 
-
-
-
-
-void handleResponse(InMethodResponse* resp, std::map<int16, IRemoteMethodCall*>* pendingCalls, MessageHandler* handler) {
-	try {
-		auto it = pendingCalls->find(resp->magic);
-		if (it == pendingCalls->end())
-			LOG_F(ERROR, "Could not find call for response (magic: %i)", resp->magic);
-		else {
-			IRemoteMethodCall* originalCall = it->second;
-			pendingCalls->erase(it);
-			originalCall->handleResult(resp->stream());
-			delete originalCall; //do not delete here, that is handled by the caller
+namespace mora {
+	class IncommingMethodCall : public IRemoteMethodCall {
+	public:
+		IncommingMethodCall(RemoteMethod& rm, int16 magic, InputStream* in, Communicator& communicator)
+			: IRemoteMethodCall(rm, magic, in, communicator)
+		{
+			mOutputStream << (int8)0; //indicate that we have no error
 		}
-	}
-	catch (std::exception const& e) {
-		LOG_F(WARNING, "Failed to handle method response with error: %s", e.what());
-	}
-	delete resp;
-}
-void handleMethodCall(InMethodCall* call, MessageHandler* msgHandler, Communicator* com) {
-	try {
-		IAdapterPtr adapter = com->getAdapter(call->getObjectIdentifier());
-		CHECK_F(adapter != nullptr, "Could not find an Adapter for identifier %s", call->getObjectIdentifier().c_str());
+		virtual ~IncommingMethodCall() = default;
 
-		OutMethodResponse resp(call);
-		adapter->invoke(call->getMethodSignature(), call->stream(), resp.stream, com);
-		msgHandler->sendResponse(resp);
-	}
-	catch (std::exception const& e) {
-		LOG_F(WARNING, "%s", e.what());
-		OutMethodResponse resp(call, e.what());
-		msgHandler->sendResponse(resp);
-	}
-	catch (...) {
-		std::string err = "Unkown Exception " + call->getObjectIdentifier() + ":" + call->getMethodSignature();
-		LOG_F(WARNING, "%s", err.c_str());
-		OutMethodResponse resp(call, err.c_str());
-		msgHandler->sendResponse(resp);
-	}
+		virtual bool isResponse() { return true; }
+		virtual void handleResponse() {} //we do not expect a response but reuse the IRemoteMethodCall
 
-	delete call;
+		void setError(const std::string err) {
+			//if we have an error we do replace the output stream
+			mOutputStream = mora::OutputStream{};
+			mOutputStream << MESSAGE_TYPE__RESPONSE;
+			mOutputStream << mMagic;
+			mOutputStream << RESPONSE_STATUS__EXCEPTION;
+			mOutputStream << err;
+		}
+
+	};
 }
+
+class IncommingCallHandler : public Poco::Runnable {
+public:
+	InMsgCollection*	mMsg;
+	int16				mMagic;
+	int8				mFlags;
+	Communicator&		mCommunicator;
+
+	IncommingCallHandler(mora::net::InMsgCollection* msg, int16 magic, int8 flags, Communicator& com)
+		: mMsg{ msg }, mMagic{ magic }, mFlags{ flags }, mCommunicator(com)
+	{}
+	~IncommingCallHandler() = default;
+
+
+	virtual void run() {
+
+		InputStream& stream = mMsg->getStream();
+		int8 respProtocol;
+		stream >> respProtocol;
+		int32 respPort;
+		stream >> respPort;
+		const std::string& respAdr = mMsg->getResponseAdr();
+
+		std::string ident;
+		stream >> ident;
+		size_t idx = ident.find(':');
+		if (idx <= 0)
+			throw "Invalid MethodCall - wrong identifier: " + ident;
+		std::string objectIdentity = ident.substr(0, idx);
+		std::string signature = ident.substr(idx + 1);
+
+		AdapterPtr adapter = mCommunicator.getAdapter(objectIdentity);
+		if (!adapter) {
+			throw AdapterException(Poco::format("Could not find adapter: %s", objectIdentity.c_str()).c_str());
+		}
+		const RemoteCommunicator& respCom = mCommunicator.getRemoteCommunicator(respAdr, respPort, MoraUtils::toProtocol(respProtocol));
+		RemoteMethod rm{ RemoteObject{respCom, objectIdentity}, signature };
+		IncommingMethodCall call{ rm, mMagic, &stream, mCommunicator };
+
+		try {
+			adapter->invoke(call);
+		}
+		catch (std::exception exp) {
+			LOG_WARN(Poco::format("Invoked method throws an Exception: %s", exp.what()).c_str());
+
+			//TODO: send error method response
+			call.setError(std::string{ exp.what() });
+		}
+		mCommunicator.call(&call);
+
+
+		delete mMsg;
+		delete this;
+	}
+};
+
+
+class ResponseHandler : public Poco::Runnable {
+public:
+	InMsgCollection*	mMsg;
+	int16				mMagic;
+	int8				mFlags;
+	PendingCallMap&		mPendingCalls;
+
+	ResponseHandler(mora::net::InMsgCollection* msg, int16 magic, int8 flags, PendingCallMap& pcm)
+		: mMsg{ msg }, mMagic{ magic }, mFlags{ flags }, mPendingCalls{ pcm }
+	{}
+	~ResponseHandler() = default;
+
+
+	virtual void run() {
+
+		auto pit = mPendingCalls.find(mMagic);
+		if (pit != mPendingCalls.end()) {
+			IRemoteMethodCall* pending_call = pit->second;
+			mPendingCalls.erase(pit);
+			
+			pending_call->handleResponse(&mMsg->getStream());
+		}
+		else {
+			LOG_ERROR(Poco::format("No pending call for magic: %i", mMagic).c_str());
+		}
+		
+
+		delete mMsg;
+		delete this;
+	}
+};
+
 void MessageHandler::handleIncommingMessage(mora::net::InMsgCollection* msg)
 {
 	InputStream& stream = msg->getStream();
@@ -80,21 +148,9 @@ void MessageHandler::handleIncommingMessage(mora::net::InMsgCollection* msg)
 	stream >> magic;
 
 	if ((flags & MESSAGE_TYPE__RESPONSE) == MESSAGE_TYPE__RESPONSE) {
-		InMethodResponse* resp = new InMethodResponse(magic, flags, msg);
-		auto future = mThreadPool->submit(handleResponse, resp, &mPendingCalls, this);
+		mThreadPool.start(*(new ResponseHandler(msg, magic, flags, mPendingCalls)));
 	}
 	else if ((flags && MESSAGE_TYPE__METHOD_CALL) == MESSAGE_TYPE__METHOD_CALL) {
-		InMethodCall* call = new InMethodCall(magic, flags, msg); //will be deleted by the handler
-		auto future = mThreadPool->submit(handleMethodCall, call, this, mCommunicator);
+		mThreadPool.start(*(new IncommingCallHandler(msg, magic, flags, mCommunicator)));
 	}
-}
-
-bool MessageHandler::sendResponse(OutMethodResponse& resp) {
-	return mConnectionManager->send(resp);
-}
-
-bool MessageHandler::call(IRemoteMethodCall* call) {
-	OutMethodCall& msg = call->getMessage();
-	mPendingCalls.insert(std::make_pair(msg.magic, call));
-	return mConnectionManager->send(msg);
 }

@@ -3,6 +3,7 @@
  */
 package de.sos.mORA.impl;
 
+import de.sos.mORA.AbstractType;
 import de.sos.mORA.Annotation;
 import de.sos.mORA.CSharpOptions;
 import de.sos.mORA.CppOptions;
@@ -94,6 +95,7 @@ public class MORAFactoryImpl extends EFactoryImpl implements MORAFactory
       case MORAPackage.CPP_OPTIONS: return createCppOptions();
       case MORAPackage.TYPE_DECL: return createTypeDecl();
       case MORAPackage.SINGLE_TYPE_DECL: return createSingleTypeDecl();
+      case MORAPackage.ABSTRACT_TYPE: return createAbstractType();
       case MORAPackage.PRIM_TYPE_DECL: return createPrimTypeDecl();
       case MORAPackage.ANNOTATION: return createAnnotation();
       case MORAPackage.STRUCT_DECL: return createStructDecl();
@@ -238,6 +240,18 @@ public class MORAFactoryImpl extends EFactoryImpl implements MORAFactory
   {
     SingleTypeDeclImpl singleTypeDecl = new SingleTypeDeclImpl();
     return singleTypeDecl;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public AbstractType createAbstractType()
+  {
+    AbstractTypeImpl abstractType = new AbstractTypeImpl();
+    return abstractType;
   }
 
   /**

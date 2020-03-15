@@ -154,6 +154,7 @@ public class MORASemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Contexts:
 	 *     TypeDecl returns EnumDecl
 	 *     SingleTypeDecl returns EnumDecl
+	 *     AbstractType returns EnumDecl
 	 *     EnumDecl returns EnumDecl
 	 *
 	 * Constraint:
@@ -196,6 +197,7 @@ public class MORASemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     AbstractType returns Interface
 	 *     Interface returns Interface
 	 *
 	 * Constraint:
@@ -339,6 +341,7 @@ public class MORASemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Contexts:
 	 *     TypeDecl returns StructDecl
 	 *     SingleTypeDecl returns StructDecl
+	 *     AbstractType returns StructDecl
 	 *     StructDecl returns StructDecl
 	 *
 	 * Constraint:

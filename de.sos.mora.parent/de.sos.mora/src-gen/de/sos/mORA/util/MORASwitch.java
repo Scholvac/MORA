@@ -3,6 +3,7 @@
  */
 package de.sos.mORA.util;
 
+import de.sos.mORA.AbstractType;
 import de.sos.mORA.Annotation;
 import de.sos.mORA.CSharpOptions;
 import de.sos.mORA.CppOptions;
@@ -148,6 +149,13 @@ public class MORASwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case MORAPackage.ABSTRACT_TYPE:
+      {
+        AbstractType abstractType = (AbstractType)theEObject;
+        T result = caseAbstractType(abstractType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case MORAPackage.PRIM_TYPE_DECL:
       {
         PrimTypeDecl primTypeDecl = (PrimTypeDecl)theEObject;
@@ -169,6 +177,7 @@ public class MORASwitch<T> extends Switch<T>
         StructDecl structDecl = (StructDecl)theEObject;
         T result = caseStructDecl(structDecl);
         if (result == null) result = caseSingleTypeDecl(structDecl);
+        if (result == null) result = caseAbstractType(structDecl);
         if (result == null) result = caseTypeDecl(structDecl);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -185,6 +194,7 @@ public class MORASwitch<T> extends Switch<T>
         EnumDecl enumDecl = (EnumDecl)theEObject;
         T result = caseEnumDecl(enumDecl);
         if (result == null) result = caseSingleTypeDecl(enumDecl);
+        if (result == null) result = caseAbstractType(enumDecl);
         if (result == null) result = caseTypeDecl(enumDecl);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -208,6 +218,7 @@ public class MORASwitch<T> extends Switch<T>
       {
         Interface interface_ = (Interface)theEObject;
         T result = caseInterface(interface_);
+        if (result == null) result = caseAbstractType(interface_);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -360,6 +371,22 @@ public class MORASwitch<T> extends Switch<T>
    * @generated
    */
   public T caseSingleTypeDecl(SingleTypeDecl object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Abstract Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Abstract Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAbstractType(AbstractType object)
   {
     return null;
   }

@@ -34,6 +34,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeDecl"/>
   <eClassifiers xsi:type="ecore:EClass" name="SingleTypeDecl" eSuperTypes="#//TypeDecl"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractType"/>
   <eClassifiers xsi:type="ecore:EClass" name="PrimTypeDecl" eSuperTypes="#//SingleTypeDecl">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="#//PrimTypeLiteral"/>
   </eClassifiers>
@@ -41,7 +42,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StructDecl" eSuperTypes="#//SingleTypeDecl">
+  <eClassifiers xsi:type="ecore:EClass" name="StructDecl" eSuperTypes="#//SingleTypeDecl #//AbstractType">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="doc" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="anno" upperBound="-1" eType="#//Annotation"
         containment="true"/>
@@ -57,7 +58,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="primType" eType="#//PrimTypeLiteral"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EnumDecl" eSuperTypes="#//SingleTypeDecl">
+  <eClassifiers xsi:type="ecore:EClass" name="EnumDecl" eSuperTypes="#//SingleTypeDecl #//AbstractType">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="doc" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="literals" upperBound="-1"
@@ -74,7 +75,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="primType" eType="#//PrimTypeLiteral"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Interface">
+  <eClassifiers xsi:type="ecore:EClass" name="Interface" eSuperTypes="#//AbstractType">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="doc" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="anno" upperBound="-1" eType="#//Annotation"
         containment="true"/>

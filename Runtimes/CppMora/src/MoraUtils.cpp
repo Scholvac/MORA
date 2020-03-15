@@ -1,8 +1,14 @@
+/*
+ * MoraUtils.cpp
+ *
+ *  Created on: 22.02.2020
+ *      Author: sschweigert
+ */
 
-#include "internal/precomp.h"
-#include "MORA.h"
+#include <MoraUtils.h>
 
 #include <sstream>
+
 
 using namespace mora;
 

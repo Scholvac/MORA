@@ -35,6 +35,7 @@ public class MORAParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getOptionsAccess().getAlternatives_2(), "rule__Options__Alternatives_2");
 			builder.put(grammarAccess.getTypeDeclAccess().getAlternatives(), "rule__TypeDecl__Alternatives");
 			builder.put(grammarAccess.getSingleTypeDeclAccess().getAlternatives(), "rule__SingleTypeDecl__Alternatives");
+			builder.put(grammarAccess.getAbstractTypeAccess().getAlternatives(), "rule__AbstractType__Alternatives");
 			builder.put(grammarAccess.getMemberAccess().getAlternatives_2(), "rule__Member__Alternatives_2");
 			builder.put(grammarAccess.getListTypeDeclAccess().getAlternatives_3(), "rule__ListTypeDecl__Alternatives_3");
 			builder.put(grammarAccess.getMethodAccess().getAlternatives_1(), "rule__Method__Alternatives_1");

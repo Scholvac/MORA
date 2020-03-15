@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface EnumDecl extends SingleTypeDecl
+public interface EnumDecl extends SingleTypeDecl, AbstractType
 {
   /**
    * Returns the value of the '<em><b>Doc</b></em>' attribute.

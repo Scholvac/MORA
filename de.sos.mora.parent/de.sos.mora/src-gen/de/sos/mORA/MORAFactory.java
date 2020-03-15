@@ -96,6 +96,15 @@ public interface MORAFactory extends EFactory
   SingleTypeDecl createSingleTypeDecl();
 
   /**
+   * Returns a new object of class '<em>Abstract Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Abstract Type</em>'.
+   * @generated
+   */
+  AbstractType createAbstractType();
+
+  /**
    * Returns a new object of class '<em>Prim Type Decl</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

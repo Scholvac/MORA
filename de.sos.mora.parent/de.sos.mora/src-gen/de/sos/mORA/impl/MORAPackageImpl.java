@@ -3,6 +3,7 @@
  */
 package de.sos.mORA.impl;
 
+import de.sos.mORA.AbstractType;
 import de.sos.mORA.Annotation;
 import de.sos.mORA.CSharpOptions;
 import de.sos.mORA.CppOptions;
@@ -96,6 +97,13 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * @generated
    */
   private EClass singleTypeDeclEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass abstractTypeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -462,6 +470,17 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
   public EClass getSingleTypeDecl()
   {
     return singleTypeDeclEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getAbstractType()
+  {
+    return abstractTypeEClass;
   }
 
   /**
@@ -1095,6 +1114,8 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
 
     singleTypeDeclEClass = createEClass(SINGLE_TYPE_DECL);
 
+    abstractTypeEClass = createEClass(ABSTRACT_TYPE);
+
     primTypeDeclEClass = createEClass(PRIM_TYPE_DECL);
     createEAttribute(primTypeDeclEClass, PRIM_TYPE_DECL__NAME);
 
@@ -1193,8 +1214,11 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
     singleTypeDeclEClass.getESuperTypes().add(this.getTypeDecl());
     primTypeDeclEClass.getESuperTypes().add(this.getSingleTypeDecl());
     structDeclEClass.getESuperTypes().add(this.getSingleTypeDecl());
+    structDeclEClass.getESuperTypes().add(this.getAbstractType());
     enumDeclEClass.getESuperTypes().add(this.getSingleTypeDecl());
+    enumDeclEClass.getESuperTypes().add(this.getAbstractType());
     listTypeDeclEClass.getESuperTypes().add(this.getTypeDecl());
+    interfaceEClass.getESuperTypes().add(this.getAbstractType());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1224,6 +1248,8 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
     initEClass(typeDeclEClass, TypeDecl.class, "TypeDecl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(singleTypeDeclEClass, SingleTypeDecl.class, "SingleTypeDecl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(abstractTypeEClass, AbstractType.class, "AbstractType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(primTypeDeclEClass, PrimTypeDecl.class, "PrimTypeDecl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPrimTypeDecl_Name(), this.getPrimTypeLiteral(), "name", null, 0, 1, PrimTypeDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

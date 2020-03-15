@@ -1,0 +1,47 @@
+
+
+options{ 
+	java {
+		base-package = de.sos.turbot.pi
+	}
+	csharp {
+		base-namespace = De.Sos.turbot.pi
+	}
+	cpp {
+		base-namespace = de::sos::turbot::pi
+	}
+}
+
+package motor {
+
+	enum MotorPosition {
+		Front_Left = 0;
+		Front_Right = 1;
+		Rear_Left = 2;
+		Rear_Right = 3;
+	}
+	enum MotorDirection {
+		Stopped = 0;
+		Forwards = 1;
+		Backwards = 2;		
+	}
+	struct Motor {
+		MotorPosition 	position;
+		MotorDirection 	direction;
+		int				pin1;
+		int 			pin2;		
+	}
+	List<Motor> MotorList;
+
+	interface MotorController {
+		void forwards();
+		void backwards();
+		void left();
+		void right();
+		void stop();
+		
+		MotorList getMotors();
+		void setDirection(MotorPosition motor, MotorDirection direction);
+		MotorDirection getMotorDirection(MotorPosition motor);		
+	}
+}   

@@ -16,10 +16,10 @@ import de.sos.mORA.Interface
 
 class CppMoraGenerator extends AbstractGenerator {
 	
-
-	extension TypeUtil = new TypeUtil
+	extension CppUtils 		= new CppUtils
+	extension TypeUtil 		= new TypeUtil
 	extension CppTypeUtil	= new CppTypeUtil
-
+	
 	
 	
 	override doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
@@ -60,7 +60,6 @@ class CppMoraGenerator extends AbstractGenerator {
 	def void generateSource(Model m, IFileSystemAccess2 fsa){
 		clearImports
 		
-		rememberImports("loguru.hpp")
 		rememberImports("future")
 		rememberImports(m.getTypesHeaderFile())
 		
@@ -199,6 +198,29 @@ class CppMoraGenerator extends AbstractGenerator {
 			«ENDFOR»
 		}
 		
+		bool «s.structName»::operator==(const «s.structName»& other) const {
+			«FOR m : s.member»
+				«IF m.type.singleType.struct && m.type.isMany == false»
+					if («m.memberName» != other.«m.memberName») //pointer compare
+						if (!(*«m.memberName» == *other.«m.memberName»))
+							return false;
+				«ELSE»
+					if (!(«m.memberName» == other.«m.memberName»))
+						return false;
+				«ENDIF»
+			«ENDFOR»
+			return true;
+		}
+		
+		bool operator==(const std::vector<«s.structName»*>& list1, const std::vector<«s.structName»*>& list2){
+			if (list1.size() != list2.size())
+				return false;
+			for (size_t i = 0; i < list1.size(); i++){
+				if (!(*list1[i] == *list2[i]))
+					return false;
+			}
+			return true;
+		}
 		
 		
 		«s.structName»* «s.structName»::read(::mora::InputStream& stream) {
@@ -206,7 +228,7 @@ class CppMoraGenerator extends AbstractGenerator {
 			stream >> flag;
 			if (flag == ::mora::STRUCT_NULL)
 				return NULL;
-			CHECK_EQ_F(flag, ::mora::STRUCT_START, "Expecting %i (start flag) but found: %i", ::mora::STRUCT_START, flag);
+			SERIALIZER_CHECK_EQ(flag, ::mora::STRUCT_START, "Expecting %i (start flag) but found: %i");
 			
 			«s.structName»* out = new «s.structName»();
 			«FOR m : s.member»
@@ -220,7 +242,7 @@ class CppMoraGenerator extends AbstractGenerator {
 			«ENDFOR»
 			
 			stream >> flag;
-			CHECK_EQ_F(flag, ::mora::STRUCT_END, "Expecting %i (end flag) but found: %i", ::mora::STRUCT_END, flag);
+			SERIALIZER_CHECK_EQ(flag, ::mora::STRUCT_END, "Expecting %i (end flag) but found: %i");
 			return out;
 		}
 		std::vector<«s.structName»*> «s.structName»::readList(::mora::InputStream& stream){
@@ -342,26 +364,7 @@ class CppMoraGenerator extends AbstractGenerator {
 	
 
 	
-	def String beginNamespace(CppOptions options){
-		val qn = QualifiedName::create(options.baseNamespace.split("::"))
-		var out = "";
-		for (s : qn.segments){
-			out = out + "namespace " + s + "{ "
-		}
-		return out; 
-	}
-	def String endNamespace(CppOptions options){
-		val qn = QualifiedName::create(options.baseNamespace.split("::"))
-		var out = "";
-		for (s : qn.segments){
-			out = out + "} /*" + s + "*/ "
-		}
-		return out; 
-	}
 	
-	def boolean hasNamesapce(CppOptions options){
-		return options !== null && options.baseNamespace !== null && options.baseNamespace.empty == false;
-	}
 	
 	def generateStructHeaderContent(StructDecl s)
 	'''
@@ -380,9 +383,11 @@ class CppMoraGenerator extends AbstractGenerator {
 			
 			static void write(const «s.structName»* value, ::mora::OutputStream& stream);
 			static void write(const std::vector<«s.structName»*>& value, ::mora::OutputStream& stream);
+			
+			bool operator== (const «s.structName»& other) const;
 		};
 		
-		
+		bool operator==(const std::vector<«s.structName»*>& list1, const std::vector<«s.structName»*>& list2);
 	'''
 	
 	def String defaultValue(TypeDecl t){
@@ -441,13 +446,13 @@ class CppMoraGenerator extends AbstractGenerator {
 	'''
 		class «iface.proxyName» : public «iface.IFaceName», public ::mora::Proxy {
 		public:
-			«iface.proxyName»(::mora::Communicator* communicator, ::mora::RemoteObject remoteObject);
+			«iface.proxyName»(::mora::RemoteObject remoteObject, ::mora::Communicator& communicator);
 			virtual ~«iface.proxyName»();
 			
-			static std::shared_ptr<«iface.proxyName»> createProxy(::mora::Communicator* communicator, const std::string& qualifiedAddress);
+			static std::shared_ptr<«iface.proxyName»> createProxy(const std::string& qualifiedAddress, ::mora::Communicator& communicator);
 			
-			static «iface.cppTypeName» read(::mora::InputStream& stream, ::mora::Communicator* communicator);
-			static std::vector<«iface.cppTypeName»> readList(::mora::InputStream& stream, ::mora::Communicator* communicator);
+			static «iface.cppTypeName» read(::mora::InputStream& stream, ::mora::Communicator& communicator);
+			static std::vector<«iface.cppTypeName»> readList(::mora::InputStream& stream, ::mora::Communicator& communicator);
 			
 		public:
 			«FOR m : iface.methods»
@@ -475,44 +480,67 @@ class CppMoraGenerator extends AbstractGenerator {
 	
 	def proxyImpl(Interface i)
 	'''
-		«i.proxyName»::«i.proxyName»(::mora::Communicator* communicator, ::mora::RemoteObject remoteObject)
-			:	::mora::Proxy(communicator, remoteObject)
+		«i.proxyName»::«i.proxyName»(::mora::RemoteObject remoteObject, ::mora::Communicator& communicator)
+			:	::mora::Proxy(remoteObject, "«i.name.toUpperCase»", communicator)
 		{
 		}
 		«i.proxyName»::~«i.proxyName»(){
 		}
 		
-		std::shared_ptr<«i.proxyName»> «i.proxyName»::createProxy(::mora::Communicator* communicator, const std::string& qualifiedAddress){
-			«i.proxyName»* proxy = new «i.proxyName»(communicator, ::mora::RemoteObject::create(qualifiedAddress));
+		std::shared_ptr<«i.proxyName»> «i.proxyName»::createProxy(const std::string& qualifiedAddress, ::mora::Communicator& communicator){
+			«i.proxyName»* proxy = new «i.proxyName»(::mora::RemoteObject{qualifiedAddress}, communicator);
 			static std::string tn("«i.name.toUpperCase»");
-			if (proxy->checkType(tn)){
-				std::shared_ptr<«i.proxyName»> ptr(proxy);
-				return ptr;
-			}else{
-				delete proxy;
-				return std::shared_ptr<«i.proxyName»>(NULL);
+			try{
+				if (proxy->checkType(tn)){
+					std::shared_ptr<«i.proxyName»> ptr(proxy);
+					return ptr;
+				}
+			}catch(::mora::MoraException exp){
+				LOG_WARN(exp.what());
 			}
+			delete proxy;
+			return std::shared_ptr<«i.proxyName»>(NULL);
 		}
-		«i.cppTypeName» «i.proxyName»::read(::mora::InputStream& stream, ::mora::Communicator* communicator) {
+		«i.cppTypeName» «i.proxyName»::read(::mora::InputStream& stream, ::mora::Communicator& communicator) {
 			::mora::int8 flag;
 			stream >> flag;
 			if (flag == ::mora::STRUCT_NULL)
 				return «i.cppTypeName»(NULL);
-			CHECK_EQ_F(flag, ::mora::STRUCT_START, "Expected %i (start flag for «i.name» but found: %i", ::mora::STRUCT_START, flag);
+			SERIALIZER_CHECK_EQ(flag, ::mora::STRUCT_START, "Expected %i (start flag for «i.name» but found: %i");
+			
 			std::string quid;
 			stream >> quid;
-			::mora::IProxyPtr ptr = communicator->getProxy(quid);
 			«i.cppTypeName» proxy;
-			if (ptr) {
+			
+			::mora::MoraObjectPtr obj = communicator.getObject(quid);
+			if (obj) {
+				if (obj->type() == "«i.name.toUpperCase»") {
+					if (obj->isProxy()) {
+						«i.cppTypeName» ptr = std::dynamic_pointer_cast<«i.IFaceName»>(obj);
+						if (ptr)
+							return ptr;
+					}
+					else {
+						std::shared_ptr<«i.adapterName»> aptr = std::dynamic_pointer_cast<«i.adapterName»>(obj);
+						if (aptr) {
+							return std::static_pointer_cast<«i.IFaceName»>(aptr->getDelegate());
+						}
+					}
+				}
+			}
+			::mora::ProxyPtr ptr = communicator.getProxy(quid);
+			if (ptr == nullptr){
+				proxy = createProxy(quid, communicator);
+				communicator.registerProxy(std::dynamic_pointer_cast<Proxy>(proxy));
+			}else {
 				proxy = std::dynamic_pointer_cast<«i.IFaceName»>(ptr);
 			}
 			if (proxy == nullptr){
-				proxy = createProxy(communicator, quid);
+				throw ::mora::ProxyException("Detected wrong type for proxy");
 			}
-			CHECK_F(proxy != nullptr, "Failed to create proxy of: %s", quid.c_str());
 			return proxy;
 		}
-		std::vector<«i.cppTypeName»> «i.proxyName»::readList(::mora::InputStream& stream, ::mora::Communicator* communicator) {
+		std::vector<«i.cppTypeName»> «i.proxyName»::readList(::mora::InputStream& stream, ::mora::Communicator& communicator) {
 			::mora::int32 size;
 			stream >> size;
 			std::vector<«i.cppTypeName»> out(size);
@@ -527,73 +555,69 @@ class CppMoraGenerator extends AbstractGenerator {
 		«FOR m : i.methods»
 			«m.type.cppTypeName» «i.proxyName»::«m.name»(«FOR p: m.parameters SEPARATOR ', '»«p.type.cppTypeName» «p.name»«ENDFOR»){
 				std::future<«m.type.cppTypeName»> future = async_«m.name»(«FOR p : m.parameters SEPARATOR ', '»«p.name»«ENDFOR»);
+				std::future_status status = future.wait_for(timeout());
+				if (status != std::future_status::ready)
+					throw std::runtime_error("Call «i.proxyName»::«m.name»(«FOR p: m.parameters SEPARATOR ', '»«p.type.cppTypeName»«ENDFOR») did not return in time");
 				«IF m.type.void»
 					future.get();
 				«ELSE»
 					return future.get();
-				«ENDIF»
+				«ENDIF»				
 			}
 		«ENDFOR»
 		
 		
 		«FOR m : i.methods»
 			class «m.signature»_RemoteCall : public ::mora::IRemoteMethodCall {
-			private:
-				«FOR p : m.parameters»
-					«p.type.cppTypeName»	_«p.name»;
-				«ENDFOR»
-				std::promise<«m.type.cppTypeName»>	promise;
 			public:
-				«m.signature»_RemoteCall(::mora::Communicator* communicator, ::mora::RemoteMethod* targetMethod«IF m.parameters.empty==false», «FOR p : m.parameters SEPARATOR ', '»«p.type.cppTypeName» «p.name»«ENDFOR»«ENDIF»)
-					:	::mora::IRemoteMethodCall(communicator, targetMethod)«IF m.parameters.empty==false», «FOR p : m.parameters SEPARATOR ', '»_«p.name»(«p.name»)«ENDFOR»«ENDIF»
+				std::promise<«m.type.cppTypeName»>	promise;
+			
+				«m.signature»_RemoteCall(const ::mora::RemoteMethod& targetMethod, ::mora::Communicator& communicator«IF m.parameters.empty==false», «FOR p : m.parameters SEPARATOR ', '»«p.type.cppTypeName» _«p.name»«ENDFOR»«ENDIF»)
+					:	::mora::IRemoteMethodCall(targetMethod, communicator)
 				{
+					«IF m.parameters.empty==false»
+						//Do the encoding
+						«FOR p : m.parameters»
+							«IF p.type.singleType.prim»
+								parameterOutStream() << _«p.name»;
+							«ELSEIF p.type.singleType.enum»
+								«p.type.singleCppTypeName»Util::write(_«p.name», parameterOutStream());
+							«ELSEIF p.type.singleType.proxy»
+								«p.type.singleType.proxyType.adapterName»::write(_«p.name», parameterOutStream(), communicator);
+							«ELSE»
+								«p.type.singleType.structType.structName»::write(_«p.name», parameterOutStream());
+							«ENDIF»
+						«ENDFOR»
+					«ENDIF»
 				}
 				virtual ~«m.signature»_RemoteCall()
 				{
 				}
 				
-				std::future<«m.type.cppTypeName»> invoke() {
-					::mora::OutputStream& parameterStream = getParameterStream();
-					«IF m.parameters.empty==false»
-						//Do the encoding
-						«FOR p : m.parameters»
-							«IF p.type.singleType.prim»
-								parameterStream << _«p.name»;
-							«ELSEIF p.type.singleType.enum»
-								«p.type.singleCppTypeName»Util::write(_«p.name», parameterStream);
-							«ELSEIF p.type.singleType.proxy»
-								«p.type.singleType.proxyType.adapterName»::write(_«p.name», parameterStream, mCommunicator);
-							«ELSE»
-								«p.type.singleType.structType.structName»::write(_«p.name», parameterStream);
-							«ENDIF»
-						«ENDFOR»
-					«ENDIF»
-					
-					send();
-					return promise.get_future();
-				}
-				void handleResult(::mora::InputStream& response) {
+				virtual void handleResponse() {
 					«IF m.type.void»
 						promise.set_value();
 					«ELSE»
 						«IF m.type.singleType.prim»
 							«m.type.cppTypeName» _result;
-							response >> _result;
+							responseInStream() >> _result;
 						«ELSEIF m.type.singleType.enum»
-							«m.type.cppTypeName» _result = «m.type.singleType.cppTypeName»Util::read«IF m.type.many»List«ENDIF»(response);
+							«m.type.cppTypeName» _result = «m.type.singleType.cppTypeName»Util::read«IF m.type.many»List«ENDIF»(responseInStream());
 						«ELSEIF m.type.singleType.proxy»
-							«m.type.cppTypeName» _result = «m.type.singleType.proxyType.proxyName»::read«IF m.type.many»List«ENDIF»(response, mCommunicator);
+							«m.type.cppTypeName» _result = «m.type.singleType.proxyType.proxyName»::read«IF m.type.many»List«ENDIF»(responseInStream(), communicator());
 						«ELSE»
-							«m.type.cppTypeName» _result = «m.type.singleType.structType.structName»::read«IF m.type.many»List«ENDIF»(response);
+							«m.type.cppTypeName» _result = «m.type.singleType.structType.structName»::read«IF m.type.many»List«ENDIF»(responseInStream());
 						«ENDIF»
 						promise.set_value(_result);
 					«ENDIF»
 				}
 			};
 			std::future<«m.type.cppTypeName»> «i.proxyName»::async_«m.name»(«FOR p: m.parameters SEPARATOR ', '»«p.type.cppTypeName» «p.name»«ENDFOR»){
-				«m.signature»_RemoteCall* call = new «m.signature»_RemoteCall(getCommunicator(), getMethod("«m.signature»")«IF m.parameters.empty==false», «FOR p:m.parameters SEPARATOR ', '»«p.name»«ENDFOR»«ENDIF»);
-				//the call will be removed by the communicator, after receiving the response
-				return call->invoke();
+				«m.signature»_RemoteCall* remoteCall = new «m.signature»_RemoteCall(getMethod("«m.signature»"), communicator()«IF m.parameters.empty==false», «FOR p:m.parameters SEPARATOR ', '»«p.name»«ENDFOR»«ENDIF»);
+				
+				call(remoteCall);
+				
+				return remoteCall->promise.get_future();
 			}
 		«ENDFOR»
 		
@@ -602,43 +626,39 @@ class CppMoraGenerator extends AbstractGenerator {
 	
 		def AdapterHeader(Interface iface)
 	'''
-		class «iface.adapterName» : public ::mora::Adapter<«iface.IFaceName»> {
-«««		public:
-«««			typedef std::map<std::string, InvokerFuncPtr> InvokerFunctionMap;
+		class «iface.adapterName» : public ::mora::Adapter {
 		private:
 			static InvokerFunctionMap	sInvokerMap;
 		public:
-			«iface.adapterName»(::mora::Communicator* communicator, «iface.cppTypeName» iface, const std::string& identifier);
+			«iface.adapterName»(«iface.cppTypeName» iface, const ::mora::RemoteObject& identifier);
 			virtual ~«iface.adapterName»();
 			
-			inline InvokerFunctionMap& getInvokerFunctionMap() { return sInvokerMap; }
-			virtual const std::string getTypeIdentifier() const { return std::string("«iface.name.toUpperCase»"); }
+			static ::mora::AdapterPtr createAdapter(«iface.cppTypeName» iface, const std::string& identifier, ::mora::Communicator& communicator);
 			
-			static ::mora::IAdapterPtr createAdapter(::mora::Communicator* communicator, «iface.cppTypeName» iface, const std::string& identifier);
-			
-			static void write(«iface.cppTypeName» value, ::mora::OutputStream& stream, ::mora::Communicator* communicator);
-			static void write(const std::vector<«iface.cppTypeName»>& value, ::mora::OutputStream& stream, ::mora::Communicator* communicator);
+			static void write(«iface.cppTypeName» value, ::mora::OutputStream& stream, ::mora::Communicator& communicator);
+			static void write(const std::vector<«iface.cppTypeName»>& value, ::mora::OutputStream& stream, ::mora::Communicator& communicator);
 		};
 	'''
 	
 	def adapterImpl(Interface i)
 	'''
-		static void _invoke_«i.name»__getType_(«i.IFaceName»* delegate, ::mora::InputStream& is, ::mora::OutputStream& os, ::mora::Communicator* communicator){
+		static void _invoke_«i.name»__getType_(void* delegate, ::mora::IRemoteMethodCall& context){
 			static std::string tn("«i.name.toUpperCase»");
-			os << tn;
+			context.responseOutStream() << tn;
 		}
 		«FOR m : i.methods»
-			static void _invoke_«i.name»_«m.signature»(«i.IFaceName»* delegate, ::mora::InputStream& is, ::mora::OutputStream& os, ::mora::Communicator* communicator){
+			static void _invoke_«i.name»_«m.signature»(void* ptr, ::mora::IRemoteMethodCall& call){
+				«i.IFaceName»* delegate = static_cast<«i.IFaceName»*>(ptr);
 				«FOR ip : m.parameters»
 					«IF ip.type.singleType.prim»
 						«ip.type.cppTypeName» _«ip.name»;
-						is >> _«ip.name»;
+						call.parameterInStream() >> _«ip.name»;
 					«ELSEIF ip.type.singleType.enum»
-						«ip.type.cppTypeName» _«ip.name» = «ip.type.singleType.cppTypeName»Util::read«IF ip.type.many»List«ENDIF»(is);
+						«ip.type.cppTypeName» _«ip.name» = «ip.type.singleType.cppTypeName»Util::read«IF ip.type.many»List«ENDIF»(call.parameterInStream());
 					«ELSEIF ip.type.singleType.proxy»
-						«ip.type.cppTypeName» _«ip.name» = «ip.type.singleType.proxyType.proxyName»::read«IF ip.type.many»List«ENDIF»(is, communicator);
+						«ip.type.cppTypeName» _«ip.name» = «ip.type.singleType.proxyType.proxyName»::read«IF ip.type.many»List«ENDIF»(call.parameterInStream(), call.communicator());
 					«ELSE»
-						«ip.type.cppTypeName» _«ip.name» = «ip.type.singleType.structType.structName»::read«IF ip.type.many»List«ENDIF»(is);
+						«ip.type.cppTypeName» _«ip.name» = «ip.type.singleType.structType.structName»::read«IF ip.type.many»List«ENDIF»(call.parameterInStream());
 					«ENDIF»
 				«ENDFOR»
 				
@@ -648,13 +668,13 @@ class CppMoraGenerator extends AbstractGenerator {
 					«m.type.cppTypeName» _result = delegate->«m.name»(«FOR p : m.parameters SEPARATOR ', '»_«p.name»«ENDFOR»);
 					
 					«IF m.type.singleType.prim»
-						os << _result;
+						call.responseOutStream() << _result;
 					«ELSEIF m.type.singleType.enum»
-						«m.type.singleType.cppTypeName»Util::write(_result, os);
+						«m.type.singleType.cppTypeName»Util::write(_result, call.responseOutStream());
 					«ELSEIF m.type.singleType.proxy»
-						«m.type.singleType.proxyType.adapterName»::write(_result, os, communicator);
+						«m.type.singleType.proxyType.adapterName»::write(_result, call.responseOutStream(), call.communicator());
 					«ELSE»
-						«m.type.singleType.structType.structName»::write(_result, os);
+						«m.type.singleType.structType.structName»::write(_result, call.responseOutStream());
 					«ENDIF»
 				«ENDIF»
 				
@@ -685,8 +705,8 @@ class CppMoraGenerator extends AbstractGenerator {
 		
 		«i.adapterName»::InvokerFunctionMap «i.adapterName»::sInvokerMap = create«i.name.toFirstUpper»InvokerMap();
 		
-		«i.adapterName»::«i.adapterName»(::mora::Communicator* communicator, «i.cppTypeName» iface, const std::string& identifier)
-			:	::mora::Adapter<«i.IFaceName»>(communicator, iface, identifier)
+		«i.adapterName»::«i.adapterName»(«i.cppTypeName» iface, const ::mora::RemoteObject& identity)
+			:	::mora::Adapter(std::static_pointer_cast<void>(iface), identity, "«i.name.toUpperCase»", sInvokerMap)
 		{
 		}
 		
@@ -695,25 +715,37 @@ class CppMoraGenerator extends AbstractGenerator {
 		}
 		
 
-		::mora::IAdapterPtr «i.adapterName»::createAdapter(::mora::Communicator* communicator, «i.cppTypeName» iface, const std::string& identifier)
+		::mora::AdapterPtr «i.adapterName»::createAdapter(«i.cppTypeName» iface, const std::string& identifier, ::mora::Communicator& communicator)
 		{
-			return communicator->registerAdapter(::mora::IAdapterPtr(new «i.adapterName»(communicator, iface, identifier)));
+			::mora::AdapterPtr ptr(new «i.adapterName»(iface, communicator.createIdentity(identifier)));
+			if (communicator.registerAdapter(ptr))
+				return ptr;
+			return ::mora::AdapterPtr(nullptr);
 		}
 
-		void «i.adapterName»::write(«i.cppTypeName» value, ::mora::OutputStream& stream, ::mora::Communicator* communicator){
+		void «i.adapterName»::write(«i.cppTypeName» value, ::mora::OutputStream& stream, ::mora::Communicator& communicator){
 			if (!value){
 				stream << ::mora::STRUCT_NULL;
 				return ;
 			}
-			stream << ::mora::STRUCT_START;
-			::mora::IAdapterPtr adapter = communicator->getAdapter(value);
-			if (!adapter){
-				adapter = createAdapter(communicator, value, ::mora::MoraUtils::createRandomIdentifier());
+			
+			::mora::MoraObject* mora_object = dynamic_cast<::mora::MoraObject*>(value.get());
+			if (mora_object != nullptr){
+				stream << ::mora::STRUCT_START;
+				stream << mora_object->identity().qualifiedIdentifier();
+			}else{
+				::mora::AdapterPtr adapter = communicator.getAdapter((void*)value.get());
+				if (!adapter){
+					adapter = createAdapter(value, ::mora::MoraUtils::createRandomIdentifier(), communicator);
+				}
+				if (! (adapter) )
+					throw ::mora::MoraException("Failed to create Adapter");
+				
+				stream << ::mora::STRUCT_START;
+				stream << adapter->identity().qualifiedIdentifier();
 			}
-			CHECK_F(adapter != nullptr, "Failed to create Adapter");
-			stream << adapter->getQualifiedIdentifier();
 		}
-		void «i.adapterName»::write(const std::vector<«i.cppTypeName»>& value, ::mora::OutputStream& stream, ::mora::Communicator* communicator){
+		void «i.adapterName»::write(const std::vector<«i.cppTypeName»>& value, ::mora::OutputStream& stream, ::mora::Communicator& communicator){
 			::mora::int32 size = (::mora::int32)value.size();
 			stream << size;
 			for (int i = 0; i < size; i++)

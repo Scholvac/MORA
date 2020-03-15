@@ -3,7 +3,7 @@ package de.sos.generator.cpp;
 import com.google.common.collect.Iterators;
 import de.sos.generator.TypeUtil;
 import de.sos.generator.cpp.CppTypeUtil;
-import de.sos.mORA.CppOptions;
+import de.sos.generator.cpp.CppUtils;
 import de.sos.mORA.EnumDecl;
 import de.sos.mORA.Interface;
 import de.sos.mORA.Literal;
@@ -14,7 +14,6 @@ import de.sos.mORA.Parameter;
 import de.sos.mORA.PrimTypeLiteral;
 import de.sos.mORA.StructDecl;
 import de.sos.mORA.TypeDecl;
-import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -28,6 +27,9 @@ import org.eclipse.xtext.xbase.lib.StringExtensions;
 
 @SuppressWarnings("all")
 public class CppMoraGenerator extends AbstractGenerator {
+  @Extension
+  private CppUtils _cppUtils = new CppUtils();
+  
   @Extension
   private TypeUtil _typeUtil = new TypeUtil();
   
@@ -78,7 +80,6 @@ public class CppMoraGenerator extends AbstractGenerator {
   
   public void generateSource(final Model m, final IFileSystemAccess2 fsa) {
     this._cppTypeUtil.clearImports();
-    this._cppTypeUtil.rememberImports("loguru.hpp");
     this._cppTypeUtil.rememberImports("future");
     this._cppTypeUtil.rememberImports(this._cppTypeUtil.getTypesHeaderFile(m));
     final CharSequence content = this.generateSourceContent(m);
@@ -94,9 +95,9 @@ public class CppMoraGenerator extends AbstractGenerator {
   public CharSequence generateSourceContent(final Model m) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      boolean _hasNamesapce = this.hasNamesapce(m.getOptions().getCppOptions());
+      boolean _hasNamesapce = this._cppUtils.hasNamesapce(m.getOptions().getCppOptions());
       if (_hasNamesapce) {
-        String _beginNamespace = this.beginNamespace(m.getOptions().getCppOptions());
+        String _beginNamespace = this._cppUtils.beginNamespace(m.getOptions().getCppOptions());
         _builder.append(_beginNamespace);
         _builder.newLineIfNotEmpty();
       }
@@ -188,9 +189,9 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      boolean _hasNamesapce_1 = this.hasNamesapce(m.getOptions().getCppOptions());
+      boolean _hasNamesapce_1 = this._cppUtils.hasNamesapce(m.getOptions().getCppOptions());
       if (_hasNamesapce_1) {
-        String _endNamespace = this.endNamespace(m.getOptions().getCppOptions());
+        String _endNamespace = this._cppUtils.endNamespace(m.getOptions().getCppOptions());
         _builder.append(_endNamespace);
         _builder.newLineIfNotEmpty();
       }
@@ -504,13 +505,104 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();
-    _builder.newLine();
-    _builder.newLine();
+    _builder.append("bool ");
     String _structName_7 = this._cppTypeUtil.getStructName(s);
     _builder.append(_structName_7);
-    _builder.append("* ");
+    _builder.append("::operator==(const ");
     String _structName_8 = this._cppTypeUtil.getStructName(s);
     _builder.append(_structName_8);
+    _builder.append("& other) const {");
+    _builder.newLineIfNotEmpty();
+    {
+      EList<Member> _member_3 = s.getMember();
+      for(final Member m_3 : _member_3) {
+        {
+          if ((this._typeUtil.isStruct(this._typeUtil.getSingleType(this._typeUtil.getType(m_3))) && (this._typeUtil.isMany(this._typeUtil.getType(m_3)) == false))) {
+            _builder.append("\t");
+            _builder.append("if (");
+            String _memberName_11 = this.getMemberName(m_3);
+            _builder.append(_memberName_11, "\t");
+            _builder.append(" != other.");
+            String _memberName_12 = this.getMemberName(m_3);
+            _builder.append(_memberName_12, "\t");
+            _builder.append(") //pointer compare");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t");
+            _builder.append("if (!(*");
+            String _memberName_13 = this.getMemberName(m_3);
+            _builder.append(_memberName_13, "\t\t");
+            _builder.append(" == *other.");
+            String _memberName_14 = this.getMemberName(m_3);
+            _builder.append(_memberName_14, "\t\t");
+            _builder.append("))");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t\t");
+            _builder.append("return false;");
+            _builder.newLine();
+          } else {
+            _builder.append("\t");
+            _builder.append("if (!(");
+            String _memberName_15 = this.getMemberName(m_3);
+            _builder.append(_memberName_15, "\t");
+            _builder.append(" == other.");
+            String _memberName_16 = this.getMemberName(m_3);
+            _builder.append(_memberName_16, "\t");
+            _builder.append("))");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t");
+            _builder.append("return false;");
+            _builder.newLine();
+          }
+        }
+      }
+    }
+    _builder.append("\t");
+    _builder.append("return true;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("bool operator==(const std::vector<");
+    String _structName_9 = this._cppTypeUtil.getStructName(s);
+    _builder.append(_structName_9);
+    _builder.append("*>& list1, const std::vector<");
+    String _structName_10 = this._cppTypeUtil.getStructName(s);
+    _builder.append(_structName_10);
+    _builder.append("*>& list2){");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("if (list1.size() != list2.size())");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("return false;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("for (size_t i = 0; i < list1.size(); i++){");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("if (!(*list1[i] == *list2[i]))");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("return false;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("return true;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.newLine();
+    String _structName_11 = this._cppTypeUtil.getStructName(s);
+    _builder.append(_structName_11);
+    _builder.append("* ");
+    String _structName_12 = this._cppTypeUtil.getStructName(s);
+    _builder.append(_structName_12);
     _builder.append("::read(::mora::InputStream& stream) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -526,43 +618,43 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.append("return NULL;");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("CHECK_EQ_F(flag, ::mora::STRUCT_START, \"Expecting %i (start flag) but found: %i\", ::mora::STRUCT_START, flag);");
+    _builder.append("SERIALIZER_CHECK_EQ(flag, ::mora::STRUCT_START, \"Expecting %i (start flag) but found: %i\");");
     _builder.newLine();
     _builder.append("\t");
     _builder.newLine();
     _builder.append("\t");
-    String _structName_9 = this._cppTypeUtil.getStructName(s);
-    _builder.append(_structName_9, "\t");
+    String _structName_13 = this._cppTypeUtil.getStructName(s);
+    _builder.append(_structName_13, "\t");
     _builder.append("* out = new ");
-    String _structName_10 = this._cppTypeUtil.getStructName(s);
-    _builder.append(_structName_10, "\t");
+    String _structName_14 = this._cppTypeUtil.getStructName(s);
+    _builder.append(_structName_14, "\t");
     _builder.append("();");
     _builder.newLineIfNotEmpty();
     {
-      EList<Member> _member_3 = s.getMember();
-      for(final Member m_3 : _member_3) {
+      EList<Member> _member_4 = s.getMember();
+      for(final Member m_4 : _member_4) {
         {
-          boolean _isPrim = this._typeUtil.isPrim(this._typeUtil.getSingleType(this._typeUtil.getType(m_3)));
+          boolean _isPrim = this._typeUtil.isPrim(this._typeUtil.getSingleType(this._typeUtil.getType(m_4)));
           if (_isPrim) {
             _builder.append("\t");
             _builder.append("stream >> out->");
-            String _memberName_11 = this.getMemberName(m_3);
-            _builder.append(_memberName_11, "\t");
+            String _memberName_17 = this.getMemberName(m_4);
+            _builder.append(_memberName_17, "\t");
             _builder.append(";");
             _builder.newLineIfNotEmpty();
           } else {
-            boolean _isEnum = this._typeUtil.isEnum(this._typeUtil.getSingleType(this._typeUtil.getType(m_3)));
+            boolean _isEnum = this._typeUtil.isEnum(this._typeUtil.getSingleType(this._typeUtil.getType(m_4)));
             if (_isEnum) {
               _builder.append("\t");
               _builder.append("out->");
-              String _memberName_12 = this.getMemberName(m_3);
-              _builder.append(_memberName_12, "\t");
+              String _memberName_18 = this.getMemberName(m_4);
+              _builder.append(_memberName_18, "\t");
               _builder.append(" = ");
-              String _cppTypeName = this._cppTypeUtil.getCppTypeName(this._typeUtil.getSingleType(this._typeUtil.getType(m_3)));
+              String _cppTypeName = this._cppTypeUtil.getCppTypeName(this._typeUtil.getSingleType(this._typeUtil.getType(m_4)));
               _builder.append(_cppTypeName, "\t");
               _builder.append("Util::read");
               {
-                boolean _isMany_2 = this._typeUtil.isMany(this._typeUtil.getType(m_3));
+                boolean _isMany_2 = this._typeUtil.isMany(this._typeUtil.getType(m_4));
                 if (_isMany_2) {
                   _builder.append("List");
                 }
@@ -572,14 +664,14 @@ public class CppMoraGenerator extends AbstractGenerator {
             } else {
               _builder.append("\t");
               _builder.append("out->");
-              String _memberName_13 = this.getMemberName(m_3);
-              _builder.append(_memberName_13, "\t");
+              String _memberName_19 = this.getMemberName(m_4);
+              _builder.append(_memberName_19, "\t");
               _builder.append(" = ");
-              String _structName_11 = this._cppTypeUtil.getStructName(this._typeUtil.getStructType(this._typeUtil.getSingleType(this._typeUtil.getType(m_3))));
-              _builder.append(_structName_11, "\t");
+              String _structName_15 = this._cppTypeUtil.getStructName(this._typeUtil.getStructType(this._typeUtil.getSingleType(this._typeUtil.getType(m_4))));
+              _builder.append(_structName_15, "\t");
               _builder.append("::read");
               {
-                boolean _isMany_3 = this._typeUtil.isMany(this._typeUtil.getType(m_3));
+                boolean _isMany_3 = this._typeUtil.isMany(this._typeUtil.getType(m_4));
                 if (_isMany_3) {
                   _builder.append("List");
                 }
@@ -597,7 +689,7 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.append("stream >> flag;");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("CHECK_EQ_F(flag, ::mora::STRUCT_END, \"Expecting %i (end flag) but found: %i\", ::mora::STRUCT_END, flag);");
+    _builder.append("SERIALIZER_CHECK_EQ(flag, ::mora::STRUCT_END, \"Expecting %i (end flag) but found: %i\");");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("return out;");
@@ -605,11 +697,11 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.append("std::vector<");
-    String _structName_12 = this._cppTypeUtil.getStructName(s);
-    _builder.append(_structName_12);
+    String _structName_16 = this._cppTypeUtil.getStructName(s);
+    _builder.append(_structName_16);
     _builder.append("*> ");
-    String _structName_13 = this._cppTypeUtil.getStructName(s);
-    _builder.append(_structName_13);
+    String _structName_17 = this._cppTypeUtil.getStructName(s);
+    _builder.append(_structName_17);
     _builder.append("::readList(::mora::InputStream& stream){");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -620,8 +712,8 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("std::vector<");
-    String _structName_14 = this._cppTypeUtil.getStructName(s);
-    _builder.append(_structName_14, "\t");
+    String _structName_18 = this._cppTypeUtil.getStructName(s);
+    _builder.append(_structName_18, "\t");
     _builder.append("*> out(c);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -637,11 +729,11 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.newLine();
     _builder.append("void ");
-    String _structName_15 = this._cppTypeUtil.getStructName(s);
-    _builder.append(_structName_15);
+    String _structName_19 = this._cppTypeUtil.getStructName(s);
+    _builder.append(_structName_19);
     _builder.append("::write(const ");
-    String _structName_16 = this._cppTypeUtil.getStructName(s);
-    _builder.append(_structName_16);
+    String _structName_20 = this._cppTypeUtil.getStructName(s);
+    _builder.append(_structName_20);
     _builder.append("* value, ::mora::OutputStream& stream) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -662,35 +754,35 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.append("stream << ::mora::STRUCT_START;");
     _builder.newLine();
     {
-      EList<Member> _member_4 = s.getMember();
-      for(final Member m_4 : _member_4) {
+      EList<Member> _member_5 = s.getMember();
+      for(final Member m_5 : _member_5) {
         {
-          boolean _isPrim_1 = this._typeUtil.isPrim(this._typeUtil.getSingleType(this._typeUtil.getType(m_4)));
+          boolean _isPrim_1 = this._typeUtil.isPrim(this._typeUtil.getSingleType(this._typeUtil.getType(m_5)));
           if (_isPrim_1) {
             _builder.append("\t");
             _builder.append("stream << value->");
-            String _memberName_14 = this.getMemberName(m_4);
-            _builder.append(_memberName_14, "\t");
+            String _memberName_20 = this.getMemberName(m_5);
+            _builder.append(_memberName_20, "\t");
             _builder.append(";");
             _builder.newLineIfNotEmpty();
           } else {
-            boolean _isEnum_1 = this._typeUtil.isEnum(this._typeUtil.getSingleType(this._typeUtil.getType(m_4)));
+            boolean _isEnum_1 = this._typeUtil.isEnum(this._typeUtil.getSingleType(this._typeUtil.getType(m_5)));
             if (_isEnum_1) {
               _builder.append("\t");
-              String _singleCppTypeName = this._cppTypeUtil.getSingleCppTypeName(this._typeUtil.getType(m_4));
+              String _singleCppTypeName = this._cppTypeUtil.getSingleCppTypeName(this._typeUtil.getType(m_5));
               _builder.append(_singleCppTypeName, "\t");
               _builder.append("Util::write(value->");
-              String _memberName_15 = this.getMemberName(m_4);
-              _builder.append(_memberName_15, "\t");
+              String _memberName_21 = this.getMemberName(m_5);
+              _builder.append(_memberName_21, "\t");
               _builder.append(", stream);");
               _builder.newLineIfNotEmpty();
             } else {
               _builder.append("\t");
-              String _structName_17 = this._cppTypeUtil.getStructName(this._typeUtil.getStructType(this._typeUtil.getSingleType(this._typeUtil.getType(m_4))));
-              _builder.append(_structName_17, "\t");
+              String _structName_21 = this._cppTypeUtil.getStructName(this._typeUtil.getStructType(this._typeUtil.getSingleType(this._typeUtil.getType(m_5))));
+              _builder.append(_structName_21, "\t");
               _builder.append("::write(value->");
-              String _memberName_16 = this.getMemberName(m_4);
-              _builder.append(_memberName_16, "\t");
+              String _memberName_22 = this.getMemberName(m_5);
+              _builder.append(_memberName_22, "\t");
               _builder.append(", stream);");
               _builder.newLineIfNotEmpty();
             }
@@ -704,11 +796,11 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.append("void ");
-    String _structName_18 = this._cppTypeUtil.getStructName(s);
-    _builder.append(_structName_18);
+    String _structName_22 = this._cppTypeUtil.getStructName(s);
+    _builder.append(_structName_22);
     _builder.append("::write(const std::vector<");
-    String _structName_19 = this._cppTypeUtil.getStructName(s);
-    _builder.append(_structName_19);
+    String _structName_23 = this._cppTypeUtil.getStructName(s);
+    _builder.append(_structName_23);
     _builder.append("*>& value, ::mora::OutputStream& stream) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -731,9 +823,9 @@ public class CppMoraGenerator extends AbstractGenerator {
   public CharSequence generateHeaderContent(final Model m) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      boolean _hasNamesapce = this.hasNamesapce(m.getOptions().getCppOptions());
+      boolean _hasNamesapce = this._cppUtils.hasNamesapce(m.getOptions().getCppOptions());
       if (_hasNamesapce) {
-        String _beginNamespace = this.beginNamespace(m.getOptions().getCppOptions());
+        String _beginNamespace = this._cppUtils.beginNamespace(m.getOptions().getCppOptions());
         _builder.append(_beginNamespace);
         _builder.newLineIfNotEmpty();
       }
@@ -888,9 +980,9 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.newLine();
     {
-      boolean _hasNamesapce_1 = this.hasNamesapce(m.getOptions().getCppOptions());
+      boolean _hasNamesapce_1 = this._cppUtils.hasNamesapce(m.getOptions().getCppOptions());
       if (_hasNamesapce_1) {
-        String _endNamespace = this.endNamespace(m.getOptions().getCppOptions());
+        String _endNamespace = this._cppUtils.endNamespace(m.getOptions().getCppOptions());
         _builder.append(_endNamespace);
         _builder.newLineIfNotEmpty();
       }
@@ -975,30 +1067,6 @@ public class CppMoraGenerator extends AbstractGenerator {
     return _builder;
   }
   
-  public String beginNamespace(final CppOptions options) {
-    final QualifiedName qn = QualifiedName.create(options.getBaseNamespace().split("::"));
-    String out = "";
-    List<String> _segments = qn.getSegments();
-    for (final String s : _segments) {
-      out = (((out + "namespace ") + s) + "{ ");
-    }
-    return out;
-  }
-  
-  public String endNamespace(final CppOptions options) {
-    final QualifiedName qn = QualifiedName.create(options.getBaseNamespace().split("::"));
-    String out = "";
-    List<String> _segments = qn.getSegments();
-    for (final String s : _segments) {
-      out = (((out + "} /*") + s) + "*/ ");
-    }
-    return out;
-  }
-  
-  public boolean hasNamesapce(final CppOptions options) {
-    return (((options != null) && (options.getBaseNamespace() != null)) && (options.getBaseNamespace().isEmpty() == false));
-  }
-  
   public CharSequence generateStructHeaderContent(final StructDecl s) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("struct ");
@@ -1070,10 +1138,25 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.append(_structName_8, "\t");
     _builder.append("*>& value, ::mora::OutputStream& stream);");
     _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("bool operator== (const ");
+    String _structName_9 = this._cppTypeUtil.getStructName(s);
+    _builder.append(_structName_9, "\t");
+    _builder.append("& other) const;");
+    _builder.newLineIfNotEmpty();
     _builder.append("};");
     _builder.newLine();
     _builder.newLine();
-    _builder.newLine();
+    _builder.append("bool operator==(const std::vector<");
+    String _structName_10 = this._cppTypeUtil.getStructName(s);
+    _builder.append(_structName_10);
+    _builder.append("*>& list1, const std::vector<");
+    String _structName_11 = this._cppTypeUtil.getStructName(s);
+    _builder.append(_structName_11);
+    _builder.append("*>& list2);");
+    _builder.newLineIfNotEmpty();
     return _builder;
   }
   
@@ -1215,7 +1298,7 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.append("\t");
     String _proxyName_1 = this._cppTypeUtil.getProxyName(iface);
     _builder.append(_proxyName_1, "\t");
-    _builder.append("(::mora::Communicator* communicator, ::mora::RemoteObject remoteObject);");
+    _builder.append("(::mora::RemoteObject remoteObject, ::mora::Communicator& communicator);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("virtual ~");
@@ -1229,7 +1312,7 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.append("static std::shared_ptr<");
     String _proxyName_3 = this._cppTypeUtil.getProxyName(iface);
     _builder.append(_proxyName_3, "\t");
-    _builder.append("> createProxy(::mora::Communicator* communicator, const std::string& qualifiedAddress);");
+    _builder.append("> createProxy(const std::string& qualifiedAddress, ::mora::Communicator& communicator);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.newLine();
@@ -1237,13 +1320,13 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.append("static ");
     String _cppTypeName = this._cppTypeUtil.cppTypeName(iface);
     _builder.append(_cppTypeName, "\t");
-    _builder.append(" read(::mora::InputStream& stream, ::mora::Communicator* communicator);");
+    _builder.append(" read(::mora::InputStream& stream, ::mora::Communicator& communicator);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("static std::vector<");
     String _cppTypeName_1 = this._cppTypeUtil.cppTypeName(iface);
     _builder.append(_cppTypeName_1, "\t");
-    _builder.append("> readList(::mora::InputStream& stream, ::mora::Communicator* communicator);");
+    _builder.append("> readList(::mora::InputStream& stream, ::mora::Communicator& communicator);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.newLine();
@@ -1350,11 +1433,14 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.append("::");
     String _proxyName_1 = this._cppTypeUtil.getProxyName(i);
     _builder.append(_proxyName_1);
-    _builder.append("(::mora::Communicator* communicator, ::mora::RemoteObject remoteObject)");
+    _builder.append("(::mora::RemoteObject remoteObject, ::mora::Communicator& communicator)");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
-    _builder.append(":\t::mora::Proxy(communicator, remoteObject)");
-    _builder.newLine();
+    _builder.append(":\t::mora::Proxy(remoteObject, \"");
+    String _upperCase = i.getName().toUpperCase();
+    _builder.append(_upperCase, "\t");
+    _builder.append("\", communicator)");
+    _builder.newLineIfNotEmpty();
     _builder.append("{");
     _builder.newLine();
     _builder.append("}");
@@ -1375,7 +1461,7 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.append("> ");
     String _proxyName_5 = this._cppTypeUtil.getProxyName(i);
     _builder.append(_proxyName_5);
-    _builder.append("::createProxy(::mora::Communicator* communicator, const std::string& qualifiedAddress){");
+    _builder.append("::createProxy(const std::string& qualifiedAddress, ::mora::Communicator& communicator){");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     String _proxyName_6 = this._cppTypeUtil.getProxyName(i);
@@ -1383,41 +1469,50 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.append("* proxy = new ");
     String _proxyName_7 = this._cppTypeUtil.getProxyName(i);
     _builder.append(_proxyName_7, "\t");
-    _builder.append("(communicator, ::mora::RemoteObject::create(qualifiedAddress));");
+    _builder.append("(::mora::RemoteObject{qualifiedAddress}, communicator);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("static std::string tn(\"");
-    String _upperCase = i.getName().toUpperCase();
-    _builder.append(_upperCase, "\t");
+    String _upperCase_1 = i.getName().toUpperCase();
+    _builder.append(_upperCase_1, "\t");
     _builder.append("\");");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
+    _builder.append("try{");
+    _builder.newLine();
+    _builder.append("\t\t");
     _builder.append("if (proxy->checkType(tn)){");
     _builder.newLine();
-    _builder.append("\t\t");
+    _builder.append("\t\t\t");
     _builder.append("std::shared_ptr<");
     String _proxyName_8 = this._cppTypeUtil.getProxyName(i);
-    _builder.append(_proxyName_8, "\t\t");
+    _builder.append(_proxyName_8, "\t\t\t");
     _builder.append("> ptr(proxy);");
     _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
+    _builder.append("\t\t\t");
     _builder.append("return ptr;");
     _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("}");
+    _builder.newLine();
     _builder.append("\t");
-    _builder.append("}else{");
+    _builder.append("}catch(::mora::MoraException exp){");
     _builder.newLine();
     _builder.append("\t\t");
-    _builder.append("delete proxy;");
+    _builder.append("LOG_WARN(exp.what());");
     _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("return std::shared_ptr<");
-    String _proxyName_9 = this._cppTypeUtil.getProxyName(i);
-    _builder.append(_proxyName_9, "\t\t");
-    _builder.append(">(NULL);");
-    _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("}");
     _builder.newLine();
+    _builder.append("\t");
+    _builder.append("delete proxy;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("return std::shared_ptr<");
+    String _proxyName_9 = this._cppTypeUtil.getProxyName(i);
+    _builder.append(_proxyName_9, "\t");
+    _builder.append(">(NULL);");
+    _builder.newLineIfNotEmpty();
     _builder.append("}");
     _builder.newLine();
     String _cppTypeName = this._cppTypeUtil.cppTypeName(i);
@@ -1425,7 +1520,7 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.append(" ");
     String _proxyName_10 = this._cppTypeUtil.getProxyName(i);
     _builder.append(_proxyName_10);
-    _builder.append("::read(::mora::InputStream& stream, ::mora::Communicator* communicator) {");
+    _builder.append("::read(::mora::InputStream& stream, ::mora::Communicator& communicator) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("::mora::int8 flag;");
@@ -1443,11 +1538,13 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.append("(NULL);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
-    _builder.append("CHECK_EQ_F(flag, ::mora::STRUCT_START, \"Expected %i (start flag for ");
+    _builder.append("SERIALIZER_CHECK_EQ(flag, ::mora::STRUCT_START, \"Expected %i (start flag for ");
     String _name = i.getName();
     _builder.append(_name, "\t");
-    _builder.append(" but found: %i\", ::mora::STRUCT_START, flag);");
+    _builder.append(" but found: %i\");");
     _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.newLine();
     _builder.append("\t");
     _builder.append("std::string quid;");
     _builder.newLine();
@@ -1455,20 +1552,96 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.append("stream >> quid;");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("::mora::IProxyPtr ptr = communicator->getProxy(quid);");
-    _builder.newLine();
-    _builder.append("\t");
     String _cppTypeName_2 = this._cppTypeUtil.cppTypeName(i);
     _builder.append(_cppTypeName_2, "\t");
     _builder.append(" proxy;");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
-    _builder.append("if (ptr) {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("::mora::MoraObjectPtr obj = communicator.getObject(quid);");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("if (obj) {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("if (obj->type() == \"");
+    String _upperCase_2 = i.getName().toUpperCase();
+    _builder.append(_upperCase_2, "\t\t");
+    _builder.append("\") {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t\t");
+    _builder.append("if (obj->isProxy()) {");
+    _builder.newLine();
+    _builder.append("\t\t\t\t");
+    String _cppTypeName_3 = this._cppTypeUtil.cppTypeName(i);
+    _builder.append(_cppTypeName_3, "\t\t\t\t");
+    _builder.append(" ptr = std::dynamic_pointer_cast<");
+    String _iFaceName = this._cppTypeUtil.getIFaceName(i);
+    _builder.append(_iFaceName, "\t\t\t\t");
+    _builder.append(">(obj);");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t\t\t");
+    _builder.append("if (ptr)");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t");
+    _builder.append("return ptr;");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("else {");
+    _builder.newLine();
+    _builder.append("\t\t\t\t");
+    _builder.append("std::shared_ptr<");
+    String _adapterName = this._cppTypeUtil.getAdapterName(i);
+    _builder.append(_adapterName, "\t\t\t\t");
+    _builder.append("> aptr = std::dynamic_pointer_cast<");
+    String _adapterName_1 = this._cppTypeUtil.getAdapterName(i);
+    _builder.append(_adapterName_1, "\t\t\t\t");
+    _builder.append(">(obj);");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t\t\t");
+    _builder.append("if (aptr) {");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t");
+    _builder.append("return std::static_pointer_cast<");
+    String _iFaceName_1 = this._cppTypeUtil.getIFaceName(i);
+    _builder.append(_iFaceName_1, "\t\t\t\t\t");
+    _builder.append(">(aptr->getDelegate());");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("::mora::ProxyPtr ptr = communicator.getProxy(quid);");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("if (ptr == nullptr){");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("proxy = createProxy(quid, communicator);");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("communicator.registerProxy(std::dynamic_pointer_cast<Proxy>(proxy));");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}else {");
     _builder.newLine();
     _builder.append("\t\t");
     _builder.append("proxy = std::dynamic_pointer_cast<");
-    String _iFaceName = this._cppTypeUtil.getIFaceName(i);
-    _builder.append(_iFaceName, "\t\t");
+    String _iFaceName_2 = this._cppTypeUtil.getIFaceName(i);
+    _builder.append(_iFaceName_2, "\t\t");
     _builder.append(">(ptr);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -1478,13 +1651,10 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.append("if (proxy == nullptr){");
     _builder.newLine();
     _builder.append("\t\t");
-    _builder.append("proxy = createProxy(communicator, quid);");
+    _builder.append("throw ::mora::ProxyException(\"Detected wrong type for proxy\");");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("}");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("CHECK_F(proxy != nullptr, \"Failed to create proxy of: %s\", quid.c_str());");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("return proxy;");
@@ -1492,12 +1662,12 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.append("std::vector<");
-    String _cppTypeName_3 = this._cppTypeUtil.cppTypeName(i);
-    _builder.append(_cppTypeName_3);
+    String _cppTypeName_4 = this._cppTypeUtil.cppTypeName(i);
+    _builder.append(_cppTypeName_4);
     _builder.append("> ");
     String _proxyName_11 = this._cppTypeUtil.getProxyName(i);
     _builder.append(_proxyName_11);
-    _builder.append("::readList(::mora::InputStream& stream, ::mora::Communicator* communicator) {");
+    _builder.append("::readList(::mora::InputStream& stream, ::mora::Communicator& communicator) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("::mora::int32 size;");
@@ -1507,8 +1677,8 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("std::vector<");
-    String _cppTypeName_4 = this._cppTypeUtil.cppTypeName(i);
-    _builder.append(_cppTypeName_4, "\t");
+    String _cppTypeName_5 = this._cppTypeUtil.cppTypeName(i);
+    _builder.append(_cppTypeName_5, "\t");
     _builder.append("> out(size);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -1530,8 +1700,8 @@ public class CppMoraGenerator extends AbstractGenerator {
     {
       EList<Method> _methods = i.getMethods();
       for(final Method m : _methods) {
-        String _cppTypeName_5 = this._cppTypeUtil.getCppTypeName(this._typeUtil.getType(m));
-        _builder.append(_cppTypeName_5);
+        String _cppTypeName_6 = this._cppTypeUtil.getCppTypeName(this._typeUtil.getType(m));
+        _builder.append(_cppTypeName_6);
         _builder.append(" ");
         String _proxyName_12 = this._cppTypeUtil.getProxyName(i);
         _builder.append(_proxyName_12);
@@ -1548,8 +1718,8 @@ public class CppMoraGenerator extends AbstractGenerator {
             } else {
               _builder.appendImmediate(", ", "");
             }
-            String _cppTypeName_6 = this._cppTypeUtil.getCppTypeName(this._typeUtil.getType(p));
-            _builder.append(_cppTypeName_6);
+            String _cppTypeName_7 = this._cppTypeUtil.getCppTypeName(this._typeUtil.getType(p));
+            _builder.append(_cppTypeName_7);
             _builder.append(" ");
             String _name_2 = p.getName();
             _builder.append(_name_2);
@@ -1559,8 +1729,8 @@ public class CppMoraGenerator extends AbstractGenerator {
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
         _builder.append("std::future<");
-        String _cppTypeName_7 = this._cppTypeUtil.getCppTypeName(this._typeUtil.getType(m));
-        _builder.append(_cppTypeName_7, "\t");
+        String _cppTypeName_8 = this._cppTypeUtil.getCppTypeName(this._typeUtil.getType(m));
+        _builder.append(_cppTypeName_8, "\t");
         _builder.append("> future = async_");
         String _name_3 = m.getName();
         _builder.append(_name_3, "\t");
@@ -1579,6 +1749,35 @@ public class CppMoraGenerator extends AbstractGenerator {
           }
         }
         _builder.append(");");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("std::future_status status = future.wait_for(timeout());");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("if (status != std::future_status::ready)");
+        _builder.newLine();
+        _builder.append("\t\t");
+        _builder.append("throw std::runtime_error(\"Call ");
+        String _proxyName_13 = this._cppTypeUtil.getProxyName(i);
+        _builder.append(_proxyName_13, "\t\t");
+        _builder.append("::");
+        String _name_5 = m.getName();
+        _builder.append(_name_5, "\t\t");
+        _builder.append("(");
+        {
+          EList<Parameter> _parameters_2 = m.getParameters();
+          boolean _hasElements_2 = false;
+          for(final Parameter p_2 : _parameters_2) {
+            if (!_hasElements_2) {
+              _hasElements_2 = true;
+            } else {
+              _builder.appendImmediate(", ", "\t\t");
+            }
+            String _cppTypeName_9 = this._cppTypeUtil.getCppTypeName(this._typeUtil.getType(p_2));
+            _builder.append(_cppTypeName_9, "\t\t");
+          }
+        }
+        _builder.append(") did not return in time\");");
         _builder.newLineIfNotEmpty();
         {
           boolean _isVoid = this._typeUtil.isVoid(this._typeUtil.getType(m));
@@ -1606,33 +1805,19 @@ public class CppMoraGenerator extends AbstractGenerator {
         _builder.append(_signature);
         _builder.append("_RemoteCall : public ::mora::IRemoteMethodCall {");
         _builder.newLineIfNotEmpty();
-        _builder.append("private:");
+        _builder.append("public:");
         _builder.newLine();
-        {
-          EList<Parameter> _parameters_2 = m_1.getParameters();
-          for(final Parameter p_2 : _parameters_2) {
-            _builder.append("\t");
-            String _cppTypeName_8 = this._cppTypeUtil.getCppTypeName(this._typeUtil.getType(p_2));
-            _builder.append(_cppTypeName_8, "\t");
-            _builder.append("\t_");
-            String _name_5 = p_2.getName();
-            _builder.append(_name_5, "\t");
-            _builder.append(";");
-            _builder.newLineIfNotEmpty();
-          }
-        }
         _builder.append("\t");
         _builder.append("std::promise<");
-        String _cppTypeName_9 = this._cppTypeUtil.getCppTypeName(this._typeUtil.getType(m_1));
-        _builder.append(_cppTypeName_9, "\t");
+        String _cppTypeName_10 = this._cppTypeUtil.getCppTypeName(this._typeUtil.getType(m_1));
+        _builder.append(_cppTypeName_10, "\t");
         _builder.append(">\tpromise;");
         _builder.newLineIfNotEmpty();
-        _builder.append("public:");
         _builder.newLine();
         _builder.append("\t");
         String _signature_1 = this._typeUtil.getSignature(m_1);
         _builder.append(_signature_1, "\t");
-        _builder.append("_RemoteCall(::mora::Communicator* communicator, ::mora::RemoteMethod* targetMethod");
+        _builder.append("_RemoteCall(const ::mora::RemoteMethod& targetMethod, ::mora::Communicator& communicator");
         {
           boolean _isEmpty = m_1.getParameters().isEmpty();
           boolean _equals = (_isEmpty == false);
@@ -1640,16 +1825,16 @@ public class CppMoraGenerator extends AbstractGenerator {
             _builder.append(", ");
             {
               EList<Parameter> _parameters_3 = m_1.getParameters();
-              boolean _hasElements_2 = false;
+              boolean _hasElements_3 = false;
               for(final Parameter p_3 : _parameters_3) {
-                if (!_hasElements_2) {
-                  _hasElements_2 = true;
+                if (!_hasElements_3) {
+                  _hasElements_3 = true;
                 } else {
                   _builder.appendImmediate(", ", "\t");
                 }
-                String _cppTypeName_10 = this._cppTypeUtil.getCppTypeName(this._typeUtil.getType(p_3));
-                _builder.append(_cppTypeName_10, "\t");
-                _builder.append(" ");
+                String _cppTypeName_11 = this._cppTypeUtil.getCppTypeName(this._typeUtil.getType(p_3));
+                _builder.append(_cppTypeName_11, "\t");
+                _builder.append(" _");
                 String _name_6 = p_3.getName();
                 _builder.append(_name_6, "\t");
               }
@@ -1659,36 +1844,69 @@ public class CppMoraGenerator extends AbstractGenerator {
         _builder.append(")");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t");
-        _builder.append(":\t::mora::IRemoteMethodCall(communicator, targetMethod)");
+        _builder.append(":\t::mora::IRemoteMethodCall(targetMethod, communicator)");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("{");
+        _builder.newLine();
         {
           boolean _isEmpty_1 = m_1.getParameters().isEmpty();
           boolean _equals_1 = (_isEmpty_1 == false);
           if (_equals_1) {
-            _builder.append(", ");
+            _builder.append("\t\t");
+            _builder.append("//Do the encoding");
+            _builder.newLine();
             {
               EList<Parameter> _parameters_4 = m_1.getParameters();
-              boolean _hasElements_3 = false;
               for(final Parameter p_4 : _parameters_4) {
-                if (!_hasElements_3) {
-                  _hasElements_3 = true;
-                } else {
-                  _builder.appendImmediate(", ", "\t\t");
+                {
+                  boolean _isPrim = this._typeUtil.isPrim(this._typeUtil.getSingleType(this._typeUtil.getType(p_4)));
+                  if (_isPrim) {
+                    _builder.append("\t\t");
+                    _builder.append("parameterOutStream() << _");
+                    String _name_7 = p_4.getName();
+                    _builder.append(_name_7, "\t\t");
+                    _builder.append(";");
+                    _builder.newLineIfNotEmpty();
+                  } else {
+                    boolean _isEnum = this._typeUtil.isEnum(this._typeUtil.getSingleType(this._typeUtil.getType(p_4)));
+                    if (_isEnum) {
+                      _builder.append("\t\t");
+                      String _singleCppTypeName = this._cppTypeUtil.getSingleCppTypeName(this._typeUtil.getType(p_4));
+                      _builder.append(_singleCppTypeName, "\t\t");
+                      _builder.append("Util::write(_");
+                      String _name_8 = p_4.getName();
+                      _builder.append(_name_8, "\t\t");
+                      _builder.append(", parameterOutStream());");
+                      _builder.newLineIfNotEmpty();
+                    } else {
+                      boolean _isProxy = this._typeUtil.isProxy(this._typeUtil.getSingleType(this._typeUtil.getType(p_4)));
+                      if (_isProxy) {
+                        _builder.append("\t\t");
+                        String _adapterName_2 = this._cppTypeUtil.getAdapterName(this._typeUtil.getProxyType(this._typeUtil.getSingleType(this._typeUtil.getType(p_4))));
+                        _builder.append(_adapterName_2, "\t\t");
+                        _builder.append("::write(_");
+                        String _name_9 = p_4.getName();
+                        _builder.append(_name_9, "\t\t");
+                        _builder.append(", parameterOutStream(), communicator);");
+                        _builder.newLineIfNotEmpty();
+                      } else {
+                        _builder.append("\t\t");
+                        String _structName = this._cppTypeUtil.getStructName(this._typeUtil.getStructType(this._typeUtil.getSingleType(this._typeUtil.getType(p_4))));
+                        _builder.append(_structName, "\t\t");
+                        _builder.append("::write(_");
+                        String _name_10 = p_4.getName();
+                        _builder.append(_name_10, "\t\t");
+                        _builder.append(", parameterOutStream());");
+                        _builder.newLineIfNotEmpty();
+                      }
+                    }
+                  }
                 }
-                _builder.append("_");
-                String _name_7 = p_4.getName();
-                _builder.append(_name_7, "\t\t");
-                _builder.append("(");
-                String _name_8 = p_4.getName();
-                _builder.append(_name_8, "\t\t");
-                _builder.append(")");
               }
             }
           }
         }
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        _builder.append("{");
-        _builder.newLine();
         _builder.append("\t");
         _builder.append("}");
         _builder.newLine();
@@ -1707,85 +1925,7 @@ public class CppMoraGenerator extends AbstractGenerator {
         _builder.append("\t");
         _builder.newLine();
         _builder.append("\t");
-        _builder.append("std::future<");
-        String _cppTypeName_11 = this._cppTypeUtil.getCppTypeName(this._typeUtil.getType(m_1));
-        _builder.append(_cppTypeName_11, "\t");
-        _builder.append("> invoke() {");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t\t");
-        _builder.append("::mora::OutputStream& parameterStream = getParameterStream();");
-        _builder.newLine();
-        {
-          boolean _isEmpty_2 = m_1.getParameters().isEmpty();
-          boolean _equals_2 = (_isEmpty_2 == false);
-          if (_equals_2) {
-            _builder.append("\t\t");
-            _builder.append("//Do the encoding");
-            _builder.newLine();
-            {
-              EList<Parameter> _parameters_5 = m_1.getParameters();
-              for(final Parameter p_5 : _parameters_5) {
-                {
-                  boolean _isPrim = this._typeUtil.isPrim(this._typeUtil.getSingleType(this._typeUtil.getType(p_5)));
-                  if (_isPrim) {
-                    _builder.append("\t\t");
-                    _builder.append("parameterStream << _");
-                    String _name_9 = p_5.getName();
-                    _builder.append(_name_9, "\t\t");
-                    _builder.append(";");
-                    _builder.newLineIfNotEmpty();
-                  } else {
-                    boolean _isEnum = this._typeUtil.isEnum(this._typeUtil.getSingleType(this._typeUtil.getType(p_5)));
-                    if (_isEnum) {
-                      _builder.append("\t\t");
-                      String _singleCppTypeName = this._cppTypeUtil.getSingleCppTypeName(this._typeUtil.getType(p_5));
-                      _builder.append(_singleCppTypeName, "\t\t");
-                      _builder.append("Util::write(_");
-                      String _name_10 = p_5.getName();
-                      _builder.append(_name_10, "\t\t");
-                      _builder.append(", parameterStream);");
-                      _builder.newLineIfNotEmpty();
-                    } else {
-                      boolean _isProxy = this._typeUtil.isProxy(this._typeUtil.getSingleType(this._typeUtil.getType(p_5)));
-                      if (_isProxy) {
-                        _builder.append("\t\t");
-                        String _adapterName = this._cppTypeUtil.getAdapterName(this._typeUtil.getProxyType(this._typeUtil.getSingleType(this._typeUtil.getType(p_5))));
-                        _builder.append(_adapterName, "\t\t");
-                        _builder.append("::write(_");
-                        String _name_11 = p_5.getName();
-                        _builder.append(_name_11, "\t\t");
-                        _builder.append(", parameterStream, mCommunicator);");
-                        _builder.newLineIfNotEmpty();
-                      } else {
-                        _builder.append("\t\t");
-                        String _structName = this._cppTypeUtil.getStructName(this._typeUtil.getStructType(this._typeUtil.getSingleType(this._typeUtil.getType(p_5))));
-                        _builder.append(_structName, "\t\t");
-                        _builder.append("::write(_");
-                        String _name_12 = p_5.getName();
-                        _builder.append(_name_12, "\t\t");
-                        _builder.append(", parameterStream);");
-                        _builder.newLineIfNotEmpty();
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-        _builder.append("\t\t");
-        _builder.newLine();
-        _builder.append("\t\t");
-        _builder.append("send();");
-        _builder.newLine();
-        _builder.append("\t\t");
-        _builder.append("return promise.get_future();");
-        _builder.newLine();
-        _builder.append("\t");
-        _builder.append("}");
-        _builder.newLine();
-        _builder.append("\t");
-        _builder.append("void handleResult(::mora::InputStream& response) {");
+        _builder.append("virtual void handleResponse() {");
         _builder.newLine();
         {
           boolean _isVoid_1 = this._typeUtil.isVoid(this._typeUtil.getType(m_1));
@@ -1803,7 +1943,7 @@ public class CppMoraGenerator extends AbstractGenerator {
                 _builder.append(" _result;");
                 _builder.newLineIfNotEmpty();
                 _builder.append("\t\t");
-                _builder.append("response >> _result;");
+                _builder.append("responseInStream() >> _result;");
                 _builder.newLine();
               } else {
                 boolean _isEnum_1 = this._typeUtil.isEnum(this._typeUtil.getSingleType(this._typeUtil.getType(m_1)));
@@ -1821,7 +1961,7 @@ public class CppMoraGenerator extends AbstractGenerator {
                       _builder.append("List");
                     }
                   }
-                  _builder.append("(response);");
+                  _builder.append("(responseInStream());");
                   _builder.newLineIfNotEmpty();
                 } else {
                   boolean _isProxy_1 = this._typeUtil.isProxy(this._typeUtil.getSingleType(this._typeUtil.getType(m_1)));
@@ -1830,8 +1970,8 @@ public class CppMoraGenerator extends AbstractGenerator {
                     String _cppTypeName_15 = this._cppTypeUtil.getCppTypeName(this._typeUtil.getType(m_1));
                     _builder.append(_cppTypeName_15, "\t\t");
                     _builder.append(" _result = ");
-                    String _proxyName_13 = this._cppTypeUtil.getProxyName(this._typeUtil.getProxyType(this._typeUtil.getSingleType(this._typeUtil.getType(m_1))));
-                    _builder.append(_proxyName_13, "\t\t");
+                    String _proxyName_14 = this._cppTypeUtil.getProxyName(this._typeUtil.getProxyType(this._typeUtil.getSingleType(this._typeUtil.getType(m_1))));
+                    _builder.append(_proxyName_14, "\t\t");
                     _builder.append("::read");
                     {
                       boolean _isMany_1 = this._typeUtil.isMany(this._typeUtil.getType(m_1));
@@ -1839,7 +1979,7 @@ public class CppMoraGenerator extends AbstractGenerator {
                         _builder.append("List");
                       }
                     }
-                    _builder.append("(response, mCommunicator);");
+                    _builder.append("(responseInStream(), communicator());");
                     _builder.newLineIfNotEmpty();
                   } else {
                     _builder.append("\t\t");
@@ -1855,7 +1995,7 @@ public class CppMoraGenerator extends AbstractGenerator {
                         _builder.append("List");
                       }
                     }
-                    _builder.append("(response);");
+                    _builder.append("(responseInStream());");
                     _builder.newLineIfNotEmpty();
                   }
                 }
@@ -1875,26 +2015,26 @@ public class CppMoraGenerator extends AbstractGenerator {
         String _cppTypeName_17 = this._cppTypeUtil.getCppTypeName(this._typeUtil.getType(m_1));
         _builder.append(_cppTypeName_17);
         _builder.append("> ");
-        String _proxyName_14 = this._cppTypeUtil.getProxyName(i);
-        _builder.append(_proxyName_14);
+        String _proxyName_15 = this._cppTypeUtil.getProxyName(i);
+        _builder.append(_proxyName_15);
         _builder.append("::async_");
-        String _name_13 = m_1.getName();
-        _builder.append(_name_13);
+        String _name_11 = m_1.getName();
+        _builder.append(_name_11);
         _builder.append("(");
         {
-          EList<Parameter> _parameters_6 = m_1.getParameters();
+          EList<Parameter> _parameters_5 = m_1.getParameters();
           boolean _hasElements_4 = false;
-          for(final Parameter p_6 : _parameters_6) {
+          for(final Parameter p_5 : _parameters_5) {
             if (!_hasElements_4) {
               _hasElements_4 = true;
             } else {
               _builder.appendImmediate(", ", "");
             }
-            String _cppTypeName_18 = this._cppTypeUtil.getCppTypeName(this._typeUtil.getType(p_6));
+            String _cppTypeName_18 = this._cppTypeUtil.getCppTypeName(this._typeUtil.getType(p_5));
             _builder.append(_cppTypeName_18);
             _builder.append(" ");
-            String _name_14 = p_6.getName();
-            _builder.append(_name_14);
+            String _name_12 = p_5.getName();
+            _builder.append(_name_12);
           }
         }
         _builder.append("){");
@@ -1902,29 +2042,29 @@ public class CppMoraGenerator extends AbstractGenerator {
         _builder.append("\t");
         String _signature_3 = this._typeUtil.getSignature(m_1);
         _builder.append(_signature_3, "\t");
-        _builder.append("_RemoteCall* call = new ");
+        _builder.append("_RemoteCall* remoteCall = new ");
         String _signature_4 = this._typeUtil.getSignature(m_1);
         _builder.append(_signature_4, "\t");
-        _builder.append("_RemoteCall(getCommunicator(), getMethod(\"");
+        _builder.append("_RemoteCall(getMethod(\"");
         String _signature_5 = this._typeUtil.getSignature(m_1);
         _builder.append(_signature_5, "\t");
-        _builder.append("\")");
+        _builder.append("\"), communicator()");
         {
-          boolean _isEmpty_3 = m_1.getParameters().isEmpty();
-          boolean _equals_3 = (_isEmpty_3 == false);
-          if (_equals_3) {
+          boolean _isEmpty_2 = m_1.getParameters().isEmpty();
+          boolean _equals_2 = (_isEmpty_2 == false);
+          if (_equals_2) {
             _builder.append(", ");
             {
-              EList<Parameter> _parameters_7 = m_1.getParameters();
+              EList<Parameter> _parameters_6 = m_1.getParameters();
               boolean _hasElements_5 = false;
-              for(final Parameter p_7 : _parameters_7) {
+              for(final Parameter p_6 : _parameters_6) {
                 if (!_hasElements_5) {
                   _hasElements_5 = true;
                 } else {
                   _builder.appendImmediate(", ", "\t");
                 }
-                String _name_15 = p_7.getName();
-                _builder.append(_name_15, "\t");
+                String _name_13 = p_6.getName();
+                _builder.append(_name_13, "\t");
               }
             }
           }
@@ -1932,10 +2072,14 @@ public class CppMoraGenerator extends AbstractGenerator {
         _builder.append(");");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
-        _builder.append("//the call will be removed by the communicator, after receiving the response");
         _builder.newLine();
         _builder.append("\t");
-        _builder.append("return call->invoke();");
+        _builder.append("call(remoteCall);");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("return remoteCall->promise.get_future();");
         _builder.newLine();
         _builder.append("}");
         _builder.newLine();
@@ -1950,10 +2094,7 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.append("class ");
     String _adapterName = this._cppTypeUtil.getAdapterName(iface);
     _builder.append(_adapterName);
-    _builder.append(" : public ::mora::Adapter<");
-    String _iFaceName = this._cppTypeUtil.getIFaceName(iface);
-    _builder.append(_iFaceName);
-    _builder.append("> {");
+    _builder.append(" : public ::mora::Adapter {");
     _builder.newLineIfNotEmpty();
     _builder.append("private:");
     _builder.newLine();
@@ -1965,10 +2106,10 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.append("\t");
     String _adapterName_1 = this._cppTypeUtil.getAdapterName(iface);
     _builder.append(_adapterName_1, "\t");
-    _builder.append("(::mora::Communicator* communicator, ");
+    _builder.append("(");
     String _cppTypeName = this._cppTypeUtil.cppTypeName(iface);
     _builder.append(_cppTypeName, "\t");
-    _builder.append(" iface, const std::string& identifier);");
+    _builder.append(" iface, const ::mora::RemoteObject& identifier);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("virtual ~");
@@ -1979,21 +2120,10 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.append("\t");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("inline InvokerFunctionMap& getInvokerFunctionMap() { return sInvokerMap; }");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("virtual const std::string getTypeIdentifier() const { return std::string(\"");
-    String _upperCase = iface.getName().toUpperCase();
-    _builder.append(_upperCase, "\t");
-    _builder.append("\"); }");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("static ::mora::IAdapterPtr createAdapter(::mora::Communicator* communicator, ");
+    _builder.append("static ::mora::AdapterPtr createAdapter(");
     String _cppTypeName_1 = this._cppTypeUtil.cppTypeName(iface);
     _builder.append(_cppTypeName_1, "\t");
-    _builder.append(" iface, const std::string& identifier);");
+    _builder.append(" iface, const std::string& identifier, ::mora::Communicator& communicator);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.newLine();
@@ -2001,13 +2131,13 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.append("static void write(");
     String _cppTypeName_2 = this._cppTypeUtil.cppTypeName(iface);
     _builder.append(_cppTypeName_2, "\t");
-    _builder.append(" value, ::mora::OutputStream& stream, ::mora::Communicator* communicator);");
+    _builder.append(" value, ::mora::OutputStream& stream, ::mora::Communicator& communicator);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("static void write(const std::vector<");
     String _cppTypeName_3 = this._cppTypeUtil.cppTypeName(iface);
     _builder.append(_cppTypeName_3, "\t");
-    _builder.append(">& value, ::mora::OutputStream& stream, ::mora::Communicator* communicator);");
+    _builder.append(">& value, ::mora::OutputStream& stream, ::mora::Communicator& communicator);");
     _builder.newLineIfNotEmpty();
     _builder.append("};");
     _builder.newLine();
@@ -2019,10 +2149,7 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.append("static void _invoke_");
     String _name = i.getName();
     _builder.append(_name);
-    _builder.append("__getType_(");
-    String _iFaceName = this._cppTypeUtil.getIFaceName(i);
-    _builder.append(_iFaceName);
-    _builder.append("* delegate, ::mora::InputStream& is, ::mora::OutputStream& os, ::mora::Communicator* communicator){");
+    _builder.append("__getType_(void* delegate, ::mora::IRemoteMethodCall& context){");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("static std::string tn(\"");
@@ -2031,7 +2158,7 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.append("\");");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
-    _builder.append("os << tn;");
+    _builder.append("context.responseOutStream() << tn;");
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
@@ -2044,10 +2171,15 @@ public class CppMoraGenerator extends AbstractGenerator {
         _builder.append("_");
         String _signature = this._typeUtil.getSignature(m);
         _builder.append(_signature);
-        _builder.append("(");
+        _builder.append("(void* ptr, ::mora::IRemoteMethodCall& call){");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        String _iFaceName = this._cppTypeUtil.getIFaceName(i);
+        _builder.append(_iFaceName, "\t");
+        _builder.append("* delegate = static_cast<");
         String _iFaceName_1 = this._cppTypeUtil.getIFaceName(i);
-        _builder.append(_iFaceName_1);
-        _builder.append("* delegate, ::mora::InputStream& is, ::mora::OutputStream& os, ::mora::Communicator* communicator){");
+        _builder.append(_iFaceName_1, "\t");
+        _builder.append("*>(ptr);");
         _builder.newLineIfNotEmpty();
         {
           EList<Parameter> _parameters = m.getParameters();
@@ -2064,7 +2196,7 @@ public class CppMoraGenerator extends AbstractGenerator {
                 _builder.append(";");
                 _builder.newLineIfNotEmpty();
                 _builder.append("\t");
-                _builder.append("is >> _");
+                _builder.append("call.parameterInStream() >> _");
                 String _name_3 = ip.getName();
                 _builder.append(_name_3, "\t");
                 _builder.append(";");
@@ -2088,7 +2220,7 @@ public class CppMoraGenerator extends AbstractGenerator {
                       _builder.append("List");
                     }
                   }
-                  _builder.append("(is);");
+                  _builder.append("(call.parameterInStream());");
                   _builder.newLineIfNotEmpty();
                 } else {
                   boolean _isProxy = this._typeUtil.isProxy(this._typeUtil.getSingleType(this._typeUtil.getType(ip)));
@@ -2109,7 +2241,7 @@ public class CppMoraGenerator extends AbstractGenerator {
                         _builder.append("List");
                       }
                     }
-                    _builder.append("(is, communicator);");
+                    _builder.append("(call.parameterInStream(), call.communicator());");
                     _builder.newLineIfNotEmpty();
                   } else {
                     _builder.append("\t");
@@ -2128,7 +2260,7 @@ public class CppMoraGenerator extends AbstractGenerator {
                         _builder.append("List");
                       }
                     }
-                    _builder.append("(is);");
+                    _builder.append("(call.parameterInStream());");
                     _builder.newLineIfNotEmpty();
                   }
                 }
@@ -2192,7 +2324,7 @@ public class CppMoraGenerator extends AbstractGenerator {
               boolean _isPrim_1 = this._typeUtil.isPrim(this._typeUtil.getSingleType(this._typeUtil.getType(m)));
               if (_isPrim_1) {
                 _builder.append("\t");
-                _builder.append("os << _result;");
+                _builder.append("call.responseOutStream() << _result;");
                 _builder.newLine();
               } else {
                 boolean _isEnum_1 = this._typeUtil.isEnum(this._typeUtil.getSingleType(this._typeUtil.getType(m)));
@@ -2200,7 +2332,7 @@ public class CppMoraGenerator extends AbstractGenerator {
                   _builder.append("\t");
                   String _cppTypeName_6 = this._cppTypeUtil.getCppTypeName(this._typeUtil.getSingleType(this._typeUtil.getType(m)));
                   _builder.append(_cppTypeName_6, "\t");
-                  _builder.append("Util::write(_result, os);");
+                  _builder.append("Util::write(_result, call.responseOutStream());");
                   _builder.newLineIfNotEmpty();
                 } else {
                   boolean _isProxy_1 = this._typeUtil.isProxy(this._typeUtil.getSingleType(this._typeUtil.getType(m)));
@@ -2208,13 +2340,13 @@ public class CppMoraGenerator extends AbstractGenerator {
                     _builder.append("\t");
                     String _adapterName = this._cppTypeUtil.getAdapterName(this._typeUtil.getProxyType(this._typeUtil.getSingleType(this._typeUtil.getType(m))));
                     _builder.append(_adapterName, "\t");
-                    _builder.append("::write(_result, os, communicator);");
+                    _builder.append("::write(_result, call.responseOutStream(), call.communicator());");
                     _builder.newLineIfNotEmpty();
                   } else {
                     _builder.append("\t");
                     String _structName_1 = this._cppTypeUtil.getStructName(this._typeUtil.getStructType(this._typeUtil.getSingleType(this._typeUtil.getType(m))));
                     _builder.append(_structName_1, "\t");
-                    _builder.append("::write(_result, os);");
+                    _builder.append("::write(_result, call.responseOutStream());");
                     _builder.newLineIfNotEmpty();
                   }
                 }
@@ -2337,16 +2469,16 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.append("::");
     String _adapterName_6 = this._cppTypeUtil.getAdapterName(i);
     _builder.append(_adapterName_6);
-    _builder.append("(::mora::Communicator* communicator, ");
+    _builder.append("(");
     String _cppTypeName_7 = this._cppTypeUtil.cppTypeName(i);
     _builder.append(_cppTypeName_7);
-    _builder.append(" iface, const std::string& identifier)");
+    _builder.append(" iface, const ::mora::RemoteObject& identity)");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
-    _builder.append(":\t::mora::Adapter<");
-    String _iFaceName_2 = this._cppTypeUtil.getIFaceName(i);
-    _builder.append(_iFaceName_2, "\t");
-    _builder.append(">(communicator, iface, identifier)");
+    _builder.append(":\t::mora::Adapter(std::static_pointer_cast<void>(iface), identity, \"");
+    String _upperCase_1 = i.getName().toUpperCase();
+    _builder.append(_upperCase_1, "\t");
+    _builder.append("\", sInvokerMap)");
     _builder.newLineIfNotEmpty();
     _builder.append("{");
     _builder.newLine();
@@ -2366,22 +2498,31 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.newLine();
     _builder.newLine();
-    _builder.append("::mora::IAdapterPtr ");
+    _builder.append("::mora::AdapterPtr ");
     String _adapterName_9 = this._cppTypeUtil.getAdapterName(i);
     _builder.append(_adapterName_9);
-    _builder.append("::createAdapter(::mora::Communicator* communicator, ");
+    _builder.append("::createAdapter(");
     String _cppTypeName_8 = this._cppTypeUtil.cppTypeName(i);
     _builder.append(_cppTypeName_8);
-    _builder.append(" iface, const std::string& identifier)");
+    _builder.append(" iface, const std::string& identifier, ::mora::Communicator& communicator)");
     _builder.newLineIfNotEmpty();
     _builder.append("{");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("return communicator->registerAdapter(::mora::IAdapterPtr(new ");
+    _builder.append("::mora::AdapterPtr ptr(new ");
     String _adapterName_10 = this._cppTypeUtil.getAdapterName(i);
     _builder.append(_adapterName_10, "\t");
-    _builder.append("(communicator, iface, identifier)));");
+    _builder.append("(iface, communicator.createIdentity(identifier)));");
     _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("if (communicator.registerAdapter(ptr))");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("return ptr;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("return ::mora::AdapterPtr(nullptr);");
+    _builder.newLine();
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();
@@ -2391,7 +2532,7 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.append("::write(");
     String _cppTypeName_9 = this._cppTypeUtil.cppTypeName(i);
     _builder.append(_cppTypeName_9);
-    _builder.append(" value, ::mora::OutputStream& stream, ::mora::Communicator* communicator){");
+    _builder.append(" value, ::mora::OutputStream& stream, ::mora::Communicator& communicator){");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("if (!value){");
@@ -2406,25 +2547,50 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("stream << ::mora::STRUCT_START;");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("::mora::IAdapterPtr adapter = communicator->getAdapter(value);");
+    _builder.append("::mora::MoraObject* mora_object = dynamic_cast<::mora::MoraObject*>(value.get());");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("if (!adapter){");
+    _builder.append("if (mora_object != nullptr){");
     _builder.newLine();
     _builder.append("\t\t");
-    _builder.append("adapter = createAdapter(communicator, value, ::mora::MoraUtils::createRandomIdentifier());");
+    _builder.append("stream << ::mora::STRUCT_START;");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("stream << mora_object->identity().qualifiedIdentifier();");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}else{");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("::mora::AdapterPtr adapter = communicator.getAdapter((void*)value.get());");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("if (!adapter){");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("adapter = createAdapter(value, ::mora::MoraUtils::createRandomIdentifier(), communicator);");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("if (! (adapter) )");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("throw ::mora::MoraException(\"Failed to create Adapter\");");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("stream << ::mora::STRUCT_START;");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("stream << adapter->identity().qualifiedIdentifier();");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("}");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("CHECK_F(adapter != nullptr, \"Failed to create Adapter\");");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("stream << adapter->getQualifiedIdentifier();");
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
@@ -2434,7 +2600,7 @@ public class CppMoraGenerator extends AbstractGenerator {
     _builder.append("::write(const std::vector<");
     String _cppTypeName_10 = this._cppTypeUtil.cppTypeName(i);
     _builder.append(_cppTypeName_10);
-    _builder.append(">& value, ::mora::OutputStream& stream, ::mora::Communicator* communicator){");
+    _builder.append(">& value, ::mora::OutputStream& stream, ::mora::Communicator& communicator){");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("::mora::int32 size = (::mora::int32)value.size();");

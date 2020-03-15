@@ -1,0 +1,96 @@
+
+
+options{ 
+	java {
+		base-package = de.sos.mora.examples
+	}
+	csharp {
+		base-namespace = De.Sos.MORA.Examples
+	}
+	cpp {
+		base-namespace = de::sos::mora::examples
+	}
+}
+
+package serialize {
+	//MORA reMOte pRoxy cAll
+	enum MyEnum {
+		KEY;
+		VALUE;
+	}
+	struct SimpleStruct {
+		bool boolValue; 
+		byte byteValue;
+		short shortValue;
+		int intValue;
+		long longValue;
+		float floatValue; 
+		double doubleValue;
+		string stringValue;
+		MyEnum enumValue; 
+		SimpleStruct structValue;
+	}
+	
+	List<bool> BoolList;
+	List<byte> ByteList;
+	List<short> ShortList;
+	List<int>	IntList;
+	List<long> LongList;
+	List<float> FloatList;
+	List<double> DoubleList;
+	List<string> StringList;
+	List<MyEnum> MyEnumList;
+	List<SimpleStruct> SimpleStructList;
+	
+	struct ListStruct {
+		BoolList boolListValue;
+		ByteList byteListValue;
+		ShortList shortListValue;
+		IntList	intListValue;
+		LongList	longListValue;
+		FloatList floatListValue;
+		DoubleList doubleListValue;
+		StringList stringListValue;
+		MyEnumList enumListValue;
+		SimpleStructList structListValue;
+	}
+	List<ListStruct> ListListStruct;
+	
+	interface Callback {
+		void onEcho(float value);
+	}
+	interface ExtendedCallback extends Callback {
+		void extendedEcho(float value);
+	}
+	interface EchoManager {
+		bool echo(bool value);
+		byte echo(byte value);
+		short echo(short value);
+		int echo(int value);
+		long echo(long value);
+		float echo(float value);
+		double echo(double value);
+		string echo(string value);
+		MyEnum echo(MyEnum value);
+		SimpleStruct echo(SimpleStruct value);
+		ListStruct echo(ListStruct value);
+		
+		BoolList echo1(BoolList value);
+		ByteList echo2(ByteList value);
+		ShortList echo3(ShortList value);
+		IntList echo4(IntList value);
+		LongList echo5(LongList value);
+		FloatList echo6(FloatList value);
+		DoubleList echo7(DoubleList value);
+		StringList echo8(StringList value);
+		MyEnumList echo9(MyEnumList value);
+		SimpleStructList echo10(SimpleStructList value);
+		ListListStruct echo11(ListListStruct value);
+		
+		void setCallback(Callback* cb, float firstValue);
+		Callback* getCallback();
+		
+		void throwUnknownException();
+	}
+	
+}   

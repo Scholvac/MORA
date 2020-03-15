@@ -1,242 +1,180 @@
+/*
+ * TCPConnections.cpp
+ *
+ *  Created on: 22.02.2020
+ *      Author: sschweigert
+ */
 
-#include "internal/precomp.h"
-#include "internal/TCPConnections.h"
+#include "MoraPreReq.h"
+#include "private/TCPConnections.h"
+#include "private/MessageHandler.h"
 
-#include "ActiveSocket.h"
-#include "PassiveSocket.h"
+#include "Poco/FIFOBuffer.h"
+#include "Poco/NObserver.h"
+#include "Poco/Delegate.h"
+#include "Poco/Observer.h"
 
-#include <loguru.hpp>
+using namespace mora;
+using namespace mora::net;
+using namespace Poco;
+using namespace Poco::Net;
 
-#include <thread>
-#include <map>
-
-
-#define MAX_ERROR_COUNT 3
 #define INITIAL_BUFFER_SIZE 1024
 
-//////////////////////////	TCPServer /////////////////////////////
+
+using InMsgCollectionMap = std::map<mora::int8, net::InMsgCollection*>;
+
 namespace mora {
-	class TCPClientWorker {
-		using InMsgCollectionMap = std::map<mora::int8, net::InMsgCollection*>;
+	class TCPSocketWorker {
 	public:
-		CActiveSocket*			client;
-		TCPServer*				server;
-		IMessageHandler*		handler;
-		std::thread*			thread;
+		Poco::Net::StreamSocket		mSocket;
+		Poco::Net::SocketReactor&	mReactor;
+		MessageHandler*				mHandler;
+
+		net::InMsg*				msg{ new InMsg{INITIAL_BUFFER_SIZE} };
 		mora::int8				ack_buffer[4];
-
 		InMsgCollectionMap		collections;
+		std::string				externHost;
 
-		const char* adr;
-		int port;
-		bool alive;
-
-		TCPClientWorker(TCPServer* s, IMessageHandler* h, CActiveSocket* c)
-			: client(c), server(s), thread(NULL), adr(0), port(0), alive(false), handler(h)
+		TCPSocketWorker(Poco::Net::StreamSocket& socket, Poco::Net::SocketReactor& reactor, MessageHandler* mh = nullptr)
+			: mSocket{ socket }, mReactor{ reactor }, mHandler{ mh }
 		{
-			thread = new std::thread(&TCPClientWorker::handleClient, this);
-		}
-		~TCPClientWorker() {
-			if (thread != NULL) {
-				client->Close();
-				if (alive)
-					thread->join();
-			}
-			delete client;
+			reactor.addEventHandler(socket, NObserver<TCPSocketWorker, ReadableNotification>(*this, &TCPSocketWorker::onSocketReadable));
+			reactor.addEventHandler(socket, NObserver<TCPSocketWorker, ShutdownNotification>(*this, &TCPSocketWorker::onSocketShutdown));
+			externHost = mSocket.address().host().toString();
 		}
 
-		void handleClient() {
-			adr = client->GetClientAddr();
-			port = client->GetClientPort();
-
-			LOG_F(INFO, "Starting new Client %s:%i", adr, port);
-
-			alive = true;
-			int errors = 0;
-			net::InMsg* msg = new net::InMsg(INITIAL_BUFFER_SIZE);
-
-			while (alive) {
-				int32 bytesRead = client->Receive(msg->getRemainingCapcity(), (uint8*)msg->getInsertBuffer());
-				if (bytesRead == 0) {
-					LOG_F(WARNING, "Client %s:%i closed the connection", adr, port);
-					alive = false;
-				}
-				else if (bytesRead < 0) {
-					LOG_F(WARNING, "An Error occured with client: %s:%i", adr, port);
-					errors++;
-					if (errors > MAX_ERROR_COUNT)
-						alive = false;
-				}
-				else {
+		void onSocketReadable(const AutoPtr<ReadableNotification>& pNf) {
+			try {
+				int bytesRead = mSocket.receiveBytes(msg->getInsertBuffer(), msg->getRemainingCapcity());
+				if (bytesRead > 0) {
 					if (msg->handleNextBytes(bytesRead)) {
 						handleFinishedMessage(msg);
 						msg = new net::InMsg(INITIAL_BUFFER_SIZE);
 					}
 				}
-				//LOG_F(INFO, "Received: %i bytes", bytesRead);
 			}
-
-			LOG_F(INFO, "Closing Client %s:%i", adr, port);
-			server->stopClient(this);
+			catch (Poco::Exception & e)
+			{
+				// This is where the "Connection reset by peer" lands
+				LOG_ERROR("Catched Exception: what = %s", e.what());
+				mSocket.close();
+				delete this;
+			}
 		}
-
 		void handleFinishedMessage(net::InMsg* msg) {
 			if (msg->requiresAcknowledge(&(ack_buffer[0]))) {
-				client->Send((const uint8*)(&ack_buffer[0]), 4);
+				mSocket.sendBytes(ack_buffer, 4);
 			}
 			net::InMsgCollection* coll = NULL;
 			std::map<mora::int8, net::InMsgCollection*>::iterator it = collections.end();
+
 			if (msg->numberOfMessages == 1) {
-				coll = new net::InMsgCollection(msg, client->GetClientAddr());
+				coll = new net::InMsgCollection(msg, externHost);
 			}
 			else {
 				it = collections.find(msg->magic);
 				if (it == collections.end()) {
-					collections.insert(std::pair<mora::int8, net::InMsgCollection*>(msg->magic, coll = new net::InMsgCollection(msg, client->GetClientAddr())));
+					collections.insert(std::pair<mora::int8, net::InMsgCollection*>(msg->magic, coll = new net::InMsgCollection(msg, externHost)));
 				}
 				else {
 					coll = it->second;
 					coll->append(msg);
 				}
 			}
-			CHECK_NOTNULL_F(coll);
+			if (coll == NULL)
+				throw std::runtime_error("Could not determine MessageCollection");
+
 			if (coll->isComplete()) {
 				if (it != collections.end())
 					collections.erase(it);
-				handler->handleIncommingMessage(coll);
+				mHandler->handleIncommingMessage(coll);
 			}
 		}
-
+		void onSocketShutdown(const AutoPtr<ShutdownNotification>& pNf)
+		{
+			delete this;
+		}
 	};
 }
-
-using namespace mora;
-
-TCPServer::TCPServer() {
-
-}
-TCPServer::~TCPServer() {
-	if (mSocket)
-		stopServer();
-}
-
-bool TCPServer::startServer(Communicator* com, IMessageHandler* handler) {
-	CHECK_F(mAcceptorThread == NULL, "Server already started");
-	mCommunicator = com;
-	mMessageHandler = handler;
-	const Options& opt = com->getOptions();
-	mAcceptorThread = new std::thread(&TCPServer::listen, this, opt);
-	return mAcceptorThread != NULL;
-}
-
-bool TCPServer::stopServer() {
-	if (mSocket == NULL) {
-		LOG_F(INFO, "Socket has not been started yet");
-		return true;
+class TCPAcceptor : public Poco::Net::SocketAcceptor<TCPSocketWorker> {
+public:
+	MessageHandler& mHandler;
+	TCPAcceptor(ServerSocket& socket, SocketReactor& reactor, MessageHandler& handler) : SocketAcceptor(socket, reactor), mHandler{ handler } {
+		
 	}
-	mAlive = false;
-	mSocket->Close();
-	mAcceptorThread->join();
+	virtual ~TCPAcceptor() = default;
 
-	for (auto it = mWorkerThreads.begin(); it != mWorkerThreads.end(); ++it) {
-		mWorkerThreads.erase(it);
-		TCPClientWorker* w = (*it);
-		delete w;//deletes client and joins thread
+protected:
+	virtual TCPSocketWorker* createServiceHandler(StreamSocket& socket) {
+		return new TCPSocketWorker(socket, *reactor(), &mHandler);
 	}
-
-	return true;
-}
-
-Communicator* TCPServer::getCommunicator() {
-	return mCommunicator;
-}
-RemoteCommunicator* TCPServer::getResponseAddress() {
-	return mResponseAdr;
-}
-
-void TCPServer::listen(const Options& opt) {
-	mSocket = new CPassiveSocket(CSimpleSocket::CSocketType::SocketTypeTcp);
-	if (!mSocket->Initialize())
-		LOG_F(ERROR, "Failed to initialize server socket");
-	if (!mSocket->Listen(opt.host.c_str(), opt.port, opt.backlog))
-		LOG_F(ERROR, "Failed to listen on %s:%i", opt.host, opt.port);
-
-	const std::string usedHost = mSocket->GetServerAddr();
-	const int usedPort = mSocket->GetServerPort();
-	mResponseAdr = new RemoteCommunicator(usedHost, usedPort, Protocol::TCP);
-	LOG_INFO("Server listening on %s", mResponseAdr->toString().c_str());
-
-	while (mAlive) {
-		CActiveSocket* client = NULL;
-		if ((client = mSocket->Accept()) != NULL)
-		{
-			mWorkerThreads.push_back(new TCPClientWorker(this, mMessageHandler, client));
-		}
-	}
-}
-
-void TCPServer::stopClient(TCPClientWorker* worker) {
-	for (auto it = mWorkerThreads.begin(); it != mWorkerThreads.end(); ++it) {
-		if ((*it) == worker) {
-			LOG_INFO("Stopping Client: %s:%i", worker->adr, worker->port);
-			mWorkerThreads.erase(it);
-			delete worker;//deletes client and joins thread
-			break;
-		}
-	}
-}
+};
 
 
-
-
-
-//////////////////////// TCPConnection ////////////////////////////
-
-
-
-
-
-
-TCPConnection::TCPConnection(RemoteCommunicator* target, Options* opt, int idx)
-	: AbstractConnection(idx),
-	mSocket(new CActiveSocket()), mOptions(opt)
+TCPServer::TCPServer(Communicator& communicator, MessageHandler& handler)
+	: IServer(communicator, handler)
 {
-	mSocket->Initialize();
-	//non-blocking?
-	CHECK_F(mSocket->Open(target->host.c_str(), target->port), "Failed to open socket to %s:%i", target->host.c_str(), target->port);
+	Poco::Net::SocketAddress address{ communicator.options().host, (Poco::UInt16)communicator.options().port };
+	mServerSocket = Poco::Net::ServerSocket(address, communicator.options().backlog);
+	mReactor.setTimeout(Poco::Timespan(0, 250));
+	mAcceptor = new TCPAcceptor(mServerSocket, mReactor, handler);
+	
+	mReactorThread.start(mReactor);
+	
+	mSelfAddress = RemoteCommunicator(mServerSocket.address().host().toString(), mServerSocket.address().port(), Protocol::TCP);
 }
+TCPServer::~TCPServer()
+{
+	mReactor.stop();
+	mReactorThread.join(300);
+	mServerSocket.close();
+	SAVE_DELETE(mAcceptor);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+TCPConnection::TCPConnection(const RemoteCommunicator& target, const Options& options)
+	:	AbstractConnection(target, options),
+		mSocket{ Poco::Net::SocketAddress{target.host(), (Poco::UInt16)target.port()} },
+		mAckMsg(4,0)
+{
+
+}
+
 TCPConnection::~TCPConnection()
 {
-	if (mSocket != NULL)
-		close();
-}
 
-void TCPConnection::close() {
-	mSocket->Close();
-	delete mSocket;
-	mSocket = NULL;
 }
 
 bool TCPConnection::send(net::OutMsg& msg) {
-	msg.requestAcknowledge(mOptions->requestAcknowledge);
+	msg.requestAcknowledge(mOptions.requestAcknowledge);
 
-	int bytesSend = mSocket->Send((const uint8*)&msg.mBuffer[0], msg.mBuffer.size());
-	if (bytesSend == 0) {
-		LOG_F(WARNING, "The TCP socket to %s:%i has been closed by the remote side", mSocket->GetClientAddr(), mSocket->GetClientPort());
+	int bytesSend = mSocket.sendBytes(&msg.mBuffer[0], (int)msg.mBuffer.size());
+	if (bytesSend != msg.mBuffer.size())
 		return false;
-	}
-	else if (bytesSend == -1) {
-		LOG_F(WARNING, "an unspecified error occures at connection: %s:%i", mSocket->GetClientAddr(), mSocket->GetClientPort());
-		return false;
-	}
-	if (mOptions->requestAcknowledge) {
-		int receivedBytes = mSocket->Receive(4);
-		if (receivedBytes != 4) {
-			LOG_F(WARNING, "An error occured while receiving acknowledge at %s:%i", mSocket->GetClientAddr(), mSocket->GetClientPort());
+
+	if (mOptions.requestAcknowledge) {
+		int recBytes = mSocket.receiveBytes(&mAckMsg[0], 4);
+		if (recBytes != 4) {
+			LOG_WARN("Received unknown acknowledge message");
 			return false;
 		}
-		return msg.checkAcknowledge((int8*)mSocket->GetData());
+		return msg.checkAcknowledge(&mAckMsg[0]);
 	}
-	return true;
 
+	return true;//TODO: this may not all, what if not all bytes have been send, e.g. bytesSend > 0 && bytesSend < msg.mBuffer.size()
+}
+
+void TCPConnection::close() {
+	mSocket.close();
 }

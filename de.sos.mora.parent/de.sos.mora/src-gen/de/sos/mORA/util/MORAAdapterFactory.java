@@ -3,6 +3,7 @@
  */
 package de.sos.mORA.util;
 
+import de.sos.mORA.AbstractType;
 import de.sos.mORA.Annotation;
 import de.sos.mORA.CSharpOptions;
 import de.sos.mORA.CppOptions;
@@ -132,6 +133,11 @@ public class MORAAdapterFactory extends AdapterFactoryImpl
       public Adapter caseSingleTypeDecl(SingleTypeDecl object)
       {
         return createSingleTypeDeclAdapter();
+      }
+      @Override
+      public Adapter caseAbstractType(AbstractType object)
+      {
+        return createAbstractTypeAdapter();
       }
       @Override
       public Adapter casePrimTypeDecl(PrimTypeDecl object)
@@ -326,6 +332,21 @@ public class MORAAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createSingleTypeDeclAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.sos.mORA.AbstractType <em>Abstract Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.sos.mORA.AbstractType
+   * @generated
+   */
+  public Adapter createAbstractTypeAdapter()
   {
     return null;
   }

@@ -319,6 +319,25 @@ public interface MORAPackage extends EPackage
   int SINGLE_TYPE_DECL_FEATURE_COUNT = TYPE_DECL_FEATURE_COUNT + 0;
 
   /**
+   * The meta object id for the '{@link de.sos.mORA.impl.AbstractTypeImpl <em>Abstract Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.sos.mORA.impl.AbstractTypeImpl
+   * @see de.sos.mORA.impl.MORAPackageImpl#getAbstractType()
+   * @generated
+   */
+  int ABSTRACT_TYPE = 8;
+
+  /**
+   * The number of structural features of the '<em>Abstract Type</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_TYPE_FEATURE_COUNT = 0;
+
+  /**
    * The meta object id for the '{@link de.sos.mORA.impl.PrimTypeDeclImpl <em>Prim Type Decl</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -326,7 +345,7 @@ public interface MORAPackage extends EPackage
    * @see de.sos.mORA.impl.MORAPackageImpl#getPrimTypeDecl()
    * @generated
    */
-  int PRIM_TYPE_DECL = 8;
+  int PRIM_TYPE_DECL = 9;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -354,7 +373,7 @@ public interface MORAPackage extends EPackage
    * @see de.sos.mORA.impl.MORAPackageImpl#getAnnotation()
    * @generated
    */
-  int ANNOTATION = 9;
+  int ANNOTATION = 10;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -391,7 +410,7 @@ public interface MORAPackage extends EPackage
    * @see de.sos.mORA.impl.MORAPackageImpl#getStructDecl()
    * @generated
    */
-  int STRUCT_DECL = 10;
+  int STRUCT_DECL = 11;
 
   /**
    * The feature id for the '<em><b>Doc</b></em>' attribute.
@@ -446,7 +465,7 @@ public interface MORAPackage extends EPackage
    * @see de.sos.mORA.impl.MORAPackageImpl#getMember()
    * @generated
    */
-  int MEMBER = 11;
+  int MEMBER = 12;
 
   /**
    * The feature id for the '<em><b>Doc</b></em>' attribute.
@@ -510,7 +529,7 @@ public interface MORAPackage extends EPackage
    * @see de.sos.mORA.impl.MORAPackageImpl#getEnumDecl()
    * @generated
    */
-  int ENUM_DECL = 12;
+  int ENUM_DECL = 13;
 
   /**
    * The feature id for the '<em><b>Doc</b></em>' attribute.
@@ -556,7 +575,7 @@ public interface MORAPackage extends EPackage
    * @see de.sos.mORA.impl.MORAPackageImpl#getLiteral()
    * @generated
    */
-  int LITERAL = 13;
+  int LITERAL = 14;
 
   /**
    * The feature id for the '<em><b>Doc</b></em>' attribute.
@@ -602,7 +621,7 @@ public interface MORAPackage extends EPackage
    * @see de.sos.mORA.impl.MORAPackageImpl#getListTypeDecl()
    * @generated
    */
-  int LIST_TYPE_DECL = 14;
+  int LIST_TYPE_DECL = 15;
 
   /**
    * The feature id for the '<em><b>Doc</b></em>' attribute.
@@ -657,7 +676,7 @@ public interface MORAPackage extends EPackage
    * @see de.sos.mORA.impl.MORAPackageImpl#getInterface()
    * @generated
    */
-  int INTERFACE = 15;
+  int INTERFACE = 16;
 
   /**
    * The feature id for the '<em><b>Doc</b></em>' attribute.
@@ -666,7 +685,7 @@ public interface MORAPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INTERFACE__DOC = 0;
+  int INTERFACE__DOC = ABSTRACT_TYPE_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Anno</b></em>' containment reference list.
@@ -675,7 +694,7 @@ public interface MORAPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INTERFACE__ANNO = 1;
+  int INTERFACE__ANNO = ABSTRACT_TYPE_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -684,7 +703,7 @@ public interface MORAPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INTERFACE__NAME = 2;
+  int INTERFACE__NAME = ABSTRACT_TYPE_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>Parents</b></em>' reference list.
@@ -693,7 +712,7 @@ public interface MORAPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INTERFACE__PARENTS = 3;
+  int INTERFACE__PARENTS = ABSTRACT_TYPE_FEATURE_COUNT + 3;
 
   /**
    * The feature id for the '<em><b>Methods</b></em>' containment reference list.
@@ -702,7 +721,7 @@ public interface MORAPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INTERFACE__METHODS = 4;
+  int INTERFACE__METHODS = ABSTRACT_TYPE_FEATURE_COUNT + 4;
 
   /**
    * The number of structural features of the '<em>Interface</em>' class.
@@ -711,7 +730,7 @@ public interface MORAPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INTERFACE_FEATURE_COUNT = 5;
+  int INTERFACE_FEATURE_COUNT = ABSTRACT_TYPE_FEATURE_COUNT + 5;
 
   /**
    * The meta object id for the '{@link de.sos.mORA.impl.MethodImpl <em>Method</em>}' class.
@@ -721,7 +740,7 @@ public interface MORAPackage extends EPackage
    * @see de.sos.mORA.impl.MORAPackageImpl#getMethod()
    * @generated
    */
-  int METHOD = 16;
+  int METHOD = 17;
 
   /**
    * The feature id for the '<em><b>Doc</b></em>' attribute.
@@ -803,7 +822,7 @@ public interface MORAPackage extends EPackage
    * @see de.sos.mORA.impl.MORAPackageImpl#getException()
    * @generated
    */
-  int EXCEPTION = 17;
+  int EXCEPTION = 18;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -840,7 +859,7 @@ public interface MORAPackage extends EPackage
    * @see de.sos.mORA.impl.MORAPackageImpl#getParameter()
    * @generated
    */
-  int PARAMETER = 18;
+  int PARAMETER = 19;
 
   /**
    * The feature id for the '<em><b>Complex Type</b></em>' reference.
@@ -895,7 +914,7 @@ public interface MORAPackage extends EPackage
    * @see de.sos.mORA.impl.MORAPackageImpl#getPrimTypeLiteral()
    * @generated
    */
-  int PRIM_TYPE_LITERAL = 19;
+  int PRIM_TYPE_LITERAL = 20;
 
 
   /**
@@ -1109,6 +1128,16 @@ public interface MORAPackage extends EPackage
    * @generated
    */
   EClass getSingleTypeDecl();
+
+  /**
+   * Returns the meta object for class '{@link de.sos.mORA.AbstractType <em>Abstract Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Abstract Type</em>'.
+   * @see de.sos.mORA.AbstractType
+   * @generated
+   */
+  EClass getAbstractType();
 
   /**
    * Returns the meta object for class '{@link de.sos.mORA.PrimTypeDecl <em>Prim Type Decl</em>}'.
@@ -1868,6 +1897,16 @@ public interface MORAPackage extends EPackage
      * @generated
      */
     EClass SINGLE_TYPE_DECL = eINSTANCE.getSingleTypeDecl();
+
+    /**
+     * The meta object literal for the '{@link de.sos.mORA.impl.AbstractTypeImpl <em>Abstract Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.sos.mORA.impl.AbstractTypeImpl
+     * @see de.sos.mORA.impl.MORAPackageImpl#getAbstractType()
+     * @generated
+     */
+    EClass ABSTRACT_TYPE = eINSTANCE.getAbstractType();
 
     /**
      * The meta object literal for the '{@link de.sos.mORA.impl.PrimTypeDeclImpl <em>Prim Type Decl</em>}' class.

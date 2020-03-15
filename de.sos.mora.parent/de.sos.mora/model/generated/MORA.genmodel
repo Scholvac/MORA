@@ -43,6 +43,7 @@
     </genClasses>
     <genClasses ecoreClass="MORA.ecore#//TypeDecl"/>
     <genClasses ecoreClass="MORA.ecore#//SingleTypeDecl"/>
+    <genClasses ecoreClass="MORA.ecore#//AbstractType"/>
     <genClasses ecoreClass="MORA.ecore#//PrimTypeDecl">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MORA.ecore#//PrimTypeDecl/name"/>
     </genClasses>

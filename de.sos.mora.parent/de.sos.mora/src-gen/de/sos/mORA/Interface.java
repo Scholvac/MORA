@@ -5,8 +5,6 @@ package de.sos.mORA;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Interface</b></em>'.
@@ -27,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Interface extends EObject
+public interface Interface extends AbstractType
 {
   /**
    * Returns the value of the '<em><b>Doc</b></em>' attribute.

@@ -24,7 +24,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface StructDecl extends SingleTypeDecl
+public interface StructDecl extends SingleTypeDecl, AbstractType
 {
   /**
    * Returns the value of the '<em><b>Doc</b></em>' attribute.

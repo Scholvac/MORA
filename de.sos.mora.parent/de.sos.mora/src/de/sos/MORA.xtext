@@ -54,6 +54,10 @@ SingleTypeDecl :
 	PrimTypeDecl | StructDecl | EnumDecl
 ;
 
+AbstractType : 
+	Interface | StructDecl | EnumDecl
+;
+
 PrimTypeDecl :
 	name = PrimTypeLiteral
 ;
