@@ -16,7 +16,7 @@
 #include <thread>
 
 #include <TestUtils.h>
-
+#include <MoraLogging.h>
 
 template<typename TYPE>
 bool testType() {

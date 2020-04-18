@@ -76,7 +76,7 @@ public class Communicator {
 		public String 		name = "";
 		
 		
-		public Options() throws UnknownHostException {
+		public Options() {
 			this(PROTOCOL.TCP, "localhost", 9242);
 		}
 		public Options(PROTOCOL protocol, String host, int port) {

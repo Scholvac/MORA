@@ -9,7 +9,4 @@
 #define INCLUDE_MORA_H_
 
 
-
-
-
 #endif /* INCLUDE_MORA_H_ */

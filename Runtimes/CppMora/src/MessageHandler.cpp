@@ -5,6 +5,7 @@
  *      Author: sschweigert
  */
 
+#include "MoraLogging.h"
 #include "private/MessageHandler.h"
 
 #include "MoraRemoteMethodCall.h"

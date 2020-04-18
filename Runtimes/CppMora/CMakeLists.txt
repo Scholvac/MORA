@@ -29,7 +29,7 @@ include(installUtils) #set output directories and helper to install targets
 include(3rd_party_libs.cmake) #include external projects
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-set_property(GLOBAL PROPERTY PREDEFINED_TARGETS_FOLDER "CMakeTargets")
+set_property(GLOBAL PROPERTY PREDEFINED_TARGETS_FOLDER "CMakeTargets") 
 
 #=======================================================================================
 add_library(${PROJECT_NAME} )

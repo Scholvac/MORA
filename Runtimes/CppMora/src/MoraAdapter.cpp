@@ -5,6 +5,7 @@
  *      Author: sschweigert
  */
 
+#include <MoraLogging.h>
 #include <MoraAdapter.h>
 
 #include <Poco/Format.h>
@@ -33,7 +34,7 @@ bool Adapter::represents(void* ptr) const {
 }
 
 void Adapter::invoke(IRemoteMethodCall& context) {
-	LOG_TRACE("Start invokation of method %s::%s", mIdentity.c_str(), context.signature.c_str());
+	LOG_TRACE("Start invokation of method %s::%s", mIdentity.qualifiedIdentifier().c_str(), context.signature.c_str());
 	
 	InvokerFunctionMap::const_iterator it = mInvokerFunctions.find(context.signature());
 	if (it != mInvokerFunctions.end()) {
@@ -43,5 +44,5 @@ void Adapter::invoke(IRemoteMethodCall& context) {
 		throw MethodNotFoundException(type(), identity().objectIdentity(), context.signature());
 	}
 
-	LOG_TRACE("Finish invokation of method %s::%s", mIdentity.c_str(), context.signature.c_str());
+	LOG_TRACE("Finish invokation of method %s::%s", mIdentity.qualifiedIdentifier().c_str(), context.signature.c_str());
 }

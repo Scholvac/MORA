@@ -18,6 +18,18 @@
 
 using namespace de::sos::mora::examples;
 
+class MyLogger : public ::mora::ILogHandler {
+public:
+	virtual void log(int verbosity, const char* message) {
+		std::cout << "[" << verbosity << "] :  " << message << std::endl;
+	}
+};
+static int init() {
+	::mora::setLogHandler(new MyLogger());
+	return 1;
+}
+static int _init = init();
+
 TEST_CASE("Start_Stop"
 			*	doctest::timeout(5)
 		) 

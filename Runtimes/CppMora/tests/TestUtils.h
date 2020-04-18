@@ -11,6 +11,7 @@
 #include <MoraPreReq.h>
 #include <MoraUtils.h>
 #include <vector>
+#include <MoraLogging.h>
 
 namespace tests{
 
@@ -58,7 +59,7 @@ namespace tests{
 		for (size_t i = 0; i < tmp.size(); i++) {
 			if (!(tmp[i] == res[i])) {
 				LOG_ERROR("compareList failed at index: %i", (int)i);
-//				CHECK(tmp[i] == res[i]);
+				CHECK(tmp[i] == res[i]);
 //				return false;
 			}
 		}

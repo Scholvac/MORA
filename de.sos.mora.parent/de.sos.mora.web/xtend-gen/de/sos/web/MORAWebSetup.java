@@ -3,24 +3,18 @@
  */
 package de.sos.web;
 
-import com.google.inject.Guice;
 import com.google.inject.Injector;
-import de.sos.MORARuntimeModule;
-import de.sos.MORAStandaloneSetup;
-import de.sos.ide.MORAIdeModule;
-import de.sos.web.MORAWebModule;
-import org.eclipse.xtext.util.Modules2;
 
 /**
  * Initialization support for running Xtext languages in web applications.
  */
 @SuppressWarnings("all")
-public class MORAWebSetup extends MORAStandaloneSetup {
+public class MORAWebSetup /* implements MORAStandaloneSetup  */{
   @Override
   public Injector createInjector() {
-    MORARuntimeModule _mORARuntimeModule = new MORARuntimeModule();
-    MORAIdeModule _mORAIdeModule = new MORAIdeModule();
-    MORAWebModule _mORAWebModule = new MORAWebModule();
-    return Guice.createInjector(Modules2.mixin(_mORARuntimeModule, _mORAIdeModule, _mORAWebModule));
+    throw new Error("Unresolved compilation problems:"
+      + "\nMORARuntimeModule cannot be resolved."
+      + "\nMORAIdeModule cannot be resolved."
+      + "\nType mismatch: cannot convert from MORAWebModule to Module");
   }
 }

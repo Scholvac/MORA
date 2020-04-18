@@ -13,13 +13,13 @@
 #include "loguru.h"
 
 
-#define LOG_DEBUG(...) VLOG_F(1 , __VA_ARGS__)
-
-#define LOG_INFO(...) LOG_F(INFO, __VA_ARGS__)
-
-#define LOG_WARN(...) LOG_F(WARNING, __VA_ARGS__)
-
-#define LOG_ERROR(...) LOG_F(ERROR, __VA_ARGS__)
+//#define LOG_DEBUG(...) VLOG_F(1 , __VA_ARGS__)
+//
+//#define LOG_INFO(...) LOG_F(INFO, __VA_ARGS__)
+//
+//#define LOG_WARN(...) LOG_F(WARNING, __VA_ARGS__)
+//
+//#define LOG_ERROR(...) LOG_F(ERROR, __VA_ARGS__)
 
 #include <serialisation.h>
 #include "TestUtils.h"

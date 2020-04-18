@@ -4,6 +4,7 @@
 #include <Mora.h>
 #include <MoraStreams.h>
 #include <TestUtils.h>
+#include <MoraLogging.h>
 
 
 template<typename TYPE>

@@ -50,28 +50,4 @@ namespace mora {
 }
 
 
-////////////////////////////////////////////////////////////////////////////
-//							LOGGING MACROS								  //
-//				to be overwritten by using applications					  //
-////////////////////////////////////////////////////////////////////////////
-
-#ifndef LOG_TRACE
-	#define LOG_TRACE(...)
-#endif
-#ifndef LOG_DEBUG
-	#define LOG_DEBUG(...)
-#endif
-#ifndef LOG_INFO
-	#define LOG_INFO(...)
-#endif
-#ifndef LOG_WARN
-	#define LOG_WARN(...)
-#endif
-#ifndef LOG_ERROR
-	#define LOG_ERROR(...)
-#endif
-
-
-
-
 #endif /* INCLUDE_MORA_PREREQ_H_ */
