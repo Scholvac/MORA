@@ -42,7 +42,7 @@ namespace mora {
 		{
 			reactor.addEventHandler(socket, NObserver<TCPSocketWorker, ReadableNotification>(*this, &TCPSocketWorker::onSocketReadable));
 			reactor.addEventHandler(socket, NObserver<TCPSocketWorker, ShutdownNotification>(*this, &TCPSocketWorker::onSocketShutdown));
-			externHost = mSocket.address().host().toString();
+			externHost = mSocket.peerAddress().host().toString();
 		}
 
 		void onSocketReadable(const AutoPtr<ReadableNotification>& pNf) {
