@@ -6,7 +6,7 @@
  */
 
 #include "MoraPreReq.h"
-#include "MoraLogging.h"
+#include "LogDef.h"
 #include "private/TCPConnections.h"
 #include "private/MessageHandler.h"
 

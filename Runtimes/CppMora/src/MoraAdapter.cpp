@@ -5,7 +5,7 @@
  *      Author: sschweigert
  */
 
-#include <MoraLogging.h>
+#include "LogDef.h"
 #include <MoraAdapter.h>
 
 #include <Poco/Format.h>

@@ -17,7 +17,7 @@
 #include <MoraCommunicator.h>
 #include <MoraException.h>
 #include <MoraUtils.h>
-#include <MoraLogging.h>
+
 
 namespace mora {
 	const int8 STRUCT_START = (int8)0xAF;

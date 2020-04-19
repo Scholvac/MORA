@@ -11,7 +11,7 @@
 #include <MoraPreReq.h>
 #include <MoraUtils.h>
 #include <vector>
-#include <MoraLogging.h>
+#include "LogDef.h"
 
 namespace tests{
 

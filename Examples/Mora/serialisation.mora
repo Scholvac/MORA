@@ -1,5 +1,4 @@
 
-
 options{ 
 	java {
 		base-package = de.sos.mora.examples

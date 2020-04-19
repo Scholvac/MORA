@@ -23,6 +23,7 @@
 
 #include <serialisation.h>
 #include "TestUtils.h"
+#include "LogDef.h"
 
 using namespace mora;
 

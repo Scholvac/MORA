@@ -17,6 +17,7 @@
 
 #include <TestSerializerService.h>
 
+
 TEST_CASE("Connection") 
 {
 	LOG_INFO("Connection");

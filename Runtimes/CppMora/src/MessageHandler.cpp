@@ -4,8 +4,7 @@
  *  Created on: 23.02.2020
  *      Author: sschweigert
  */
-
-#include "MoraLogging.h"
+#include "LogDef.h"
 #include "private/MessageHandler.h"
 
 #include "MoraRemoteMethodCall.h"
