@@ -3,7 +3,6 @@
  */
 package de.sos.scoping
 
-
 /**
  * This class contains custom scoping description.
  * 

@@ -1,10 +1,9 @@
 package de.sos.generator
 
-
-import org.eclipse.xtext.naming.QualifiedName
-import java.util.HashSet
 import java.util.ArrayList
 import java.util.Comparator
+import java.util.HashSet
+import org.eclipse.xtext.naming.QualifiedName
 
 class ImportUtil {
 //	extension QualifiedNameProvider = new QualifiedNameProvider() 

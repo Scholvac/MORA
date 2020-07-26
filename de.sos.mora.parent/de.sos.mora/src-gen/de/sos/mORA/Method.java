@@ -34,6 +34,10 @@ public interface Method extends EObject
   /**
    * Returns the value of the '<em><b>Doc</b></em>' attribute.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Doc</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Doc</em>' attribute.
    * @see #setDoc(String)
@@ -56,6 +60,10 @@ public interface Method extends EObject
   /**
    * Returns the value of the '<em><b>Return Proxy Type</b></em>' reference.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Return Proxy Type</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Return Proxy Type</em>' reference.
    * @see #setReturnProxyType(Interface)
@@ -78,6 +86,10 @@ public interface Method extends EObject
   /**
    * Returns the value of the '<em><b>Complex Type</b></em>' reference.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Complex Type</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Complex Type</em>' reference.
    * @see #setComplexType(TypeDecl)
@@ -101,6 +113,10 @@ public interface Method extends EObject
    * Returns the value of the '<em><b>Prim Type</b></em>' attribute.
    * The literals are from the enumeration {@link de.sos.mORA.PrimTypeLiteral}.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Prim Type</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Prim Type</em>' attribute.
    * @see de.sos.mORA.PrimTypeLiteral
@@ -125,6 +141,10 @@ public interface Method extends EObject
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Name</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
    * @see #setName(String)
@@ -148,6 +168,10 @@ public interface Method extends EObject
    * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
    * The list contents are of type {@link de.sos.mORA.Parameter}.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Parameters</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Parameters</em>' containment reference list.
    * @see de.sos.mORA.MORAPackage#getMethod_Parameters()
@@ -160,6 +184,10 @@ public interface Method extends EObject
    * Returns the value of the '<em><b>Exceptions</b></em>' containment reference list.
    * The list contents are of type {@link de.sos.mORA.Exception}.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Exceptions</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Exceptions</em>' containment reference list.
    * @see de.sos.mORA.MORAPackage#getMethod_Exceptions()

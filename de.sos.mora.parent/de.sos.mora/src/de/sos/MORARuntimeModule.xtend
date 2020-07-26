@@ -3,16 +3,6 @@
  */
 package de.sos
 
-import org.eclipse.xtext.scoping.impl.DefaultGlobalScopeProvider
-import org.eclipse.xtext.scoping.IGlobalScopeProvider
-import org.eclipse.xtext.scoping.impl.ImportUriGlobalScopeProvider
-import com.google.inject.Binder
-import org.eclipse.xtext.naming.SimpleNameProvider
-import org.eclipse.xtext.scoping.IScopeProvider
-import com.google.inject.name.Names
-import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
-import org.eclipse.xtext.scoping.impl.SimpleLocalScopeProvider
-
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */

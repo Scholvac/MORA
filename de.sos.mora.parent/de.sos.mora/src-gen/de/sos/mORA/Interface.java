@@ -30,6 +30,10 @@ public interface Interface extends AbstractType
   /**
    * Returns the value of the '<em><b>Doc</b></em>' attribute.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Doc</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Doc</em>' attribute.
    * @see #setDoc(String)
@@ -53,6 +57,10 @@ public interface Interface extends AbstractType
    * Returns the value of the '<em><b>Anno</b></em>' containment reference list.
    * The list contents are of type {@link de.sos.mORA.Annotation}.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Anno</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Anno</em>' containment reference list.
    * @see de.sos.mORA.MORAPackage#getInterface_Anno()
@@ -64,6 +72,10 @@ public interface Interface extends AbstractType
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Name</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
    * @see #setName(String)
@@ -87,6 +99,10 @@ public interface Interface extends AbstractType
    * Returns the value of the '<em><b>Parents</b></em>' reference list.
    * The list contents are of type {@link de.sos.mORA.Interface}.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Parents</em>' reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Parents</em>' reference list.
    * @see de.sos.mORA.MORAPackage#getInterface_Parents()
@@ -99,6 +115,10 @@ public interface Interface extends AbstractType
    * Returns the value of the '<em><b>Methods</b></em>' containment reference list.
    * The list contents are of type {@link de.sos.mORA.Method}.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Methods</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Methods</em>' containment reference list.
    * @see de.sos.mORA.MORAPackage#getInterface_Methods()

@@ -139,7 +139,6 @@ public class InterfaceImpl extends AbstractTypeImpl implements Interface
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public String getDoc()
   {
     return doc;
@@ -150,7 +149,6 @@ public class InterfaceImpl extends AbstractTypeImpl implements Interface
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setDoc(String newDoc)
   {
     String oldDoc = doc;
@@ -164,7 +162,6 @@ public class InterfaceImpl extends AbstractTypeImpl implements Interface
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EList<Annotation> getAnno()
   {
     if (anno == null)
@@ -179,7 +176,6 @@ public class InterfaceImpl extends AbstractTypeImpl implements Interface
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public String getName()
   {
     return name;
@@ -190,7 +186,6 @@ public class InterfaceImpl extends AbstractTypeImpl implements Interface
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setName(String newName)
   {
     String oldName = name;
@@ -204,7 +199,6 @@ public class InterfaceImpl extends AbstractTypeImpl implements Interface
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EList<Interface> getParents()
   {
     if (parents == null)
@@ -219,7 +213,6 @@ public class InterfaceImpl extends AbstractTypeImpl implements Interface
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EList<Method> getMethods()
   {
     if (methods == null)
@@ -367,7 +360,7 @@ public class InterfaceImpl extends AbstractTypeImpl implements Interface
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    StringBuffer result = new StringBuffer(super.toString());
     result.append(" (doc: ");
     result.append(doc);
     result.append(", name: ");

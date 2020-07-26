@@ -12,7 +12,6 @@ import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
-import org.apache.commons.cli.OptionGroup;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.eclipse.emf.common.util.URI;
@@ -35,7 +34,6 @@ import de.sos.generator.cpp.CppPlainGenerator;
 import de.sos.generator.csharp.CSharpGenerator;
 import de.sos.generator.csharp.CSharpGenerator.CSharpOptions;
 import de.sos.generator.java.JavaGenerator;
-import de.sos.generator.java.JavaGenerator.JavaOptions;
 
 public class GeneratorMain {
 

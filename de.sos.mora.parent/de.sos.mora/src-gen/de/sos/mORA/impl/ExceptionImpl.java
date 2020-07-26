@@ -94,7 +94,6 @@ public class ExceptionImpl extends MinimalEObjectImpl.Container implements de.so
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public String getName()
   {
     return name;
@@ -105,7 +104,6 @@ public class ExceptionImpl extends MinimalEObjectImpl.Container implements de.so
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setName(String newName)
   {
     String oldName = name;
@@ -119,7 +117,6 @@ public class ExceptionImpl extends MinimalEObjectImpl.Container implements de.so
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EList<Member> getMember()
   {
     if (member == null)
@@ -233,7 +230,7 @@ public class ExceptionImpl extends MinimalEObjectImpl.Container implements de.so
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");
     result.append(name);
     result.append(')');

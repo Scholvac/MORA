@@ -129,7 +129,6 @@ public class ListTypeDeclImpl extends TypeDeclImpl implements ListTypeDecl
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public String getDoc()
   {
     return doc;
@@ -140,7 +139,6 @@ public class ListTypeDeclImpl extends TypeDeclImpl implements ListTypeDecl
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setDoc(String newDoc)
   {
     String oldDoc = doc;
@@ -154,7 +152,6 @@ public class ListTypeDeclImpl extends TypeDeclImpl implements ListTypeDecl
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public SingleTypeDecl getValueType()
   {
     if (valueType != null && valueType.eIsProxy())
@@ -185,7 +182,6 @@ public class ListTypeDeclImpl extends TypeDeclImpl implements ListTypeDecl
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setValueType(SingleTypeDecl newValueType)
   {
     SingleTypeDecl oldValueType = valueType;
@@ -199,7 +195,6 @@ public class ListTypeDeclImpl extends TypeDeclImpl implements ListTypeDecl
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public PrimTypeLiteral getPrimType()
   {
     return primType;
@@ -210,7 +205,6 @@ public class ListTypeDeclImpl extends TypeDeclImpl implements ListTypeDecl
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setPrimType(PrimTypeLiteral newPrimType)
   {
     PrimTypeLiteral oldPrimType = primType;
@@ -224,7 +218,6 @@ public class ListTypeDeclImpl extends TypeDeclImpl implements ListTypeDecl
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public String getName()
   {
     return name;
@@ -235,7 +228,6 @@ public class ListTypeDeclImpl extends TypeDeclImpl implements ListTypeDecl
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setName(String newName)
   {
     String oldName = name;
@@ -351,7 +343,7 @@ public class ListTypeDeclImpl extends TypeDeclImpl implements ListTypeDecl
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    StringBuffer result = new StringBuffer(super.toString());
     result.append(" (doc: ");
     result.append(doc);
     result.append(", primType: ");

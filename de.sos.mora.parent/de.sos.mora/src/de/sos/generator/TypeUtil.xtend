@@ -1,21 +1,20 @@
 package de.sos.generator
 
-import java.util.Map
-import java.util.HashMap
-import de.sos.generator.TypeUtil.ProxyTypeDecl
-import de.sos.mORA.PrimTypeLiteral
-import de.sos.mORA.PrimTypeDecl
-import de.sos.mORA.Interface
-import de.sos.mORA.impl.TypeDeclImpl
-import de.sos.mORA.Member
-import de.sos.mORA.TypeDecl
-import de.sos.mORA.Parameter
-import de.sos.mORA.Method
-import de.sos.mORA.ListTypeDecl
-import de.sos.mORA.StructDecl
 import de.sos.mORA.EnumDecl
+import de.sos.mORA.Interface
+import de.sos.mORA.ListTypeDecl
 import de.sos.mORA.MORAFactory
+import de.sos.mORA.Member
+import de.sos.mORA.Method
 import de.sos.mORA.Model
+import de.sos.mORA.Parameter
+import de.sos.mORA.PrimTypeDecl
+import de.sos.mORA.PrimTypeLiteral
+import de.sos.mORA.StructDecl
+import de.sos.mORA.TypeDecl
+import de.sos.mORA.impl.TypeDeclImpl
+import java.util.HashMap
+import java.util.Map
 
 class TypeUtil {
 

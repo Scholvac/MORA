@@ -13,7 +13,7 @@ import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor;
 @FinalFieldsConstructor
 @SuppressWarnings("all")
 public class MORAUiModule extends AbstractMORAUiModule {
-  public MORAUiModule(final AbstractUIPlugin plugin) {
-    super(plugin);
+  public MORAUiModule(final AbstractUIPlugin arg0) {
+    super(arg0);
   }
 }

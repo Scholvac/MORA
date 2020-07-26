@@ -150,7 +150,6 @@ public class MemberImpl extends MinimalEObjectImpl.Container implements Member
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public String getDoc()
   {
     return doc;
@@ -161,7 +160,6 @@ public class MemberImpl extends MinimalEObjectImpl.Container implements Member
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setDoc(String newDoc)
   {
     String oldDoc = doc;
@@ -175,7 +173,6 @@ public class MemberImpl extends MinimalEObjectImpl.Container implements Member
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EList<Annotation> getAnno()
   {
     if (anno == null)
@@ -190,7 +187,6 @@ public class MemberImpl extends MinimalEObjectImpl.Container implements Member
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public TypeDecl getComplexType()
   {
     if (complexType != null && complexType.eIsProxy())
@@ -221,7 +217,6 @@ public class MemberImpl extends MinimalEObjectImpl.Container implements Member
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setComplexType(TypeDecl newComplexType)
   {
     TypeDecl oldComplexType = complexType;
@@ -235,7 +230,6 @@ public class MemberImpl extends MinimalEObjectImpl.Container implements Member
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public PrimTypeLiteral getPrimType()
   {
     return primType;
@@ -246,7 +240,6 @@ public class MemberImpl extends MinimalEObjectImpl.Container implements Member
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setPrimType(PrimTypeLiteral newPrimType)
   {
     PrimTypeLiteral oldPrimType = primType;
@@ -260,7 +253,6 @@ public class MemberImpl extends MinimalEObjectImpl.Container implements Member
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public String getName()
   {
     return name;
@@ -271,7 +263,6 @@ public class MemberImpl extends MinimalEObjectImpl.Container implements Member
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setName(String newName)
   {
     String oldName = name;
@@ -415,7 +406,7 @@ public class MemberImpl extends MinimalEObjectImpl.Container implements Member
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    StringBuffer result = new StringBuffer(super.toString());
     result.append(" (doc: ");
     result.append(doc);
     result.append(", primType: ");

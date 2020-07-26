@@ -5,13 +5,13 @@ import de.sos.generator.TypeUtil
 import de.sos.generator.TypeUtil.ProxyTypeDecl
 import de.sos.mORA.Interface
 import de.sos.mORA.PrimTypeDecl
+import de.sos.mORA.StructDecl
 import de.sos.mORA.TypeDecl
-import org.eclipse.emf.mwe2.language.scoping.QualifiedNameProvider
+import java.io.File
 import org.eclipse.xtext.naming.IQualifiedNameProvider
+import org.eclipse.emf.mwe2.language.scoping.QualifiedNameProvider
 import org.eclipse.xtext.naming.QualifiedName
 import de.sos.mORA.Model
-import de.sos.mORA.StructDecl
-import java.io.File
 
 class CppTypeUtil extends ImportUtil {
 	

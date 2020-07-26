@@ -113,6 +113,10 @@ public enum PrimTypeLiteral implements Enumerator
   /**
    * The '<em><b>BOOL</b></em>' literal value.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of '<em><b>BOOL</b></em>' literal object isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @see #BOOL
    * @model literal="bool"
@@ -124,6 +128,10 @@ public enum PrimTypeLiteral implements Enumerator
   /**
    * The '<em><b>BYTE</b></em>' literal value.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of '<em><b>BYTE</b></em>' literal object isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @see #BYTE
    * @model literal="byte"
@@ -135,6 +143,10 @@ public enum PrimTypeLiteral implements Enumerator
   /**
    * The '<em><b>SHORT</b></em>' literal value.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of '<em><b>SHORT</b></em>' literal object isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @see #SHORT
    * @model literal="short"
@@ -146,6 +158,10 @@ public enum PrimTypeLiteral implements Enumerator
   /**
    * The '<em><b>INTEGER</b></em>' literal value.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of '<em><b>INTEGER</b></em>' literal object isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @see #INTEGER
    * @model literal="int"
@@ -157,6 +173,10 @@ public enum PrimTypeLiteral implements Enumerator
   /**
    * The '<em><b>LONG</b></em>' literal value.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of '<em><b>LONG</b></em>' literal object isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @see #LONG
    * @model literal="long"
@@ -168,6 +188,10 @@ public enum PrimTypeLiteral implements Enumerator
   /**
    * The '<em><b>FLOAT</b></em>' literal value.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of '<em><b>FLOAT</b></em>' literal object isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @see #FLOAT
    * @model literal="float"
@@ -179,6 +203,10 @@ public enum PrimTypeLiteral implements Enumerator
   /**
    * The '<em><b>DOUBLE</b></em>' literal value.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of '<em><b>DOUBLE</b></em>' literal object isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @see #DOUBLE
    * @model literal="double"
@@ -190,6 +218,10 @@ public enum PrimTypeLiteral implements Enumerator
   /**
    * The '<em><b>STRING</b></em>' literal value.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of '<em><b>STRING</b></em>' literal object isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @see #STRING
    * @model literal="string"
@@ -201,6 +233,10 @@ public enum PrimTypeLiteral implements Enumerator
   /**
    * The '<em><b>VOID</b></em>' literal value.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of '<em><b>VOID</b></em>' literal object isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @see #VOID
    * @model literal="void"
@@ -343,7 +379,6 @@ public enum PrimTypeLiteral implements Enumerator
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public int getValue()
   {
     return value;
@@ -354,7 +389,6 @@ public enum PrimTypeLiteral implements Enumerator
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public String getName()
   {
     return name;
@@ -365,7 +399,6 @@ public enum PrimTypeLiteral implements Enumerator
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public String getLiteral()
   {
     return literal;

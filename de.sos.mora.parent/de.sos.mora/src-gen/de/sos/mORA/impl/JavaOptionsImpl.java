@@ -74,7 +74,6 @@ public class JavaOptionsImpl extends MinimalEObjectImpl.Container implements Jav
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public String getBasePackage()
   {
     return basePackage;
@@ -85,7 +84,6 @@ public class JavaOptionsImpl extends MinimalEObjectImpl.Container implements Jav
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setBasePackage(String newBasePackage)
   {
     String oldBasePackage = basePackage;
@@ -170,7 +168,7 @@ public class JavaOptionsImpl extends MinimalEObjectImpl.Container implements Jav
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    StringBuffer result = new StringBuffer(super.toString());
     result.append(" (basePackage: ");
     result.append(basePackage);
     result.append(')');

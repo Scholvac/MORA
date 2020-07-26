@@ -3,9 +3,11 @@
  */
 package de.sos.web;
 
+import de.sos.web.AbstractMORAWebModule;
+
 /**
  * Use this class to register additional components to be used within the web application.
  */
 @SuppressWarnings("all")
-public class MORAWebModule /* implements AbstractMORAWebModule  */{
+public class MORAWebModule extends AbstractMORAWebModule {
 }

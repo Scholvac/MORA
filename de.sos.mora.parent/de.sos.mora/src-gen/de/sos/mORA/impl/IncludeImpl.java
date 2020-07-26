@@ -74,7 +74,6 @@ public class IncludeImpl extends MinimalEObjectImpl.Container implements Include
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public String getImportUri()
   {
     return importUri;
@@ -85,7 +84,6 @@ public class IncludeImpl extends MinimalEObjectImpl.Container implements Include
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setImportUri(String newImportUri)
   {
     String oldImportUri = importUri;
@@ -170,7 +168,7 @@ public class IncludeImpl extends MinimalEObjectImpl.Container implements Include
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    StringBuffer result = new StringBuffer(super.toString());
     result.append(" (importUri: ");
     result.append(importUri);
     result.append(')');

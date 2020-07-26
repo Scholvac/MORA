@@ -121,7 +121,6 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public TypeDecl getComplexType()
   {
     if (complexType != null && complexType.eIsProxy())
@@ -152,7 +151,6 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setComplexType(TypeDecl newComplexType)
   {
     TypeDecl oldComplexType = complexType;
@@ -166,7 +164,6 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public PrimTypeLiteral getPrimType()
   {
     return primType;
@@ -177,7 +174,6 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setPrimType(PrimTypeLiteral newPrimType)
   {
     PrimTypeLiteral oldPrimType = primType;
@@ -191,7 +187,6 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public Interface getProxyType()
   {
     if (proxyType != null && proxyType.eIsProxy())
@@ -222,7 +217,6 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setProxyType(Interface newProxyType)
   {
     Interface oldProxyType = proxyType;
@@ -236,7 +230,6 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public String getName()
   {
     return name;
@@ -247,7 +240,6 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setName(String newName)
   {
     String oldName = name;
@@ -364,7 +356,7 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    StringBuffer result = new StringBuffer(super.toString());
     result.append(" (primType: ");
     result.append(primType);
     result.append(", name: ");

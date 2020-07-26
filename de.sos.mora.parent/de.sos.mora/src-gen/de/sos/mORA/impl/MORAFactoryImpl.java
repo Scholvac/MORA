@@ -151,7 +151,6 @@ public class MORAFactoryImpl extends EFactoryImpl implements MORAFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public Model createModel()
   {
     ModelImpl model = new ModelImpl();
@@ -163,7 +162,6 @@ public class MORAFactoryImpl extends EFactoryImpl implements MORAFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public Include createInclude()
   {
     IncludeImpl include = new IncludeImpl();
@@ -175,7 +173,6 @@ public class MORAFactoryImpl extends EFactoryImpl implements MORAFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public Options createOptions()
   {
     OptionsImpl options = new OptionsImpl();
@@ -187,7 +184,6 @@ public class MORAFactoryImpl extends EFactoryImpl implements MORAFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public JavaOptions createJavaOptions()
   {
     JavaOptionsImpl javaOptions = new JavaOptionsImpl();
@@ -199,7 +195,6 @@ public class MORAFactoryImpl extends EFactoryImpl implements MORAFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public CSharpOptions createCSharpOptions()
   {
     CSharpOptionsImpl cSharpOptions = new CSharpOptionsImpl();
@@ -211,7 +206,6 @@ public class MORAFactoryImpl extends EFactoryImpl implements MORAFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public CppOptions createCppOptions()
   {
     CppOptionsImpl cppOptions = new CppOptionsImpl();
@@ -223,7 +217,6 @@ public class MORAFactoryImpl extends EFactoryImpl implements MORAFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public TypeDecl createTypeDecl()
   {
     TypeDeclImpl typeDecl = new TypeDeclImpl();
@@ -235,7 +228,6 @@ public class MORAFactoryImpl extends EFactoryImpl implements MORAFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public SingleTypeDecl createSingleTypeDecl()
   {
     SingleTypeDeclImpl singleTypeDecl = new SingleTypeDeclImpl();
@@ -247,7 +239,6 @@ public class MORAFactoryImpl extends EFactoryImpl implements MORAFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public AbstractType createAbstractType()
   {
     AbstractTypeImpl abstractType = new AbstractTypeImpl();
@@ -259,7 +250,6 @@ public class MORAFactoryImpl extends EFactoryImpl implements MORAFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public PrimTypeDecl createPrimTypeDecl()
   {
     PrimTypeDeclImpl primTypeDecl = new PrimTypeDeclImpl();
@@ -271,7 +261,6 @@ public class MORAFactoryImpl extends EFactoryImpl implements MORAFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public Annotation createAnnotation()
   {
     AnnotationImpl annotation = new AnnotationImpl();
@@ -283,7 +272,6 @@ public class MORAFactoryImpl extends EFactoryImpl implements MORAFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public StructDecl createStructDecl()
   {
     StructDeclImpl structDecl = new StructDeclImpl();
@@ -295,7 +283,6 @@ public class MORAFactoryImpl extends EFactoryImpl implements MORAFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public Member createMember()
   {
     MemberImpl member = new MemberImpl();
@@ -307,7 +294,6 @@ public class MORAFactoryImpl extends EFactoryImpl implements MORAFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EnumDecl createEnumDecl()
   {
     EnumDeclImpl enumDecl = new EnumDeclImpl();
@@ -319,7 +305,6 @@ public class MORAFactoryImpl extends EFactoryImpl implements MORAFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public Literal createLiteral()
   {
     LiteralImpl literal = new LiteralImpl();
@@ -331,7 +316,6 @@ public class MORAFactoryImpl extends EFactoryImpl implements MORAFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public ListTypeDecl createListTypeDecl()
   {
     ListTypeDeclImpl listTypeDecl = new ListTypeDeclImpl();
@@ -343,7 +327,6 @@ public class MORAFactoryImpl extends EFactoryImpl implements MORAFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public Interface createInterface()
   {
     InterfaceImpl interface_ = new InterfaceImpl();
@@ -355,7 +338,6 @@ public class MORAFactoryImpl extends EFactoryImpl implements MORAFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public Method createMethod()
   {
     MethodImpl method = new MethodImpl();
@@ -367,7 +349,6 @@ public class MORAFactoryImpl extends EFactoryImpl implements MORAFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public de.sos.mORA.Exception createException()
   {
     ExceptionImpl exception = new ExceptionImpl();
@@ -379,7 +360,6 @@ public class MORAFactoryImpl extends EFactoryImpl implements MORAFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public Parameter createParameter()
   {
     ParameterImpl parameter = new ParameterImpl();
@@ -413,7 +393,6 @@ public class MORAFactoryImpl extends EFactoryImpl implements MORAFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public MORAPackage getMORAPackage()
   {
     return (MORAPackage)getEPackage();

@@ -127,7 +127,6 @@ public class StructDeclImpl extends SingleTypeDeclImpl implements StructDecl
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public String getDoc()
   {
     return doc;
@@ -138,7 +137,6 @@ public class StructDeclImpl extends SingleTypeDeclImpl implements StructDecl
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setDoc(String newDoc)
   {
     String oldDoc = doc;
@@ -152,7 +150,6 @@ public class StructDeclImpl extends SingleTypeDeclImpl implements StructDecl
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EList<Annotation> getAnno()
   {
     if (anno == null)
@@ -167,7 +164,6 @@ public class StructDeclImpl extends SingleTypeDeclImpl implements StructDecl
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public String getName()
   {
     return name;
@@ -178,7 +174,6 @@ public class StructDeclImpl extends SingleTypeDeclImpl implements StructDecl
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setName(String newName)
   {
     String oldName = name;
@@ -192,7 +187,6 @@ public class StructDeclImpl extends SingleTypeDeclImpl implements StructDecl
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EList<Member> getMember()
   {
     if (member == null)
@@ -329,7 +323,7 @@ public class StructDeclImpl extends SingleTypeDeclImpl implements StructDecl
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    StringBuffer result = new StringBuffer(super.toString());
     result.append(" (doc: ");
     result.append(doc);
     result.append(", name: ");

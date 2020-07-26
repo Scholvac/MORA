@@ -2,16 +2,12 @@ package de.sos.generator.java
 
 import de.sos.generator.TypeUtil
 import de.sos.mORA.Interface
-import de.sos.mORA.TypeDecl
+import de.sos.mORA.Method
+import de.sos.mORA.Parameter
 import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.emf.mwe2.language.scoping.QualifiedNameProvider
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
-import org.eclipse.xtext.naming.IQualifiedNameProvider
-import de.sos.mORA.Method
-import de.sos.mORA.Parameter
-import de.sos.mORA.PrimTypeDecl
 
 class JavaInterfaceGenerator extends AbstractGenerator {
 	

@@ -28,6 +28,10 @@ public interface Options extends EObject
   /**
    * Returns the value of the '<em><b>Java Options</b></em>' containment reference.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Java Options</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Java Options</em>' containment reference.
    * @see #setJavaOptions(JavaOptions)
@@ -50,6 +54,10 @@ public interface Options extends EObject
   /**
    * Returns the value of the '<em><b>Cs Options</b></em>' containment reference.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Cs Options</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Cs Options</em>' containment reference.
    * @see #setCsOptions(CSharpOptions)
@@ -72,6 +80,10 @@ public interface Options extends EObject
   /**
    * Returns the value of the '<em><b>Cpp Options</b></em>' containment reference.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Cpp Options</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Cpp Options</em>' containment reference.
    * @see #setCppOptions(CppOptions)

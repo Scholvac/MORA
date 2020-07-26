@@ -29,6 +29,10 @@ public interface Parameter extends EObject
   /**
    * Returns the value of the '<em><b>Complex Type</b></em>' reference.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Complex Type</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Complex Type</em>' reference.
    * @see #setComplexType(TypeDecl)
@@ -52,6 +56,10 @@ public interface Parameter extends EObject
    * Returns the value of the '<em><b>Prim Type</b></em>' attribute.
    * The literals are from the enumeration {@link de.sos.mORA.PrimTypeLiteral}.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Prim Type</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Prim Type</em>' attribute.
    * @see de.sos.mORA.PrimTypeLiteral
@@ -76,6 +84,10 @@ public interface Parameter extends EObject
   /**
    * Returns the value of the '<em><b>Proxy Type</b></em>' reference.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Proxy Type</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Proxy Type</em>' reference.
    * @see #setProxyType(Interface)
@@ -98,6 +110,10 @@ public interface Parameter extends EObject
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Name</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
    * @see #setName(String)

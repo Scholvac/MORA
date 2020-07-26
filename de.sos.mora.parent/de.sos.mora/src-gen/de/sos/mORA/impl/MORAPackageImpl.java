@@ -218,7 +218,7 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
 
   /**
    * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-   *
+   * 
    * <p>This method is used to initialize {@link MORAPackage#eINSTANCE} when that field is accessed.
    * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
    * <!-- begin-user-doc -->
@@ -233,8 +233,7 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
     if (isInited) return (MORAPackage)EPackage.Registry.INSTANCE.getEPackage(MORAPackage.eNS_URI);
 
     // Obtain or create and register package
-    Object registeredMORAPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
-    MORAPackageImpl theMORAPackage = registeredMORAPackage instanceof MORAPackageImpl ? (MORAPackageImpl)registeredMORAPackage : new MORAPackageImpl();
+    MORAPackageImpl theMORAPackage = (MORAPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof MORAPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new MORAPackageImpl());
 
     isInited = true;
 
@@ -247,6 +246,7 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
     // Mark meta-data to indicate it can't be changed
     theMORAPackage.freeze();
 
+  
     // Update the registry and return the package
     EPackage.Registry.INSTANCE.put(MORAPackage.eNS_URI, theMORAPackage);
     return theMORAPackage;
@@ -257,7 +257,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getModel()
   {
     return modelEClass;
@@ -268,7 +267,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getModel_Includes()
   {
     return (EReference)modelEClass.getEStructuralFeatures().get(0);
@@ -279,7 +277,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getModel_Options()
   {
     return (EReference)modelEClass.getEStructuralFeatures().get(1);
@@ -290,7 +287,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getModel_Name()
   {
     return (EAttribute)modelEClass.getEStructuralFeatures().get(2);
@@ -301,7 +297,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getModel_Interfaces()
   {
     return (EReference)modelEClass.getEStructuralFeatures().get(3);
@@ -312,7 +307,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getModel_Types()
   {
     return (EReference)modelEClass.getEStructuralFeatures().get(4);
@@ -323,7 +317,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getInclude()
   {
     return includeEClass;
@@ -334,7 +327,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getInclude_ImportUri()
   {
     return (EAttribute)includeEClass.getEStructuralFeatures().get(0);
@@ -345,7 +337,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getOptions()
   {
     return optionsEClass;
@@ -356,7 +347,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getOptions_JavaOptions()
   {
     return (EReference)optionsEClass.getEStructuralFeatures().get(0);
@@ -367,7 +357,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getOptions_CsOptions()
   {
     return (EReference)optionsEClass.getEStructuralFeatures().get(1);
@@ -378,7 +367,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getOptions_CppOptions()
   {
     return (EReference)optionsEClass.getEStructuralFeatures().get(2);
@@ -389,7 +377,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getJavaOptions()
   {
     return javaOptionsEClass;
@@ -400,7 +387,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getJavaOptions_BasePackage()
   {
     return (EAttribute)javaOptionsEClass.getEStructuralFeatures().get(0);
@@ -411,7 +397,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getCSharpOptions()
   {
     return cSharpOptionsEClass;
@@ -422,7 +407,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getCSharpOptions_BaseNamespace()
   {
     return (EAttribute)cSharpOptionsEClass.getEStructuralFeatures().get(0);
@@ -433,7 +417,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getCppOptions()
   {
     return cppOptionsEClass;
@@ -444,7 +427,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getCppOptions_BaseNamespace()
   {
     return (EAttribute)cppOptionsEClass.getEStructuralFeatures().get(0);
@@ -455,7 +437,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getTypeDecl()
   {
     return typeDeclEClass;
@@ -466,7 +447,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getSingleTypeDecl()
   {
     return singleTypeDeclEClass;
@@ -477,7 +457,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getAbstractType()
   {
     return abstractTypeEClass;
@@ -488,7 +467,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getPrimTypeDecl()
   {
     return primTypeDeclEClass;
@@ -499,7 +477,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getPrimTypeDecl_Name()
   {
     return (EAttribute)primTypeDeclEClass.getEStructuralFeatures().get(0);
@@ -510,7 +487,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getAnnotation()
   {
     return annotationEClass;
@@ -521,7 +497,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getAnnotation_Name()
   {
     return (EAttribute)annotationEClass.getEStructuralFeatures().get(0);
@@ -532,7 +507,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getAnnotation_Value()
   {
     return (EAttribute)annotationEClass.getEStructuralFeatures().get(1);
@@ -543,7 +517,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getStructDecl()
   {
     return structDeclEClass;
@@ -554,7 +527,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getStructDecl_Doc()
   {
     return (EAttribute)structDeclEClass.getEStructuralFeatures().get(0);
@@ -565,7 +537,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getStructDecl_Anno()
   {
     return (EReference)structDeclEClass.getEStructuralFeatures().get(1);
@@ -576,7 +547,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getStructDecl_Name()
   {
     return (EAttribute)structDeclEClass.getEStructuralFeatures().get(2);
@@ -587,7 +557,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getStructDecl_Member()
   {
     return (EReference)structDeclEClass.getEStructuralFeatures().get(3);
@@ -598,7 +567,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getMember()
   {
     return memberEClass;
@@ -609,7 +577,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getMember_Doc()
   {
     return (EAttribute)memberEClass.getEStructuralFeatures().get(0);
@@ -620,7 +587,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getMember_Anno()
   {
     return (EReference)memberEClass.getEStructuralFeatures().get(1);
@@ -631,7 +597,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getMember_ComplexType()
   {
     return (EReference)memberEClass.getEStructuralFeatures().get(2);
@@ -642,7 +607,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getMember_PrimType()
   {
     return (EAttribute)memberEClass.getEStructuralFeatures().get(3);
@@ -653,7 +617,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getMember_Name()
   {
     return (EAttribute)memberEClass.getEStructuralFeatures().get(4);
@@ -664,7 +627,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getEnumDecl()
   {
     return enumDeclEClass;
@@ -675,7 +637,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getEnumDecl_Doc()
   {
     return (EAttribute)enumDeclEClass.getEStructuralFeatures().get(0);
@@ -686,7 +647,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getEnumDecl_Name()
   {
     return (EAttribute)enumDeclEClass.getEStructuralFeatures().get(1);
@@ -697,7 +657,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getEnumDecl_Literals()
   {
     return (EReference)enumDeclEClass.getEStructuralFeatures().get(2);
@@ -708,7 +667,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getLiteral()
   {
     return literalEClass;
@@ -719,7 +677,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getLiteral_Doc()
   {
     return (EAttribute)literalEClass.getEStructuralFeatures().get(0);
@@ -730,7 +687,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getLiteral_Name()
   {
     return (EAttribute)literalEClass.getEStructuralFeatures().get(1);
@@ -741,7 +697,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getLiteral_Value()
   {
     return (EAttribute)literalEClass.getEStructuralFeatures().get(2);
@@ -752,7 +707,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getListTypeDecl()
   {
     return listTypeDeclEClass;
@@ -763,7 +717,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getListTypeDecl_Doc()
   {
     return (EAttribute)listTypeDeclEClass.getEStructuralFeatures().get(0);
@@ -774,7 +727,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getListTypeDecl_ValueType()
   {
     return (EReference)listTypeDeclEClass.getEStructuralFeatures().get(1);
@@ -785,7 +737,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getListTypeDecl_PrimType()
   {
     return (EAttribute)listTypeDeclEClass.getEStructuralFeatures().get(2);
@@ -796,7 +747,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getListTypeDecl_Name()
   {
     return (EAttribute)listTypeDeclEClass.getEStructuralFeatures().get(3);
@@ -807,7 +757,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getInterface()
   {
     return interfaceEClass;
@@ -818,7 +767,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getInterface_Doc()
   {
     return (EAttribute)interfaceEClass.getEStructuralFeatures().get(0);
@@ -829,7 +777,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getInterface_Anno()
   {
     return (EReference)interfaceEClass.getEStructuralFeatures().get(1);
@@ -840,7 +787,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getInterface_Name()
   {
     return (EAttribute)interfaceEClass.getEStructuralFeatures().get(2);
@@ -851,7 +797,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getInterface_Parents()
   {
     return (EReference)interfaceEClass.getEStructuralFeatures().get(3);
@@ -862,7 +807,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getInterface_Methods()
   {
     return (EReference)interfaceEClass.getEStructuralFeatures().get(4);
@@ -873,7 +817,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getMethod()
   {
     return methodEClass;
@@ -884,7 +827,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getMethod_Doc()
   {
     return (EAttribute)methodEClass.getEStructuralFeatures().get(0);
@@ -895,7 +837,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getMethod_ReturnProxyType()
   {
     return (EReference)methodEClass.getEStructuralFeatures().get(1);
@@ -906,7 +847,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getMethod_ComplexType()
   {
     return (EReference)methodEClass.getEStructuralFeatures().get(2);
@@ -917,7 +857,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getMethod_PrimType()
   {
     return (EAttribute)methodEClass.getEStructuralFeatures().get(3);
@@ -928,7 +867,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getMethod_Name()
   {
     return (EAttribute)methodEClass.getEStructuralFeatures().get(4);
@@ -939,7 +877,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getMethod_Parameters()
   {
     return (EReference)methodEClass.getEStructuralFeatures().get(5);
@@ -950,7 +887,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getMethod_Exceptions()
   {
     return (EReference)methodEClass.getEStructuralFeatures().get(6);
@@ -961,7 +897,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getException()
   {
     return exceptionEClass;
@@ -972,7 +907,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getException_Name()
   {
     return (EAttribute)exceptionEClass.getEStructuralFeatures().get(0);
@@ -983,7 +917,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getException_Member()
   {
     return (EReference)exceptionEClass.getEStructuralFeatures().get(1);
@@ -994,7 +927,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getParameter()
   {
     return parameterEClass;
@@ -1005,7 +937,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getParameter_ComplexType()
   {
     return (EReference)parameterEClass.getEStructuralFeatures().get(0);
@@ -1016,7 +947,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getParameter_PrimType()
   {
     return (EAttribute)parameterEClass.getEStructuralFeatures().get(1);
@@ -1027,7 +957,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getParameter_ProxyType()
   {
     return (EReference)parameterEClass.getEStructuralFeatures().get(2);
@@ -1038,7 +967,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getParameter_Name()
   {
     return (EAttribute)parameterEClass.getEStructuralFeatures().get(3);
@@ -1049,7 +977,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EEnum getPrimTypeLiteral()
   {
     return primTypeLiteralEEnum;
@@ -1060,7 +987,6 @@ public class MORAPackageImpl extends EPackageImpl implements MORAPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public MORAFactory getMORAFactory()
   {
     return (MORAFactory)getEFactoryInstance();

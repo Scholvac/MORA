@@ -1,26 +1,21 @@
 package de.sos.generator.cpp
 
+import com.google.common.base.Strings
 import de.sos.generator.TypeUtil
+import de.sos.mORA.AbstractType
+import de.sos.mORA.Interface
 import de.sos.mORA.Member
+import de.sos.mORA.Method
 import de.sos.mORA.Model
+import de.sos.mORA.StructDecl
+import java.util.ArrayList
+import java.util.HashSet
+import java.util.List
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
-import de.sos.mORA.EnumDecl
-import de.sos.mORA.StructDecl
-import de.sos.mORA.CppOptions
 import org.eclipse.xtext.naming.QualifiedName
-import de.sos.mORA.TypeDecl
-import de.sos.mORA.Interface
-import de.sos.mORA.Method
-import com.google.common.base.Strings
-import de.sos.mORA.AbstractType
-import java.util.List
-import java.util.HashSet
-import java.util.ArrayList
-import java.util.Collections
-import java.util.Comparator
 
 class CppPlainGenerator extends AbstractGenerator {
 	

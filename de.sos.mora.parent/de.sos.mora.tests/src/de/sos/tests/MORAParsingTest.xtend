@@ -21,6 +21,19 @@ class MORAParsingTest {
 	@Test
 	def void loadModel() {
 		val result = parseHelper.parse('''
+			
+			options{ 
+				java {
+					base-package = de.sos.mora.examples
+				}
+				csharp {
+					base-namespace = De.Sos.MORA.Examples
+				}
+				cpp {
+					base-namespace = de::sos::mora::examples
+				}
+			}
+			
 			package serialize {
 				//MORA reMOte pRoxy cAll
 				enum MyEnum {
@@ -28,16 +41,16 @@ class MORAParsingTest {
 					VALUE;
 				}
 				struct SimpleStruct {
-					1: bool boolValue;
-					2: byte byteValue;
-					3: short shortValue;
-					4: int intValue;
-					5: long longValue;
-					6: float floatValue;
-					7: double doubleValue;
-					8: string stringValue;
-					9: MyEnum enumValue; 
-					10:SimpleStruct structValue;
+					bool boolValue;
+					byte byteValue;
+					short shortValue;
+					int intValue;
+					long longValue;
+					float floatValue; 
+					double doubleValue;
+					string stringValue;
+					MyEnum enumValue; 
+					SimpleStruct structValue;
 				}
 				
 				List<bool> BoolList;
@@ -52,45 +65,56 @@ class MORAParsingTest {
 				List<SimpleStruct> SimpleStructList;
 				
 				struct ListStruct {
-					1: BoolList boolListValue;
-					2: ByteList byteListValue;
-					3: ShortList shortListValue;
-					4: IntList	intListValue;
-					5: LongList	longListValue;
-					6: FloatList floatListValue;
-					7: DoubleList doubleListValue;
-					8: StringList stringListValue;
-					9: MyEnumList enumListValue;
-					10: SimpleStructList structListValue;
+					BoolList boolListValue;
+					ByteList byteListValue;
+					ShortList shortListValue;
+					IntList	intListValue;
+					LongList	longListValue;
+					FloatList floatListValue;
+					DoubleList doubleListValue;
+					StringList stringListValue;
+					MyEnumList enumListValue;
+					SimpleStructList structListValue;
 				}
 				List<ListStruct> ListListStruct;
 				
-				interface EchoManager {
-					bool echo(1: bool value);
-					byte echo(1: byte value);
-					short echo(1: short value);
-					int echo(1: int value);
-					long echo(1: long value);
-					float echo(1: float value);
-					double echo(1: double value);
-					string echo(1: string value);
-					MyEnum echo(1: MyEnum value);
-					SimpleStruct echo(1: SimpleStruct value);
-					ListStruct echo(1: ListStruct value);
-					
-					BoolList echo(1: bool value);
-					ByteList echo(1: byte value);
-					ShortList echo(1: short value);
-					IntList echo(1: int value);
-					LongList echo(1: long value);
-					FloatList echo(1: float value);
-					DoubleList echo(1: double value);
-					StringList echo(1: string value);
-					MyEnumList echo(1: MyEnum value);
-					SimpleStructList echo(1: SimpleStruct value);
-					ListListStruct echo(1: ListListStruct value);
+				interface Callback {
+					void onEcho(float value);
 				}
-			 
+				interface ExtendedCallback extends Callback {
+					void extendedEcho(float value);
+				}
+				interface EchoManager {
+					bool echo(bool value);
+					byte echo(byte value);
+					short echo(short value);
+					int echo(int value);
+					long echo(long value);
+					float echo(float value);
+					double echo(double value);
+					string echo(string value);
+					MyEnum echo(MyEnum value);
+					SimpleStruct echo(SimpleStruct value);
+					ListStruct echo(ListStruct value);
+					
+					BoolList echo1(BoolList value);
+					ByteList echo2(ByteList value);
+					ShortList echo3(ShortList value);
+					IntList echo4(IntList value);
+					LongList echo5(LongList value);
+					FloatList echo6(FloatList value);
+					DoubleList echo7(DoubleList value);
+					StringList echo8(StringList value);
+					MyEnumList echo9(MyEnumList value);
+					SimpleStructList echo10(SimpleStructList value);
+					ListListStruct echo11(ListListStruct value);
+					
+					void setCallback(Callback* cb, float firstValue);
+					Callback* getCallback();
+					
+					void throwUnknownException();
+				}
+				
 			}   
 		''')
 		Assertions.assertNotNull(result)

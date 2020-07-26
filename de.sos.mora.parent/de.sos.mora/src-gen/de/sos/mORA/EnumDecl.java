@@ -28,6 +28,10 @@ public interface EnumDecl extends SingleTypeDecl, AbstractType
   /**
    * Returns the value of the '<em><b>Doc</b></em>' attribute.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Doc</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Doc</em>' attribute.
    * @see #setDoc(String)
@@ -50,6 +54,10 @@ public interface EnumDecl extends SingleTypeDecl, AbstractType
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Name</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
    * @see #setName(String)
@@ -73,6 +81,10 @@ public interface EnumDecl extends SingleTypeDecl, AbstractType
    * Returns the value of the '<em><b>Literals</b></em>' containment reference list.
    * The list contents are of type {@link de.sos.mORA.Literal}.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Literals</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Literals</em>' containment reference list.
    * @see de.sos.mORA.MORAPackage#getEnumDecl_Literals()

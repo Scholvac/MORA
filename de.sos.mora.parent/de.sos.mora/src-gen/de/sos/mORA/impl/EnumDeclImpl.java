@@ -115,7 +115,6 @@ public class EnumDeclImpl extends SingleTypeDeclImpl implements EnumDecl
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public String getDoc()
   {
     return doc;
@@ -126,7 +125,6 @@ public class EnumDeclImpl extends SingleTypeDeclImpl implements EnumDecl
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setDoc(String newDoc)
   {
     String oldDoc = doc;
@@ -140,7 +138,6 @@ public class EnumDeclImpl extends SingleTypeDeclImpl implements EnumDecl
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public String getName()
   {
     return name;
@@ -151,7 +148,6 @@ public class EnumDeclImpl extends SingleTypeDeclImpl implements EnumDecl
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setName(String newName)
   {
     String oldName = name;
@@ -165,7 +161,6 @@ public class EnumDeclImpl extends SingleTypeDeclImpl implements EnumDecl
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EList<Literal> getLiterals()
   {
     if (literals == null)
@@ -289,7 +284,7 @@ public class EnumDeclImpl extends SingleTypeDeclImpl implements EnumDecl
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    StringBuffer result = new StringBuffer(super.toString());
     result.append(" (doc: ");
     result.append(doc);
     result.append(", name: ");

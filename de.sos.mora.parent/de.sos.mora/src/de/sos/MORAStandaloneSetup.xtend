@@ -3,7 +3,6 @@
  */
 package de.sos
 
-
 /**
  * Initialization support for running Xtext languages without Equinox extension registry.
  */

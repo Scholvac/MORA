@@ -32,6 +32,10 @@ public interface Member extends EObject
   /**
    * Returns the value of the '<em><b>Doc</b></em>' attribute.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Doc</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Doc</em>' attribute.
    * @see #setDoc(String)
@@ -55,6 +59,10 @@ public interface Member extends EObject
    * Returns the value of the '<em><b>Anno</b></em>' containment reference list.
    * The list contents are of type {@link de.sos.mORA.Annotation}.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Anno</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Anno</em>' containment reference list.
    * @see de.sos.mORA.MORAPackage#getMember_Anno()
@@ -66,6 +74,10 @@ public interface Member extends EObject
   /**
    * Returns the value of the '<em><b>Complex Type</b></em>' reference.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Complex Type</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Complex Type</em>' reference.
    * @see #setComplexType(TypeDecl)
@@ -89,6 +101,10 @@ public interface Member extends EObject
    * Returns the value of the '<em><b>Prim Type</b></em>' attribute.
    * The literals are from the enumeration {@link de.sos.mORA.PrimTypeLiteral}.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Prim Type</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Prim Type</em>' attribute.
    * @see de.sos.mORA.PrimTypeLiteral
@@ -113,6 +129,10 @@ public interface Member extends EObject
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Name</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
    * @see #setName(String)

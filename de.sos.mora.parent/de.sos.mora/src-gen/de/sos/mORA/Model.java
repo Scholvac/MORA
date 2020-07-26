@@ -33,6 +33,10 @@ public interface Model extends EObject
    * Returns the value of the '<em><b>Includes</b></em>' containment reference list.
    * The list contents are of type {@link de.sos.mORA.Include}.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Includes</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Includes</em>' containment reference list.
    * @see de.sos.mORA.MORAPackage#getModel_Includes()
@@ -44,6 +48,10 @@ public interface Model extends EObject
   /**
    * Returns the value of the '<em><b>Options</b></em>' containment reference.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Options</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Options</em>' containment reference.
    * @see #setOptions(Options)
@@ -66,6 +74,10 @@ public interface Model extends EObject
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Name</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
    * @see #setName(String)
@@ -89,6 +101,10 @@ public interface Model extends EObject
    * Returns the value of the '<em><b>Interfaces</b></em>' containment reference list.
    * The list contents are of type {@link de.sos.mORA.Interface}.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Interfaces</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Interfaces</em>' containment reference list.
    * @see de.sos.mORA.MORAPackage#getModel_Interfaces()
@@ -101,6 +117,10 @@ public interface Model extends EObject
    * Returns the value of the '<em><b>Types</b></em>' containment reference list.
    * The list contents are of type {@link de.sos.mORA.TypeDecl}.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Types</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Types</em>' containment reference list.
    * @see de.sos.mORA.MORAPackage#getModel_Types()

@@ -91,7 +91,6 @@ public class OptionsImpl extends MinimalEObjectImpl.Container implements Options
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public JavaOptions getJavaOptions()
   {
     return javaOptions;
@@ -119,7 +118,6 @@ public class OptionsImpl extends MinimalEObjectImpl.Container implements Options
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setJavaOptions(JavaOptions newJavaOptions)
   {
     if (newJavaOptions != javaOptions)
@@ -141,7 +139,6 @@ public class OptionsImpl extends MinimalEObjectImpl.Container implements Options
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public CSharpOptions getCsOptions()
   {
     return csOptions;
@@ -169,7 +166,6 @@ public class OptionsImpl extends MinimalEObjectImpl.Container implements Options
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setCsOptions(CSharpOptions newCsOptions)
   {
     if (newCsOptions != csOptions)
@@ -191,7 +187,6 @@ public class OptionsImpl extends MinimalEObjectImpl.Container implements Options
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public CppOptions getCppOptions()
   {
     return cppOptions;
@@ -219,7 +214,6 @@ public class OptionsImpl extends MinimalEObjectImpl.Container implements Options
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setCppOptions(CppOptions newCppOptions)
   {
     if (newCppOptions != cppOptions)

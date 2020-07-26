@@ -3,7 +3,6 @@
  */
 package de.sos.validation
 
-
 /**
  * This class contains custom validation rules. 
  *

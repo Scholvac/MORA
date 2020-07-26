@@ -74,7 +74,6 @@ public class PrimTypeDeclImpl extends SingleTypeDeclImpl implements PrimTypeDecl
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public PrimTypeLiteral getName()
   {
     return name;
@@ -85,7 +84,6 @@ public class PrimTypeDeclImpl extends SingleTypeDeclImpl implements PrimTypeDecl
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setName(PrimTypeLiteral newName)
   {
     PrimTypeLiteral oldName = name;
@@ -170,7 +168,7 @@ public class PrimTypeDeclImpl extends SingleTypeDeclImpl implements PrimTypeDecl
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");
     result.append(name);
     result.append(')');

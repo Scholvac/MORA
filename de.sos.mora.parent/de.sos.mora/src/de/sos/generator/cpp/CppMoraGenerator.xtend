@@ -1,18 +1,17 @@
 package de.sos.generator.cpp
 
 import de.sos.generator.TypeUtil
+import de.sos.mORA.EnumDecl
+import de.sos.mORA.Interface
 import de.sos.mORA.Member
 import de.sos.mORA.Model
+import de.sos.mORA.StructDecl
+import de.sos.mORA.TypeDecl
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
-import de.sos.mORA.EnumDecl
-import de.sos.mORA.StructDecl
-import de.sos.mORA.CppOptions
 import org.eclipse.xtext.naming.QualifiedName
-import de.sos.mORA.TypeDecl
-import de.sos.mORA.Interface
 
 class CppMoraGenerator extends AbstractGenerator {
 	

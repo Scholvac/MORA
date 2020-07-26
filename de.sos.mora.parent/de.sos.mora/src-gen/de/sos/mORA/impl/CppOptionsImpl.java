@@ -74,7 +74,6 @@ public class CppOptionsImpl extends MinimalEObjectImpl.Container implements CppO
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public String getBaseNamespace()
   {
     return baseNamespace;
@@ -85,7 +84,6 @@ public class CppOptionsImpl extends MinimalEObjectImpl.Container implements CppO
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setBaseNamespace(String newBaseNamespace)
   {
     String oldBaseNamespace = baseNamespace;
@@ -170,7 +168,7 @@ public class CppOptionsImpl extends MinimalEObjectImpl.Container implements CppO
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    StringBuffer result = new StringBuffer(super.toString());
     result.append(" (baseNamespace: ");
     result.append(baseNamespace);
     result.append(')');

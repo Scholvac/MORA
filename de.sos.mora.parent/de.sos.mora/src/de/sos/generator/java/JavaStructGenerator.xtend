@@ -2,18 +2,12 @@ package de.sos.generator.java
 
 import de.sos.generator.TypeUtil
 import de.sos.mORA.EnumDecl
-import de.sos.mORA.PrimTypeLiteral
+import de.sos.mORA.Member
 import de.sos.mORA.StructDecl
-import de.sos.mORA.TypeDecl
 import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.emf.mwe2.language.scoping.QualifiedNameProvider
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
-import org.eclipse.xtext.naming.IQualifiedNameProvider
-import de.sos.mORA.Member
-import de.sos.generator.java.JavaGenerator.JavaOptions
-import de.sos.mORA.PrimTypeDecl
 
 class JavaStructGenerator extends AbstractGenerator {
 	

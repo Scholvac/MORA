@@ -173,7 +173,6 @@ public class MethodImpl extends MinimalEObjectImpl.Container implements Method
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public String getDoc()
   {
     return doc;
@@ -184,7 +183,6 @@ public class MethodImpl extends MinimalEObjectImpl.Container implements Method
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setDoc(String newDoc)
   {
     String oldDoc = doc;
@@ -198,7 +196,6 @@ public class MethodImpl extends MinimalEObjectImpl.Container implements Method
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public Interface getReturnProxyType()
   {
     if (returnProxyType != null && returnProxyType.eIsProxy())
@@ -229,7 +226,6 @@ public class MethodImpl extends MinimalEObjectImpl.Container implements Method
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setReturnProxyType(Interface newReturnProxyType)
   {
     Interface oldReturnProxyType = returnProxyType;
@@ -243,7 +239,6 @@ public class MethodImpl extends MinimalEObjectImpl.Container implements Method
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public TypeDecl getComplexType()
   {
     if (complexType != null && complexType.eIsProxy())
@@ -274,7 +269,6 @@ public class MethodImpl extends MinimalEObjectImpl.Container implements Method
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setComplexType(TypeDecl newComplexType)
   {
     TypeDecl oldComplexType = complexType;
@@ -288,7 +282,6 @@ public class MethodImpl extends MinimalEObjectImpl.Container implements Method
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public PrimTypeLiteral getPrimType()
   {
     return primType;
@@ -299,7 +292,6 @@ public class MethodImpl extends MinimalEObjectImpl.Container implements Method
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setPrimType(PrimTypeLiteral newPrimType)
   {
     PrimTypeLiteral oldPrimType = primType;
@@ -313,7 +305,6 @@ public class MethodImpl extends MinimalEObjectImpl.Container implements Method
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public String getName()
   {
     return name;
@@ -324,7 +315,6 @@ public class MethodImpl extends MinimalEObjectImpl.Container implements Method
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setName(String newName)
   {
     String oldName = name;
@@ -338,7 +328,6 @@ public class MethodImpl extends MinimalEObjectImpl.Container implements Method
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EList<Parameter> getParameters()
   {
     if (parameters == null)
@@ -353,7 +342,6 @@ public class MethodImpl extends MinimalEObjectImpl.Container implements Method
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EList<de.sos.mORA.Exception> getExceptions()
   {
     if (exceptions == null)
@@ -522,7 +510,7 @@ public class MethodImpl extends MinimalEObjectImpl.Container implements Method
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    StringBuffer result = new StringBuffer(super.toString());
     result.append(" (doc: ");
     result.append(doc);
     result.append(", primType: ");
